@@ -7,24 +7,31 @@ export const AppRoutes: Routes = [
         path: '',
         component: FullComponent,
         children: [
-            // {
-            //     path: '',
-            //     redirectTo: '/adminpage',
-            //     pathMatch: 'full'
-            // },
             {
-                path: 'dashboard',
-                redirectTo: '/adminpage/dashboard',
+                path: '',
+                redirectTo: '/dashboard',
                 pathMatch: 'full'
             },
             {
-                path: 'adminpage',
+                path: '',
                 loadChildren: () => import('./adminpage/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
             },
             {
-                path: 'adminpage',
+                path: '',
                 loadChildren: () => import('./adminpage/pages/dishes/dishes.module').then(m => m.DishesModule)
             },
+            {
+                path: '',
+                loadChildren: () => import('./adminpage/pages/users/users.module').then(m => m.UsersModule)
+            },
+            {
+                path: '',
+                loadChildren: () => import('./adminpage/pages/ordersummary/ordersummary.module').then(m => m.OrdersummaryModule)
+            },
+            {
+                path: '',
+                loadChildren: () => import('./adminpage/pages/report/report.module').then(m => m.ReportModule)
+            }
         ]
     },
     // {
