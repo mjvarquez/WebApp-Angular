@@ -16,6 +16,7 @@ export class DishesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
   // openDialog() {
   //   this.dialog.open(DialogComponent, {})
   // }
