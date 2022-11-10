@@ -1,0 +1,75 @@
+
+<div class="main-container" [dir]="dir"
+  [ngClass]="{'minisidebar': minisidebar, 'boxed': boxed, 'danger': danger, 'blue': blue, 'green': green, 'dark': dark,  'horizontal' : horizontal }">
+
+  <mat-toolbar color="primary" class="topbar telative">
+    <div class="w-100 fix-width-for-horizontal">
+      
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <b>
+            <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo">
+            <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo">
+          </b>
+
+          <span fxShow="false" fxShow.gt-xs>
+            <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo">
+            <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage">
+          </span>
+        </a>
+      </div>
+
+
+      <button mat-icon-button (click)="snav.toggle() && clickEvent()" class="sidebar-toggle" value="sidebarclosed">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <!-- <button mat-icon-button class="srh-btn" (click)="showSearch = !showSearch">
+        <mat-icon>search</mat-icon>
+      </button> -->
+      <form class="app-search" [ngClass]="{'show-search': showSearch}">
+        <input type="text" class="form-control" placeholder="Search &amp; enter">
+        <a class="cl-srh-btn" (click)="showSearch = !showSearch">
+          <i class="ti-close"></i>
+        </a>
+      </form>
+      <span fxFlex></span>
+      <div *ngIf="!horizontal else horizontalheader">
+        <app-vertical-header></app-vertical-header>
+      </div>
+
+      <ng-template #horizontalheader>
+        <app-horizontal-header></app-horizontal-header>
+      </ng-template>
+    </div>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0"
+    [ngClass]="{'minisidebar': minisidebar}">
+
+    <mat-sidenav #snav id="snav" class="pl-xs" [mode]="mobileQuery.matches ? 'side' : 'over'" fixedTopGap="0"
+      [opened]="mobileQuery.matches" [disableClose]="mobileQuery.matches" (open)="sidebarOpened = true"
+      (close)="sidebarOpened = false">
+
+      <perfect-scrollbar *ngIf="!horizontal; else horizontalsidebar" class="scbar" [config]="config">
+        <app-vertical-sidebar class="app-sidebar"></app-vertical-sidebar>
+      </perfect-scrollbar>
+
+      <ng-template #horizontalsidebar>
+        <app-horizontal-sidebar></app-horizontal-sidebar>
+      </ng-template>
+
+
+    </mat-sidenav>
+    <mat-sidenav-content class="page-wrapper" [ngClass]="status ? 'minitoggle' : ''">
+
+      <app-breadcrumb></app-breadcrumb>
+      <div class="page-content">
+        <router-outlet>
+          <app-spinner></app-spinner>
+        </router-outlet>
+
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

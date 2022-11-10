@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { MenuItems } from './menu-items/menu-items';
-import { HorizontalMenuItems } from './menu-items/horizontal-menu-items';
 
 import {
   AccordionAnchorDirective,
@@ -20,6 +19,6 @@ import {
     AccordionLinkDirective,
     AccordionDirective
   ],
-  providers: [MenuItems, HorizontalMenuItems]
+  providers: [MenuItems]
 })
 export class SharedModule { }
