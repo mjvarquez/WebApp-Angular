@@ -14,23 +14,23 @@ export const AppRoutes: Routes = [
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/pages/dashboard/dashboard.module').then(m => m.DashboardModule)
+                loadChildren: () => import('./adminpage/views/dashboard/dashboard.module').then(m => m.DashboardModule)
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/pages/dishes/dishes.module').then(m => m.DishesModule)
+                loadChildren: () => import('./adminpage/views/dishes/dishes.module').then(m => m.DishesModule)
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/pages/users/users.module').then(m => m.UsersModule)
+                loadChildren: () => import('./adminpage/views/users/users.module').then(m => m.UsersModule)
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/pages/ordersummary/ordersummary.module').then(m => m.OrdersummaryModule)
+                loadChildren: () => import('./adminpage/views/ordersummary/ordersummary.module').then(m => m.OrdersummaryModule)
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/pages/report/report.module').then(m => m.ReportModule)
+                loadChildren: () => import('./adminpage/views/report/report.module').then(m => m.ReportModule)
             }
         ]
     },
