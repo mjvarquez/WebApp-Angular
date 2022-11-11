@@ -8,7 +8,7 @@
             <div class="topContainer">
               <div class="searchBar">
                 <mat-form-field appearance="outline">
-                  <mat-label>Search Article... </mat-label>
+                  <mat-label>Search Dish... </mat-label>
                   <input
                     matInput
                     placeholder=""
@@ -23,8 +23,9 @@
                   mat-raised-button
                   type="submit"
                   color="primary"
+                  (click)="openDialog()"
                 >
-                  Add Article
+                  Add Dish
                 </button>
               </div>
             </div>
@@ -48,26 +49,26 @@
                 </mat-cell>
               </ng-container>
               <!-- Short Description Column -->
-              <ng-container matColumnDef="image_link">
+              <ng-container matColumnDef="dish_type">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Image Link
+                  Dish Type
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   {{ element.image_link }}
                 </mat-cell>
               </ng-container>
               <!-- Long Description Column -->
-              <ng-container matColumnDef="description">
+              <ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Description
+                  Price
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   {{ element.description }}
                 </mat-cell>
               </ng-container>
-              <ng-container matColumnDef="price">
+              <ng-container matColumnDef="status">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Price
+                  Status
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   {{ element.price }}
@@ -104,13 +105,13 @@
               <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
             </mat-table>
   
-            <!-- <mat-paginator
+            <mat-paginator
               [length]="100"
               [pageSize]="10"
               [pageSizeOptions]="[5, 10, 25, 100]"
               aria-label="Select page"
             >
-            </mat-paginator> -->
+            </mat-paginator>
           </div>
         </div>
       </mat-card-content>

@@ -10,12 +10,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { DishesRoutes } from './dishes.routing';
 import { DishesComponent } from './dishes.component';
+import { DishesDialogComponent } from './dishes-components/dishes-dialog/dishes-dialog.component';
 
 @NgModule({
-  declarations: [DishesComponent],
+  declarations: [DishesComponent, DishesDialogComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(DishesRoutes),
@@ -28,8 +31,9 @@ import { DishesComponent } from './dishes.component';
     MatPaginatorModule,
     MatTableModule,
     MatCardModule,
-    MatButtonModule
-
+    MatButtonModule,
+    MatSelectModule,
+    MatRadioModule
   ]
 })
 export class DishesModule { }

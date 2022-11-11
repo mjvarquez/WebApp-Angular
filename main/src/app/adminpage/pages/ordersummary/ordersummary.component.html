@@ -1,1 +1,82 @@
-<p>ordersummary works!</p>
+<div fxLayout="Column" fxLayoutGap="30px">
+    <mat-card>
+      <mat-card-content>
+        <!-- ================== Form Field =================== -->
+        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100">
+          <!-- =================== Table =============== -->
+          <div class="responsive-table">
+            <div class="topContainer">
+              <div class="searchBar">
+                <mat-form-field appearance="standard">
+                  <mat-label>Search Order... </mat-label>
+                  <input
+                    matInput
+                    placeholder=""
+                    search
+                    (keyup)="applyEvent($event)"
+                  />
+                  <mat-icon matSuffix>search</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+            <mat-table #table [dataSource]="dataSource" matSort display="flex">
+              <ng-container matColumnDef="user">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  User
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.id }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="dish">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Dish
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.name }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="qty">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Qty
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.image_link }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="rice_qty">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Rice Qty
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.description }}
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="payment_method">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Payment Method
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.price }}
+                </mat-cell>
+              </ng-container>
+
+              <mat-header-row
+                *matHeaderRowDef="displayedColumns"
+              ></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+              <!-- <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row> -->
+            </mat-table>
+  
+            <mat-paginator
+              [length]="100"
+              [pageSize]="10"
+              [pageSizeOptions]="[5, 10, 25, 100]"
+              aria-label="Select page"
+            >
+            </mat-paginator>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>

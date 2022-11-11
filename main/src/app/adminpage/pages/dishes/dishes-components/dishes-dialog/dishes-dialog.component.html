@@ -1,0 +1,36 @@
+<form [formGroup]="dishForm" (ngSubmit)="addDish()">
+    <h1 mat-dialog-title>{{ header }}</h1>
+    <div mat-dialog-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Ex. My Article" />
+      </mat-form-field>
+        <mat-form-field appearance="outline">
+        <mat-label>Select...</mat-label>
+        <mat-select formControlName="dish_type">
+            <mat-option *ngFor="let dishType of dishTypes" [value]="dishType.value">
+            {{dishType.viewValue}}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="price"
+          placeholder="Ex. This article talks about..."
+        />
+      </mat-form-field>
+        <mat-radio-group formControlName="status" aria-label="Select an option">
+            <mat-radio-button value="active">Active</mat-radio-button>
+            <mat-radio-button value="inactive">Inactive</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
+      <button mat-raised-button color="primary" [disabled]="!dishForm.valid">
+        {{ actionBtn }}
+      </button>
+    </div>
+  </form>
