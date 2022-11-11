@@ -18,6 +18,11 @@
                   <mat-icon matSuffix>search</mat-icon>
                 </mat-form-field>
               </div>
+              <div class="date">
+                <input
+                  type="date"
+                />              
+              </div>
             </div>
             <mat-table #table [dataSource]="dataSource" matSort display="flex">
               <ng-container matColumnDef="user">

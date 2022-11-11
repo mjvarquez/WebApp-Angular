@@ -9,7 +9,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
 
 import { OrdersummaryComponent } from './ordersummary.component';
 import { OrdersummaryRoutes } from './ordersummary.routing';
@@ -28,7 +27,6 @@ import { OrdersummaryRoutes } from './ordersummary.routing';
     MatTableModule,
     MatCardModule,
     MatButtonModule,
-    MatSelectModule,
   ]
 })
 export class OrdersummaryModule { }
