@@ -14,23 +14,10 @@ import { DashboardComponent } from './dashboard.component';
 
 import {
     TopCardComponent,
-    SalesOverviewComponent,
     VisitorComponent,
     Visitor2Component,
-    IncomeExpenssComponent,
-    PostsComponent,
-    NewsletterComponent,
-    DeveloperInfoComponent,
-    ActivityComponent,
     TopCard2Component,
-    SalesPurchaseComponent,
-    SalesYearlyComponent,
-    ContactListComponent,
-    CommentsComponent,
-    MessageComponent
 } from './dashboard-components';
-import { DashboardEmpComponent } from './dashboard-components/dashboard-emp/dashboard-emp.component';
-import { EmpDialogComponent } from './dashboard-components/dashboard-emp/emp-dialog/emp-dialog.component';
 
 
 @NgModule({
@@ -48,25 +35,10 @@ import { EmpDialogComponent } from './dashboard-components/dashboard-emp/emp-dia
     declarations: [
         DashboardComponent,
         TopCardComponent,
-        SalesOverviewComponent,
         VisitorComponent,
         Visitor2Component,
-        IncomeExpenssComponent,
-        PostsComponent,
-        NewsletterComponent,
-        DeveloperInfoComponent,
-        ActivityComponent,
+
         TopCard2Component,
-        SalesPurchaseComponent,
-        SalesYearlyComponent,
-        ContactListComponent,
-        CommentsComponent,
-        MessageComponent,
-        DashboardEmpComponent,
-        EmpDialogComponent
     ],
-    entryComponents: [
-        EmpDialogComponent
-    ]
 })
 export class DashboardModule { }

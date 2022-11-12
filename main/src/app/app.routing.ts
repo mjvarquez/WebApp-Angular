@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 
+import { AppBlankComponent } from './adminpage/layout/blank/blank.component';
 import { FullComponent } from './adminpage/layout/full/full.component';
 
 export const AppRoutes: Routes = [
@@ -14,7 +15,7 @@ export const AppRoutes: Routes = [
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/views/dashboard/dashboard.module').then(m => m.DashboardModule)
+                loadChildren: () => import('./adminpage/views/dashboard/dashboard.module').then(m => m.DashboardModule),
             },
             {
                 path: '',
@@ -34,19 +35,19 @@ export const AppRoutes: Routes = [
             }
         ]
     },
-    // {
-    //     path: '',
-    //     component: AppBlankComponent,
-    //     children: [
-    //         {
-    //             path: 'authentication',
-    //             loadChildren:
-    //                 () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
-    //         }
-    //     ]
-    // },
+    {
+        path: '',
+        component: AppBlankComponent,
+        children: [
+            {
+                path: '',
+                loadChildren:
+                    () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+            }
+        ]
+    },
     {
         path: '**',
-        redirectTo: 'authentication/404'
+        redirectTo: '404'
     }
 ];

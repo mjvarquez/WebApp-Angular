@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ReportComponent implements OnInit {
   dataSource!: any;
-  displayedColumns: string[] = ['date', 'totalUsers', 'totalAmount'];
+  displayedColumns: string[] = ['date', 'totalUsers', 'totalReceivable', 'totalAmount'];
 
   constructor() { }
 

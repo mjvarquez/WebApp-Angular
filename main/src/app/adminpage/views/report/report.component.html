@@ -46,6 +46,14 @@
                   {{ element.id }}
                 </mat-cell>
               </ng-container>
+              <ng-container matColumnDef="totalReceivable">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Total Accounts Receivable
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.name }}
+                </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="totalAmount">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   Total Amount
@@ -54,7 +62,6 @@
                   {{ element.name }}
                 </mat-cell>
               </ng-container>
-
               <mat-header-row
                 *matHeaderRowDef="displayedColumns"
               ></mat-header-row>
