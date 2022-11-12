@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { AppBlankComponent } from './adminpage/layout/blank/blank.component';
 import { FullComponent } from './adminpage/layout/full/full.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 export const AppRoutes: Routes = [
     {
@@ -43,6 +44,17 @@ export const AppRoutes: Routes = [
                 path: '',
                 loadChildren:
                     () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+            }
+        ]
+    },
+    {
+        path: '',
+        component: HomepageComponent,
+        children: [
+            {
+                path: '',
+                loadChildren:
+                    () => import('./homepage/homepage.module').then(m => m.HomepageModule)
             }
         ]
     },
