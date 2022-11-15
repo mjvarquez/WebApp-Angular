@@ -6,7 +6,7 @@ import {
   OnDestroy
 
 } from '@angular/core';
-import { MenuItems } from '../../../shared/menu-items/menu-items';
+import { MenuItems } from '../../shared/menu-items/menu-items';
 
 import { PerfectScrollbarConfigInterface, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 
