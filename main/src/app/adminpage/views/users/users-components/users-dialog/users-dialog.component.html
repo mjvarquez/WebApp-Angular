@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" (ngSubmit)="addUser()">
+    <h1 mat-dialog-title>{{ header }}</h1>
+    <div mat-dialog-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Ex. My Name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Ex. Email@test.com" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" placeholder="Ex. 123" />
+      </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Select...</mat-label>
+            <mat-select formControlName="user_type">
+                <mat-option *ngFor="let userType of userTypes" [value]="userType.value">
+                {{userType.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions [align]="'end'">
+      <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
+      <button mat-raised-button color="primary" [disabled]="!userForm.valid">
+        {{ actionBtn }}
+      </button>
+    </div>
+  </form>

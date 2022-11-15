@@ -1,0 +1,24 @@
+<div class="main-container" [dir]="dir">
+    <mat-toolbar  class="topbar telative">
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          <b> 
+            <img src="assets/images/logo.png" alt="homepage" width="35px" height="35px">
+
+          </b>
+          <span fxShow="false" fxShow.gt-xs>
+            <h3><span style="color: #d11c4c;">Lunch </span><span style="color: #2b3564;">Buddies</span></h3>
+          </span>
+        </a>
+      </div>
+      <span fxFlex></span>
+      <div>
+        <app-horizontal-header></app-horizontal-header>
+      </div> 
+  </mat-toolbar>
+  
+  <!-- <app-breadcrumb></app-breadcrumb> -->
+  <div class="page-content">
+    <app-content></app-content>
+  </div>
+</div>
