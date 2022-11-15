@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { AppBlankComponent } from './adminpage/layout/blank/blank.component';
 import { FullComponent } from './adminpage/layout/full/full.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { HomepageComponent } from './homepage/layouts/full/homepage.component';
 
 export const AppRoutes: Routes = [
     {
@@ -54,7 +54,7 @@ export const AppRoutes: Routes = [
             {
                 path: '',
                 loadChildren:
-                    () => import('./homepage/homepage.module').then(m => m.HomepageModule)
+                    () => import('./homepage/layouts/full/homepage.module').then(m => m.HomepageModule)
             }
         ]
     },

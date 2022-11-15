@@ -1,0 +1,16 @@
+.navbar-header {
+    display: flex;
+    text-align: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex: 100%;
+}
+
+.topbar {
+    position: fixed;
+}
+
+.page-content {
+    margin-top: 60px;
+    background-color: #EFF5F5;
+}

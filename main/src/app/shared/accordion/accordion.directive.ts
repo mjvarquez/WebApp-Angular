@@ -46,7 +46,7 @@ export class AccordionDirective implements AfterContentChecked {
   }
 
   ngAfterContentChecked(): void {
-    
+
   }
 
   constructor(private router: Router) {

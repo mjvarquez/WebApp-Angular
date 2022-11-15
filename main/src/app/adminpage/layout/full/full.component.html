@@ -1,4 +1,3 @@
-
 <div class="main-container" [dir]="dir"
   [ngClass]="{'minisidebar': minisidebar, 'boxed': boxed, 'danger': danger, 'blue': blue, 'green': green, 'dark': dark,  'horizontal' : horizontal }">
 
@@ -27,13 +26,13 @@
       </button>
       <!-- <button mat-icon-button class="srh-btn" (click)="showSearch = !showSearch">
         <mat-icon>search</mat-icon>
-      </button> -->
+      </button>
       <form class="app-search" [ngClass]="{'show-search': showSearch}">
         <input type="text" class="form-control" placeholder="Search &amp; enter">
         <a class="cl-srh-btn" (click)="showSearch = !showSearch">
           <i class="ti-close"></i>
         </a>
-      </form>
+      </form> -->
       <span fxFlex></span>
       <div *ngIf="!horizontal else horizontalheader">
         <app-vertical-header></app-vertical-header>

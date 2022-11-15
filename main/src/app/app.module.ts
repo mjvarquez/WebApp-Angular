@@ -12,10 +12,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FullComponent } from './adminpage/layout/full/full.component';
 import { AppBlankComponent } from './adminpage/layout/blank/blank.component';
 
-import { VerticalAppHeaderComponent } from './adminpage/layout/full/vertical-header/vertical-header.component';
-import { VerticalAppSidebarComponent } from './adminpage/layout/full/vertical-sidebar/vertical-sidebar.component';
+import { VerticalAppHeaderComponent } from './adminpage/layout/full/components/vertical-header/vertical-header.component';
+import { VerticalAppSidebarComponent } from './adminpage/layout/full/components/vertical-sidebar/vertical-sidebar.component';
 
-import { AppBreadcrumbComponent } from './adminpage/layout/full/breadcrumb/breadcrumb.component';
+import { AppBreadcrumbComponent } from './adminpage/layout/full/components/breadcrumb/breadcrumb.component';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,7 +25,6 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { mailService, mailGlobalVariable } from './apps/mailbox/mail.service';
 import { SharedModule } from './shared/shared.module';
 import { SpinnerComponent } from './shared/spinner.component';
 
@@ -88,7 +87,7 @@ const icons = {
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-        }, mailService, mailGlobalVariable,
+        },
         DatePipe
     ],
     bootstrap: [AppComponent]

@@ -1,0 +1,93 @@
+<mat-card>
+    <mat-card-content fxLayout="row wrap">
+        <h4 class="card-title">My Order</h4>
+        <div fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
+            <!-- =================== Table =============== -->
+            <div class="responsive-table">
+                <div class="topContainer">
+                    <mat-table #table [dataSource]="dataSource" matSort display="flex">
+                        <!-- ID Column -->
+                        <ng-container matColumnDef="dish_name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Dish Name
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.id }}
+                        </mat-cell>
+                        </ng-container>
+                        <!-- Title Column -->
+                        <ng-container matColumnDef="qty">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Qty
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.name }}
+                        </mat-cell>
+                        </ng-container>
+                        <!-- Short Description Column -->
+                        <ng-container matColumnDef="price">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Price
+                        </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            {{ element.image_link }}
+                        </mat-cell>
+                        </ng-container>
+                        <!-- Action Column -->
+                        <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <div class="actionContainer">
+                            <span
+                                class="editButton"
+                                mat-raised-button
+                                color="primary"
+                                (click)="editArticle(element)"
+                            >
+                                <mat-icon>edit</mat-icon>
+                            </span>
+                            <span
+                                class="deleteButton"
+                                mat-raised-button
+                                color="warn"
+                                (click)="deleteArticle(element.id)"
+                            >
+                                <mat-icon>delete_outline</mat-icon>
+                            </span>
+                            </div>
+                        </mat-cell>
+                        </ng-container>
+            
+                        <mat-header-row
+                        *matHeaderRowDef="displayedColumns"
+                        ></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+                    </mat-table>
+                </div>
+            </div>
+            <br/>
+            <div class="payment">
+                <span>Payment Method:   
+                    <mat-radio-group aria-label="Select an option">
+                        <mat-radio-button value="cash">Cash</mat-radio-button>
+                        <mat-radio-button value="credit">Credit</mat-radio-button>
+                    </mat-radio-group>
+                </span>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-content>
+        <button mat-raised-button class="orderBtn" >Order</button>
+    </mat-card-content>
+</mat-card>
+<!-- <mat-card>
+    <mat-card-content class="text-center">
+        <h4 class="card-title">User Info</h4>
+        <div class="profile-pic m-b-20 m-t-20">
+            <img src="assets/images/users/5.jpg" width="150" class="rounded-circle" alt="user">
+            <h4 class="m-t-20 m-b-0">Daniel Kristeen</h4>
+            <a href="mailto:danielkristeen@gmail.com">danielkristeen@gmail.com</a>
+        </div>
+        
+    </mat-card-content>
+</mat-card> -->
