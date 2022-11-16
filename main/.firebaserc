@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "my-webapp-bc970": {
+      "hosting": {
+        "project": [
+          "my-webapp-bc970"
+        ]
+      }
+    }
+  }
+}

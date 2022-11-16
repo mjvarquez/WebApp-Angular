@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 
+import { UsersService } from '../../../../../store/users/users.service'
+
 interface userType {
   value: string;
   viewValue: string;
@@ -27,7 +29,8 @@ export class UsersDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<UsersDialogComponent>) { }
+    private dialogRef: MatDialogRef<UsersDialogComponent>,
+    private userService: UsersService) { }
 
   getUserForm() {
     this.userForm = this.formBuilder.group({
@@ -49,19 +52,25 @@ export class UsersDialogComponent implements OnInit {
   }
 
   addUser() {
-    // if (!this.editData && this.articleForm.valid) {
-    //   const data = {
-    //     name: this.articleForm.value.name,
-    //     image_link: this.articleForm.value.image_link,
-    //     description: this.articleForm.value.description,
-    //     price: this.articleForm.value.price,
-    //   }
-    //   this.store.dispatch(Articles2Action.addArticles2sRequested({ payload: data }))
-    //   this.dialogRef.close('add')
-    //   this.openSnackBar('Added Successfully!', 'Close')
-    // } else {
-    //   this.updateArticle()
-    // }
+    if (!this.editData && this.userForm.valid) {
+      const data = {
+        name: this.userForm.value.name,
+        email: this.userForm.value.email,
+        password: this.userForm.value.password,
+        user_type: this.userForm.value.user_type,
+      }
+      this.userService.getRegisterUser(this.userForm.value).subscribe({
+        next: (res) => {
+          alert("submitted successfully!")
+          this.userForm.reset()
+          console.log(res)
+        },
+        error: (err) => {
+
+        }
+      })
+    } else {
+    }
   }
 
   // updateArticle() {
