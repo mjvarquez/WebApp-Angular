@@ -1,13 +1,17 @@
-<form [formGroup]="userForm" (ngSubmit)="addUser()">
+<form [formGroup]="userForm" (ngSubmit)="addUser(formDirective)" #formDirective="ngForm">
   <h1 mat-dialog-title>{{ header }}</h1>
   <div mat-dialog-content>
     <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput formControlName="name" placeholder="Ex. My Name" />
+      <mat-label>First Name:</mat-label>
+      <input matInput formControlName="firstName" placeholder="Ex. Soma" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name:</mat-label>
+      <input matInput formControlName="lastName" placeholder="Ex. Hernandez" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput formControlName="email" placeholder="Ex. Email@test.com" />
+      <input matInput formControlName="email" placeholder="Ex. Email@test.com"/>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Password</mat-label>
@@ -15,7 +19,7 @@
     </mat-form-field>
       <mat-form-field appearance="outline">
           <mat-label>Select...</mat-label>
-          <mat-select formControlName="user_type">
+          <mat-select formControlName="userType">
               <mat-option *ngFor="let userType of userTypes" [value]="userType.value">
               {{userType.viewValue}}
               </mat-option>

@@ -8,19 +8,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public form: FormGroup = Object.create(null);
+  loginForm!: FormGroup;
 
   constructor(private fb: FormBuilder, private router: Router) { }
 
-  onSubmit() {
-    this.router.navigate(['/dashboards/dashboard1']);
+  getLoginForm() {
+    this.loginForm = this.fb.group({
+      name: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.required])]
+    });
+  }
+
+  login() {
+    if (this.loginForm.value.email !== "" && this.loginForm.value.password !== "") {
+
+    }
   }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      uname: [null, Validators.compose([Validators.required])],
-      password: [null, Validators.compose([Validators.required])]
-    });
+    this.getLoginForm();
   }
 
 }

@@ -30,7 +30,6 @@
               </div>
             </div>
             <mat-table #table [dataSource]="dataSource" matSort display="flex">
-              <!-- ID Column -->
               <ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   ID.
@@ -39,34 +38,38 @@
                   {{ element.id }}
                 </mat-cell>
               </ng-container>
-              <!-- Title Column -->
-              <ng-container matColumnDef="name">
+              <ng-container matColumnDef="firstname">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Name
+                  First Name
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.name }}
+                  {{ element.firstName }}
                 </mat-cell>
               </ng-container>
-              <!-- Short Description Column -->
+              <ng-container matColumnDef="lastname">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Last Name
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  {{ element.lastName }}
+                </mat-cell>
+              </ng-container>
               <ng-container matColumnDef="email">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   Email
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.image_link }}
+                  {{ element.email }}
                 </mat-cell>
               </ng-container>
-              <!-- Long Description Column -->
-              <ng-container matColumnDef="user_type">
+              <ng-container matColumnDef="userType">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   User Type
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.description }}
+                  {{ element.userType }}
                 </mat-cell>
               </ng-container>
-              <!-- Action Column -->
               <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                 <mat-cell *matCellDef="let element">

@@ -2,11 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 // import { Store } from '@ngrx/store';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 
-import { UsersService } from '../../../../../store/users/users.service'
+import { UserService } from '../../../../../store/users/user.service'
+import { AuthService } from '../../../../../store/auth/auth.service'
 
 interface userType {
   value: string;
@@ -30,46 +29,38 @@ export class UsersDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<UsersDialogComponent>,
-    private userService: UsersService) { }
+    private userService: UserService,
+    private authService: AuthService) { }
 
   getUserForm() {
     this.userForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      user_type: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      userType: ['', Validators.required],
     })
     if (this.editData) {
       this.header = 'Edit Dish'
       this.actionBtn = 'Update';
-      this.userForm.controls['name'].setValue(this.editData.name)
+      this.userForm.controls['firstName'].setValue(this.editData.firstName)
+      this.userForm.controls['lastName'].setValue(this.editData.lastName)
       this.userForm.controls['email'].setValue(this.editData.email)
       this.userForm.controls['password'].setValue(this.editData.password)
-      this.userForm.controls['user_type'].setValue(this.editData.user_type)
+      this.userForm.controls['user_type'].setValue(this.editData.userType)
     } else {
       return false;
     }
   }
 
-  addUser() {
+  addUser(formDirective: FormGroupDirective) {
     if (!this.editData && this.userForm.valid) {
-      const data = {
-        name: this.userForm.value.name,
-        email: this.userForm.value.email,
-        password: this.userForm.value.password,
-        user_type: this.userForm.value.user_type,
-      }
-      this.userService.getRegisterUser(this.userForm.value).subscribe({
-        next: (res) => {
-          alert("submitted successfully!")
-          this.userForm.reset()
-          console.log(res)
-        },
-        error: (err) => {
-
-        }
-      })
+      const data = this.userForm.value
+      this.authService.signUp(data);
+      this.userForm.reset();
+      formDirective.resetForm();
     } else {
+      return false;
     }
   }
 

@@ -1,7 +1,18 @@
+// user authentication and details
 export interface User {
     id?: any,
-    name: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    userType: string,
+    uid?: string,
+}
+
+export interface Authentication {
+    id?: any,
+    firstName: string,
+    lastName: string,
     email: string,
     password: string,
-    user_type: string
+    userType: string,
 }

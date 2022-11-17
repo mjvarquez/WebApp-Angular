@@ -3,8 +3,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { Observable } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { UsersDialogComponent } from './users-components/users-dialog/users-dialog.component';
+import { UserService } from '../../../store/users/user.service'
+import { User } from 'src/app/store/user.state';
+
 
 @Component({
   selector: 'app-users',
@@ -12,13 +17,31 @@ import { UsersDialogComponent } from './users-components/users-dialog/users-dial
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  dataSource!: any;
-  displayedColumns: string[] = ['id', 'name', 'email', 'user_type', 'action'];
+  users$!: User[];
 
-  constructor(private dialog: MatDialog) { }
+  dataSource!: any;
+  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'userType', 'action'];
+
+  constructor(private dialog: MatDialog,
+    private userService: UserService) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  getAllUsers() {
+    this.userService.getData().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
+        console.log(this.dataSource)
+        console.log("user data", res);
+      },
+      error: (err) => {
+
+      }
+    })
+  }
 
   applyEvent(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -30,6 +53,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAllUsers()
   }
 
 }
