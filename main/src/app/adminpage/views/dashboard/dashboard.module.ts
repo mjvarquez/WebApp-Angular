@@ -58,7 +58,6 @@ import {
     TopCardComponent,
     VisitorComponent,
     Visitor2Component,
-    TopCard2Component,
 } from './dashboard-components';
 
 
@@ -120,8 +119,6 @@ import {
         TopCardComponent,
         VisitorComponent,
         Visitor2Component,
-
-        TopCard2Component,
-    ],
+    ]
 })
 export class DashboardModule { }

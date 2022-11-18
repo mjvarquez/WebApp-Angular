@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   users$!: User[];
 
   dataSource!: any;
-  displayedColumns: string[] = ['id', 'firstname', 'lastname', 'email', 'userType', 'action'];
+  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'role', 'action'];
 
   constructor(private dialog: MatDialog,
     private userService: UserService) { }

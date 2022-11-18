@@ -30,14 +30,14 @@
               </div>
             </div>
             <mat-table #table [dataSource]="dataSource" matSort display="flex">
-              <ng-container matColumnDef="id">
+              <!-- <ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   ID.
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   {{ element.id }}
                 </mat-cell>
-              </ng-container>
+              </ng-container> -->
               <ng-container matColumnDef="firstname">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   First Name
@@ -62,12 +62,12 @@
                   {{ element.email }}
                 </mat-cell>
               </ng-container>
-              <ng-container matColumnDef="userType">
+              <ng-container matColumnDef="role">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  User Type
+                  Role
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.userType }}
+                  {{ element.role }}
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="action">

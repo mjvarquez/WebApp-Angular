@@ -78,6 +78,7 @@ import { Camera, Heart, Github, Activity, Airplay, AlertCircle, AlertOctagon, Al
 import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { CreditComponent } from './adminpage/views/credit/credit.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -104,6 +105,7 @@ const icons = {
         AppBlankComponent,
         VerticalAppSidebarComponent,
         AppBreadcrumbComponent,
+        CreditComponent,
     ],
     imports: [
         BrowserModule,

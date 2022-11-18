@@ -10,9 +10,9 @@
                         <div fxLayout="row wrap">
                             <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
                                 <mat-form-field>
-                                    <input matInput placeholder="Username" [formControl]="loginForm.controls['name']">
+                                    <input matInput placeholder="Email" [formControl]="loginForm.controls['email']">
                                 </mat-form-field>
-                                <small *ngIf="loginForm.controls['name'].hasError('required') && loginForm.controls['name'].touched" class="text-danger support-text">Username is required.</small>
+                                <small *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="text-danger support-text">Email is required.</small>
                             </div>
                             <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
                                 <mat-form-field>

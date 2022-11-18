@@ -4,7 +4,7 @@ export interface User {
     firstName: string,
     lastName: string,
     email: string,
-    userType: string,
+    role: string,
     uid?: string,
 }
 
@@ -14,5 +14,7 @@ export interface Authentication {
     lastName: string,
     email: string,
     password: string,
-    userType: string,
+    role: string,
+    created_at?: string,
+    updated_at?: string
 }

@@ -1,19 +1,19 @@
 import { Routes } from '@angular/router';
 
-import { OrdersummaryComponent } from './ordersummary.component';
+import { OrdersComponent } from './orders.component';
 
-export const OrdersummaryRoutes: Routes = [
+export const OrdersRoutes: Routes = [
     {
         path: '',
         children: [
             {
-                path: 'ordersummary',
-                component: OrdersummaryComponent,
+                path: 'orders',
+                component: OrdersComponent,
                 data: {
-                    title: 'Order Summary',
+                    title: 'Orders',
                     urls: [
                         { title: 'Adminpage', url: '/adminpage' },
-                        { title: 'Order Summary' }
+                        { title: 'Orders ' }
                     ]
                 }
             },

@@ -28,7 +28,7 @@ export const AppRoutes: Routes = [
             },
             {
                 path: '',
-                loadChildren: () => import('./adminpage/views/ordersummary/ordersummary.module').then(m => m.OrdersummaryModule)
+                loadChildren: () => import('./adminpage/views/orders/orders.module').then(m => m.OrdersModule)
             },
             {
                 path: '',

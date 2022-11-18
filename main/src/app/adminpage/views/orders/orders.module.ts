@@ -10,14 +10,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
-import { OrdersummaryComponent } from './ordersummary.component';
-import { OrdersummaryRoutes } from './ordersummary.routing';
+import { OrdersRoutes } from './orders.routing';
+import { OrdersComponent } from './orders.component';
 
 @NgModule({
-  declarations: [OrdersummaryComponent],
+  declarations: [OrdersComponent],
   imports: [
     CommonModule,
-    RouterModule.forChild(OrdersummaryRoutes),
+    RouterModule.forChild(OrdersRoutes),
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
@@ -29,4 +29,4 @@ import { OrdersummaryRoutes } from './ordersummary.routing';
     MatButtonModule,
   ]
 })
-export class OrdersummaryModule { }
+export class OrdersModule { }

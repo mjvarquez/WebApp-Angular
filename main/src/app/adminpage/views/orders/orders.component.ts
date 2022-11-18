@@ -4,11 +4,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 @Component({
-  selector: 'app-ordersummary',
-  templateUrl: './ordersummary.component.html',
-  styleUrls: ['./ordersummary.component.scss']
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss']
 })
-export class OrdersummaryComponent implements OnInit {
+export class OrdersComponent implements OnInit {
   dataSource!: any;
   displayedColumns: string[] = ['user', 'dish', 'qty', 'rice_qty', 'payment_method'];
 
