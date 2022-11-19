@@ -4,10 +4,14 @@ import { AppBlankComponent } from './adminpage/layout/blank/blank.component';
 import { FullComponent } from './adminpage/layout/full/full.component';
 import { HomepageComponent } from './homepage/layouts/homepage.component';
 
+import { AuthGuard } from './auth.guard';
+
 export const AppRoutes: Routes = [
     {
         path: '',
         component: FullComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['Admin'] },
         children: [
             {
                 path: '',
@@ -50,7 +54,14 @@ export const AppRoutes: Routes = [
     {
         path: '',
         component: HomepageComponent,
+        canActivate: [AuthGuard],
+        data: { roles: ['Admin', 'Employee'] },
         children: [
+            {
+                path: '',
+                redirectTo: '/homepage',
+                pathMatch: 'full'
+            },
             {
                 path: '',
                 loadChildren:

@@ -11,7 +11,7 @@ import {
 import { MenuItems } from '../../../shared/menu-items/menu-items';
 
 
-import { PerfectScrollbarConfigInterface, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 /** @title Responsive sidenav */
 @Component({
@@ -60,8 +60,5 @@ export class FullComponent implements OnDestroy {
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation
     this.mobileQuery.removeListener(this._mobileQueryListener);
-
   }
-
-
 }

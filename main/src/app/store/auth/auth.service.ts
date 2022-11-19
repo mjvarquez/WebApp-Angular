@@ -13,6 +13,7 @@ import { User, Authentication } from '../user.state';
 })
 export class AuthService {
   isSignedIn = false;
+  currentRole: any;
   date = new Date().toLocaleString()
   userRef: any;
 
@@ -21,8 +22,6 @@ export class AuthService {
     private router: Router) { }
 
   signUp(data: Authentication) {
-
-
     this.fireAuth.createUserWithEmailAndPassword(data.email, data.password)
       .then((res) => {
         console.log(res)
@@ -33,6 +32,7 @@ export class AuthService {
           "lastName": data.lastName,
           "email": data.email,
           "role": data.role,
+          "id": data.id,
           "created_at": this.date,
           "updated_at": ''
           // "status": 'active' || 'inactive',
@@ -45,11 +45,17 @@ export class AuthService {
   signIn(data: Authentication) {
     this.fireAuth.signInWithEmailAndPassword(data.email, data.password)
       .then((res) => {
-        console.log("logged in", res);
+        console.log("logged in", res.user!.uid);
+        localStorage.setItem("uid", res.user!.uid);
         this.fireStore.collection('users').ref.where("email", "==", res.user?.email).onSnapshot(snap => {
           snap.forEach((userRef: any) => {
+            this.isSignedIn = true;
+            localStorage.setItem("state", "true")
+            localStorage.setItem("role", userRef.data().role)
+            // this.currentRole = userRef.data().role;
+            console.log(this.currentRole)
             console.log('userRef', userRef.data())
-            if (userRef.data().role === "Admin") {
+            if (userRef.data().role === "Admin" && localStorage.getItem('uid') != null && userRef.data().uid === res.user?.uid) {
               this.router.navigate(['/dashboard'])
             } else {
               this.router.navigate(['/homepage'])
@@ -61,4 +67,46 @@ export class AuthService {
         console.log(err)
       })
   }
+
+  isLoggedIn() {
+    const loggedIn = localStorage.getItem("state");
+    if (loggedIn == 'true') {
+      this.isSignedIn = true;
+    } else {
+      this.isSignedIn = false;
+    }
+    return this.isSignedIn;
+  }
+
+  getRole() {
+    this.currentRole = localStorage.getItem('role');
+    return this.currentRole;
+  }
+
+  signOut() {
+    this.fireAuth.signOut();
+    localStorage.clear()
+    this.router.navigate(['/login'])
+  }
+
+  getData() {
+    return this.fireStore.collection('users').valueChanges({ idField: 'id' })
+  }
+
+  updateData(currentData: User, data: any) {
+    return this.fireStore.collection('users').doc(currentData.id).update(data)
+  }
+
+  // onInit() {
+  //   this.fireStore.collection('users').snapshotChanges().forEach((changes) => {
+  //     changes.map((a) => {
+  //       this.id = a.payload.doc.id;
+  //       console.log(this.id)
+  //     })
+  //   })
+  // }
+
+  // deleteData() {
+  //   this.fireStore.collection('users').doc(this.id).delete();
+  // }
 }

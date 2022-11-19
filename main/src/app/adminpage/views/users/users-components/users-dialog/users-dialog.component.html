@@ -13,10 +13,12 @@
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" placeholder="Ex. Email@test.com"/>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" *ngIf="header !== 'Edit User'; else elsePass">
       <mat-label>Password</mat-label>
-      <input matInput formControlName="password" type="password" placeholder="Ex. 123" />
+      <input matInput formControlName="password" type="password" placeholder="Ex. 123"/>
     </mat-form-field>
+    <ng-template #elsePass>
+    </ng-template>
       <mat-form-field appearance="outline">
           <mat-label>Select...</mat-label>
           <mat-select formControlName="role">

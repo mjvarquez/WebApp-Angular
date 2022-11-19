@@ -44,8 +44,7 @@ export class UsersDialogComponent implements OnInit {
       this.userForm.controls['firstName'].setValue(this.editData.firstName)
       this.userForm.controls['lastName'].setValue(this.editData.lastName)
       this.userForm.controls['email'].setValue(this.editData.email)
-      this.userForm.controls['password'].setValue(this.editData.password)
-      this.userForm.controls['user_type'].setValue(this.editData.role)
+      this.userForm.controls['role'].setValue(this.editData.role)
     } else {
       return false;
     }
@@ -58,23 +57,20 @@ export class UsersDialogComponent implements OnInit {
       this.userForm.reset();
       formDirective.resetForm();
     } else {
-      return false;
+      this.updateUser()
     }
   }
 
-  // updateArticle() {
-  //   const data = {
-  //     name: this.articleForm.value.name,
-  //     image_link: this.articleForm.value.image_link,
-  //     description: this.articleForm.value.description,
-  //     price: this.articleForm.value.price,
-  //     is_published: this.articleForm.value.is_published
-  //   }
-  //   const getArticleId = this.editData.id
-  //   this.store.dispatch(Articles2Action.updateArticles2sRequested({ payload: { articleId: getArticleId, updateArticle: data } }))
-  //   this.dialogRef.close('update')
-  //   this.openSnackBar('Updated Successfully!', 'Close')
-  // }
+  updateUser() {
+    const data = {
+      firstName: this.userForm.value.firstName,
+      lastName: this.userForm.value.lastName,
+      email: this.userForm.value.email,
+      role: this.userForm.value.role,
+    }
+    const getUserId = this.editData.id
+    this.authService.updateData(getUserId, data)
+  }
 
   // openSnackBar(message: string, action: string) {
   //   let snackBarRef = this.snackBar.open(message, action, {
@@ -88,7 +84,8 @@ export class UsersDialogComponent implements OnInit {
   // })
 
   closeDialog() {
-    this.dialogRef.close({ event: 'Cancel' });
+    this.dialogRef.close();
+    this.userForm.reset();
   }
 
   ngOnInit(): void {
