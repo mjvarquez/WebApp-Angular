@@ -34,7 +34,6 @@ export class UsersComponent implements OnInit {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort
-        console.log(this.dataSource)
         console.log("user data", res);
       },
       error: (err) => {
@@ -49,28 +48,29 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(UsersDialogComponent, {})
-  }
-
-  editUser(row: any) {
     this.dialog.open(UsersDialogComponent, {
-      data: row
-    }).afterClosed().subscribe(val => {
-      if (val === 'update') {
-        this.getAllUsers()
-      }
+      height: 'auto',
+      width: '500px',
     })
   }
 
-  // deleteUser() {
-  //   if (confirm('Delete?')) {
-  //     this.authService.deleteData()
-  //   }
-  // }
+  openEditDialog(row: any) {
+    this.dialog.open(UsersDialogComponent, {
+      height: 'auto',
+      width: '500px',
+      data: row
+    })
+  }
+
+  deleteUser(id: any) {
+    if (confirm('Delete?')) {
+      this.authService.deleteData(id)
+    }
+    console.log(id)
+  }
 
   ngOnInit(): void {
     this.getAllUsers()
-    // this.authService.onInit()
   }
 
 }

@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
 
 import { AuthService } from '../../../../../store/auth/auth.service'
+import { User, Authentication } from 'src/app/store/user.state';
 
 interface Role {
   value: string;
@@ -17,6 +18,7 @@ interface Role {
   styleUrls: ['./users-dialog.component.scss']
 })
 export class UsersDialogComponent implements OnInit {
+
   roles: Role[] = [
     { value: 'Admin', viewValue: 'Admin' },
     { value: 'Employee', viewValue: 'Employee' },
@@ -24,13 +26,14 @@ export class UsersDialogComponent implements OnInit {
   userForm!: FormGroup;
   actionBtn: string = 'Save';
   header: string = 'Add User';
+  date = new Date().toLocaleString()
 
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<UsersDialogComponent>,
     private authService: AuthService) { }
 
-  getUserForm() {
+  addUserForm() {
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -39,6 +42,12 @@ export class UsersDialogComponent implements OnInit {
       role: ['', Validators.required],
     })
     if (this.editData) {
+      this.userForm = this.formBuilder.group({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        role: ['', Validators.required],
+      })
       this.header = 'Edit User'
       this.actionBtn = 'Update';
       this.userForm.controls['firstName'].setValue(this.editData.firstName)
@@ -50,12 +59,12 @@ export class UsersDialogComponent implements OnInit {
     }
   }
 
-  addUser(formDirective: FormGroupDirective) {
+  addUser() {
     if (!this.editData && this.userForm.valid) {
-      const data = this.userForm.value
+      const data = this.userForm.value;
       this.authService.signUp(data);
-      this.userForm.reset();
-      formDirective.resetForm();
+      this.dialogRef.close()
+      // formDirective.resetForm();
     } else {
       this.updateUser()
     }
@@ -67,9 +76,15 @@ export class UsersDialogComponent implements OnInit {
       lastName: this.userForm.value.lastName,
       email: this.userForm.value.email,
       role: this.userForm.value.role,
+      updated_at: this.date
     }
     const getUserId = this.editData.id
     this.authService.updateData(getUserId, data)
+    this.dialogRef.close()
+  }
+
+  closeDialog() {
+    this.dialogRef.close()
   }
 
   // openSnackBar(message: string, action: string) {
@@ -83,13 +98,8 @@ export class UsersDialogComponent implements OnInit {
   //   window.location.reload()
   // })
 
-  closeDialog() {
-    this.dialogRef.close();
-    this.userForm.reset();
-  }
-
   ngOnInit(): void {
-    this.getUserForm();
+    this.addUserForm();
   }
 
 }

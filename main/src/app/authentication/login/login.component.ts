@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.value.email !== "" && this.loginForm.value.password !== "") {
-      this.authService.signIn(this.loginForm.value)
+      this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password)
     } else {
       return false;
     }
