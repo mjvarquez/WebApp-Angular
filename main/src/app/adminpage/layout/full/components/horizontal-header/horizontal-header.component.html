@@ -2,8 +2,8 @@
 <button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5">
     <img src="assets/images/users/1.jpg" alt="user" class="profile-pic"> </button>
 <mat-menu #profile="matMenu" class="mymegamenu">
-    <button mat-menu-item [routerLink]="['/dashboard']" *ngIf="role == 'Admin'">
-        <mat-icon>home</mat-icon> Admin Page
+    <button mat-menu-item [routerLink]="['/homepage']" *ngIf="role == 'Admin'">
+        <mat-icon>home</mat-icon> Home Page
     </button>
     <button mat-menu-item>
         <mat-icon>account_box</mat-icon> Profile

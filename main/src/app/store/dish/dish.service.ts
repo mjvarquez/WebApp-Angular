@@ -35,7 +35,8 @@ export class DishService {
   }
 
   updateData(id: string, data: any) {
-    const updateData = this.fireStore.collection('dishes').doc(id).update(data)
+    const updateData = this.fireStore.collection('dishes').doc(id).update(data);
+    return updateData;
   }
 
   deleteData(id: string) {

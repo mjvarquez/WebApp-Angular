@@ -55,7 +55,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FullComponent } from './adminpage/layout/full/full.component';
 import { AppBlankComponent } from './adminpage/layout/blank/blank.component';
 
-import { VerticalAppHeaderComponent } from './adminpage/layout/full/components/vertical-header/vertical-header.component';
+import { HorizontalAppHeaderComponent } from './adminpage/layout/full/components/horizontal-header/horizontal-header.component';
 import { VerticalAppSidebarComponent } from './adminpage/layout/full/components/vertical-sidebar/vertical-sidebar.component';
 
 import { AppBreadcrumbComponent } from './adminpage/layout/full/components/breadcrumb/breadcrumb.component';
@@ -100,7 +100,7 @@ const icons = {
     declarations: [
         AppComponent,
         FullComponent,
-        VerticalAppHeaderComponent,
+        HorizontalAppHeaderComponent,
         SpinnerComponent,
         AppBlankComponent,
         VerticalAppSidebarComponent,

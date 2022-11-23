@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/store/auth/auth.service';
   templateUrl: './horizontal-header.component.html',
   styleUrls: []
 })
+
 export class HorizontalAppHeaderComponent implements OnInit {
   public config: PerfectScrollbarConfigInterface = {};
   firstName!: any;
@@ -21,8 +22,8 @@ export class HorizontalAppHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.firstName = localStorage.getItem('firstName')
-    this.lastName = localStorage.getItem('lastName')
+    this.firstName = localStorage.getItem('firstName');
+    this.lastName = localStorage.getItem('lastName');
     this.role = localStorage.getItem('role')
   }
 }

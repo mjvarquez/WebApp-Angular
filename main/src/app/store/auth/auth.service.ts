@@ -36,7 +36,7 @@ export class AuthService {
         }
         this.fireStore.collection('users').add(userDetails)
         if (userDetails) {
-          alert('Registered User Sucessfully')
+          alert('Registered User Successfully')
         }
       }, err => {
         console.log(err)
@@ -49,10 +49,12 @@ export class AuthService {
         this.fireStore.collection('users').ref.where("email", "==", res.user?.email).onSnapshot(snap => {
           snap.forEach((userRef: any) => {
             this.isSignedIn = true;
+            this.currentRole = userRef.data().role;
             localStorage.setItem("state", "true")
             localStorage.setItem("role", userRef.data().role)
             localStorage.setItem("uid", res.user!.uid);
-            this.currentRole = userRef.data().role;
+            localStorage.setItem("firstName", userRef.data().firstName)
+            localStorage.setItem("lastName", userRef.data().lastName)
             console.log(this.currentRole)
             console.log('userRef', userRef.data())
             if (userRef.data().role === "Admin" && localStorage.getItem('uid') != null && userRef.data().uid === res.user?.uid) {

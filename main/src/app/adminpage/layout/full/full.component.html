@@ -17,9 +17,7 @@
             <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage"> -->
           </span>
         </a>
-          
       </div>
-
 
       <button mat-icon-button (click)="snav.toggle() && clickEvent()" class="sidebar-toggle" value="sidebarclosed">
         <mat-icon>menu</mat-icon>
@@ -34,13 +32,9 @@
         </a>
       </form> -->
       <span fxFlex></span>
-      <div *ngIf="!horizontal else horizontalheader">
-        <app-vertical-header></app-vertical-header>
-      </div>
-
-      <ng-template #horizontalheader>
+      <div>
         <app-horizontal-header></app-horizontal-header>
-      </ng-template>
+      </div>
     </div>
 
   </mat-toolbar>

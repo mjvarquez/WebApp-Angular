@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/store/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  getUid = localStorage.getItem('uid');
 
   constructor(private fb: FormBuilder,
     private router: Router,
