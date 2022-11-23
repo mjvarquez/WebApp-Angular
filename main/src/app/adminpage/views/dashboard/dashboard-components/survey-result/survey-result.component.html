@@ -1,15 +1,25 @@
 <mat-card>
     <mat-card-content>
-        <mat-card-title>Results</mat-card-title>
+        <mat-card-title>Survey Results</mat-card-title>
         <mat-card-subtitle>For tomorrow's menu</mat-card-subtitle>
-        <div id="visitor-chart" class="m-t-40 p-t-30 p-b-20 d-flex flex-column">
-            <apx-chart [series]="VisitorChartOptions.series" [chart]="VisitorChartOptions.chart"
-                [labels]="VisitorChartOptions.labels" [responsive]="VisitorChartOptions.responsive"
-                [tooltip]="VisitorChartOptions.tooltip" [legend]="VisitorChartOptions.legend"
-                [colors]="VisitorChartOptions.colors" [dataLabels]="VisitorChartOptions.dataLabels"
-                [plotOptions]="VisitorChartOptions.plotOptions" [stroke]="VisitorChartOptions.stroke">
-            </apx-chart>
+        <div class="table">
+            <mat-table #table [dataSource]="dataSource" matSort display="flex">
+            <ng-container matColumnDef="surveyResult">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>
+                Selected Menu
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.firstName }}
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+              *matHeaderRowDef="displayedColumns"
+            ></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
         </div>
+        
     </mat-card-content>
     <hr>
     <mat-card-content>

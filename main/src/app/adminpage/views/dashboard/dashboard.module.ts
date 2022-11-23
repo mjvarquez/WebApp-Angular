@@ -56,8 +56,7 @@ import { DashboardComponent } from './dashboard.component';
 
 import {
     TopCardComponent,
-    VisitorComponent,
-    Visitor2Component,
+    SurveyResultComponent,
 } from './dashboard-components';
 
 
@@ -117,8 +116,7 @@ import {
     declarations: [
         DashboardComponent,
         TopCardComponent,
-        VisitorComponent,
-        Visitor2Component,
+        SurveyResultComponent,
     ]
 })
 export class DashboardModule { }
