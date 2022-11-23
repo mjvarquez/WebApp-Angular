@@ -1,9 +1,7 @@
 <div fxLayout="Column" fxLayoutGap="30px">
     <mat-card>
       <mat-card-content>
-        <!-- ================== Form Field =================== -->
         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100">
-          <!-- =================== Table =============== -->
           <div class="responsive-table">
             <div class="topContainer">
               <div class="searchBar">
@@ -30,40 +28,28 @@
               </div>
             </div>
             <mat-table #table [dataSource]="dataSource" matSort display="flex">
-              <!-- ID Column -->
-              <ng-container matColumnDef="id">
+              <ng-container matColumnDef="dishName">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  ID.
+                  Dish Name
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.id }}
+                  {{ element.dishName }}
                 </mat-cell>
               </ng-container>
-              <!-- Title Column -->
-              <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  Name
-                </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  {{ element.name }}
-                </mat-cell>
-              </ng-container>
-              <!-- Short Description Column -->
-              <ng-container matColumnDef="dish_type">
+              <ng-container matColumnDef="dishType">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   Dish Type
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.image_link }}
+                  {{ element.dishType }}
                 </mat-cell>
               </ng-container>
-              <!-- Long Description Column -->
               <ng-container matColumnDef="price">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   Price
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.description }}
+                  {{ "₱" + element.price }}
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="status">
@@ -71,10 +57,9 @@
                   Status
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.price }}
+                  {{ element.status }}
                 </mat-cell>
               </ng-container>
-              <!-- Action Column -->
               <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                 <mat-cell *matCellDef="let element">
@@ -83,7 +68,7 @@
                       class="editButton"
                       mat-raised-button
                       color="primary"
-                      (click)="editArticle(element)"
+                      (click)="openEditDialog(element)"
                     >
                       <mat-icon>edit</mat-icon>
                     </span>
@@ -91,7 +76,7 @@
                       class="deleteButton"
                       mat-raised-button
                       color="warn"
-                      (click)="deleteArticle(element.id)"
+                      (click)="deleteDish(element.id)"
                     >
                       <mat-icon>delete_outline</mat-icon>
                     </span>

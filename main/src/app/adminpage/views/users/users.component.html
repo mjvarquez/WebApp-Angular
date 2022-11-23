@@ -1,9 +1,7 @@
 <div fxLayout="Column" fxLayoutGap="30px">
     <mat-card>
       <mat-card-content>
-        <!-- ================== Form Field =================== -->
         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100">
-          <!-- =================== Table =============== -->
           <div class="responsive-table">
             <div class="topContainer">
               <div class="searchBar">
@@ -30,14 +28,6 @@
               </div>
             </div>
             <mat-table #table [dataSource]="dataSource" matSort display="flex">
-              <!-- <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
-                  ID.
-                </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                  {{ element.id }}
-                </mat-cell>
-              </ng-container> -->
               <ng-container matColumnDef="firstname">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   First Name

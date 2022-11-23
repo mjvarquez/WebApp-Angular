@@ -1,7 +1,10 @@
 export interface Dish {
     id?: any,
-    name: string,
-    dish_type: string,
+    dishName: string,
+    dishType: string,
     price: number,
-    status: string
+    status: string,
+    image?: string,
+    created_at?: string,
+    updated_at?: string
 }

@@ -3,11 +3,11 @@
     <div mat-dialog-content>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="name" placeholder="Ex. My Article" />
+        <input matInput formControlName="dishName" placeholder="Ex. My Article" />
       </mat-form-field>
         <mat-form-field appearance="outline">
-        <mat-label>Select...</mat-label>
-        <mat-select formControlName="dish_type">
+        <mat-label>Dish Type</mat-label>
+        <mat-select formControlName="dishType">
             <mat-option *ngFor="let dishType of dishTypes" [value]="dishType.value">
             {{dishType.viewValue}}
             </mat-option>
@@ -23,13 +23,13 @@
         />
       </mat-form-field>
         <mat-radio-group formControlName="status" aria-label="Select an option">
-            <mat-radio-button value="active">Active</mat-radio-button>
-            <mat-radio-button value="inactive">Inactive</mat-radio-button>
+            <mat-radio-button value="Active">Active</mat-radio-button>
+            <mat-radio-button value="Inactive">Inactive</mat-radio-button>
         </mat-radio-group>
     </div>
     <div mat-dialog-actions [align]="'end'">
-      <button mat-button mat-dialog-close (click)="closeDialog()">Close</button>
-      <button mat-raised-button color="primary" [disabled]="!dishForm.valid">
+      <button mat-button type="button" (click)="closeDialog()">Close</button>
+      <button mat-raised-button type="submit" color="primary" [disabled]="!dishForm.valid">
         {{ actionBtn }}
       </button>
     </div>

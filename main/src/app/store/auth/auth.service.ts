@@ -3,10 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'
+import { AngularFirestore } from '@angular/fire/firestore'
 import { AngularFireAuth } from '@angular/fire/auth'
 
-import { User, Authentication } from '../user.state';
+import { Authentication } from '../user.state';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class AuthService {
     this.fireAuth.createUserWithEmailAndPassword(data.email, data.password)
       .then((res) => {
         console.log(res)
-        this.fireStore.collection('users').add({
+        const userDetails = {
           "uid": res.user?.uid,
           "firstName": data.firstName,
           "lastName": data.lastName,
@@ -33,10 +33,10 @@ export class AuthService {
           "role": data.role,
           "created_at": this.date,
           "updated_at": ''
-          // "status": 'active' || 'inactive',
-        })
-        if (this.fireStore) {
-          alert('Registered Sucessfully')
+        }
+        this.fireStore.collection('users').add(userDetails)
+        if (userDetails) {
+          alert('Registered User Sucessfully')
         }
       }, err => {
         console.log(err)
@@ -86,20 +86,22 @@ export class AuthService {
 
   signOut() {
     this.fireAuth.signOut();
-    localStorage.clear()
-    this.router.navigate(['/login'])
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 
   getData() {
-    return this.fireStore.collection('users').valueChanges({ idField: 'id' })
-
+    const getData = this.fireStore.collection('users').valueChanges({ idField: 'id' });
+    return getData;
   }
 
-  updateData(id: any, data: any) {
-    return this.fireStore.collection('users').doc(`${id}`).update(data)
+  updateData(id: string, data: any) {
+    const updateData = this.fireStore.collection('users').doc(id).update(data);
+    return updateData;
   }
 
-  deleteData(id: any) {
-    this.fireStore.collection('users').doc(id).delete();
+  deleteData(id: string) {
+    const deleteData = this.fireStore.collection('users').doc(id).delete();
+    return deleteData;
   }
 }

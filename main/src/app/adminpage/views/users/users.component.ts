@@ -8,8 +8,6 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { UsersDialogComponent } from './users-components/users-dialog/users-dialog.component';
 import { AuthService } from 'src/app/store/auth/auth.service';
-import { User } from 'src/app/store/user.state';
-
 
 @Component({
   selector: 'app-users',
@@ -17,7 +15,6 @@ import { User } from 'src/app/store/user.state';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  users$!: User[];
 
   dataSource!: any;
   displayedColumns: string[] = ['firstname', 'lastname', 'email', 'role', 'action'];

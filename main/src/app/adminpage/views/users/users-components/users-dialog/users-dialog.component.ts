@@ -2,10 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 // import { Store } from '@ngrx/store';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators, FormGroupDirective } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../../../store/auth/auth.service'
-import { User, Authentication } from 'src/app/store/user.state';
 
 interface Role {
   value: string;
@@ -64,7 +63,6 @@ export class UsersDialogComponent implements OnInit {
       const data = this.userForm.value;
       this.authService.signUp(data);
       this.dialogRef.close()
-      // formDirective.resetForm();
     } else {
       this.updateUser()
     }
