@@ -2,11 +2,9 @@
     <mat-card-content fxLayout="row wrap">
         <h4 class="card-title">My Order</h4>
         <div fxFlex.gt-lg="100" fxFlex.gt-md="100" fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-            <!-- =================== Table =============== -->
             <div class="responsive-table">
                 <div class="topContainer">
                     <mat-table #table [dataSource]="dataSource" matSort display="flex">
-                        <!-- ID Column -->
                         <ng-container matColumnDef="dish_name">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>
                             Dish Name
@@ -15,7 +13,6 @@
                             {{ element.id }}
                         </mat-cell>
                         </ng-container>
-                        <!-- Title Column -->
                         <ng-container matColumnDef="qty">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>
                             Qty
@@ -24,7 +21,6 @@
                             {{ element.name }}
                         </mat-cell>
                         </ng-container>
-                        <!-- Short Description Column -->
                         <ng-container matColumnDef="price">
                         <mat-header-cell *matHeaderCellDef mat-sort-header>
                             Price
@@ -33,7 +29,6 @@
                             {{ element.image_link }}
                         </mat-cell>
                         </ng-container>
-                        <!-- Action Column -->
                         <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
@@ -80,14 +75,3 @@
         <button mat-raised-button class="orderBtn" >Order</button>
     </mat-card-content>
 </mat-card>
-<!-- <mat-card>
-    <mat-card-content class="text-center">
-        <h4 class="card-title">User Info</h4>
-        <div class="profile-pic m-b-20 m-t-20">
-            <img src="assets/images/users/5.jpg" width="150" class="rounded-circle" alt="user">
-            <h4 class="m-t-20 m-b-0">Daniel Kristeen</h4>
-            <a href="mailto:danielkristeen@gmail.com">danielkristeen@gmail.com</a>
-        </div>
-        
-    </mat-card-content>
-</mat-card> -->
