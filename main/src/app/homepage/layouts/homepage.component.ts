@@ -10,7 +10,6 @@ import { MenuItems } from '../../shared/menu-items/menu-items';
 
 import { PerfectScrollbarConfigInterface, PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 
-
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
@@ -48,13 +47,11 @@ export class HomepageComponent implements OnDestroy {
   ) {
     this.mobileQuery = media.matchMedia('(min-width: 1023px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    // tslint:disable-next-line: deprecation
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
 
   ngOnDestroy(): void {
-    // tslint:disable-next-line: deprecation
     this.mobileQuery.removeListener(this._mobileQueryListener);
 
   }

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { Router } from '@angular/router';
-
 import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
@@ -9,8 +7,7 @@ import { AngularFirestore } from '@angular/fire/firestore'
 })
 export class DashboardService {
 
-  constructor(private router: Router,
-    private fireStore: AngularFirestore) { }
+  constructor(private fireStore: AngularFirestore) { }
 
   getDishData() {
     const getDishes = this.fireStore.collection('dishes').valueChanges({ idField: 'id' });

@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
     <mat-card-content>
         <h4 class="card-title">Survey</h4>
     </mat-card-content>
@@ -17,8 +17,30 @@
             <button mat-raised-button class="surveyBtn" >Submit</button>
         </form>
     </mat-card-content>
+</mat-card> -->
+
+<mat-card>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Survey<span class="label label-warning">Optional</span></mat-panel-title>
+                <mat-panel-description>For tomorrow's menu</mat-panel-description>
+            </mat-expansion-panel-header>
+            <form>
+                <mat-card-content>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                    <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                </mat-card-content>
+                <button mat-raised-button class="surveyBtn" type="submit" >Submit</button>
+            </form>
+        </mat-expansion-panel>
+    </mat-accordion>
 </mat-card>
-<!-- <mat-card>
+<mat-card>
     <mat-card-content class="text-center">
         <h4 class="card-title">User Info</h4>
         <div class="profile-pic m-b-20 m-t-20">
@@ -28,4 +50,4 @@
         </div>
         
     </mat-card-content>
-</mat-card> -->
+</mat-card>

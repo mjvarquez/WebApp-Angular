@@ -1,102 +1,67 @@
 <div fxLayout="row wrap">
-    <!-- column -->
-        <!-- column -->
-        <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
-            <mat-card >
-                <!-- Row -->
-                <mat-card-header class="card-widget-one">
-                    <label>Dishes</label>
-                </mat-card-header>
-                    <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
-                        <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20 b-r">
-                            <h3 class="font-medium m-0">{{totalDish.count}}</h3>
-                            <span class="text-muted">Total</span>
-                        </div>
-                        <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20 b-r">
-                            <h3 class="font-medium m-0">{{activeDish.count}}</h3>
-                            <span class="text-muted">Active</span>
-                        </div>
-                        <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20">
-                            <h3 class="font-medium  m-0">{{inactiveDish.count}}</h3>
-                            <span class="text-muted">Inactive</span>
-                        </div>
+    <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card >
+            <mat-card-header class="card-widget-one">
+                <label>Dishes</label>
+            </mat-card-header>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+                    <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20 b-r">
+                        <h3 class="font-medium m-0" id="count">{{totalCount.allDish}}</h3>
+                        <span class="text-muted">Total</span>
                     </div>
-            </mat-card>
-        </div>
-    <!-- column -->
-    <!-- column -->
-        <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
-            <mat-card>
-                <!-- Row -->
-                <mat-card-header class="card-widget-two">
-                    <label>Users</label>
-                </mat-card-header>
-                    <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
-                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" class="p-20">
-                            <h3 class="font-medium m-0">{{totalUser.count}}</h3>
-                            <span class="text-muted">Total</span>
-                        </div>
+                    <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20 b-r">
+                        <h3 class="font-medium m-0">{{totalCount.activeDish}}</h3>
+                        <span class="text-muted">Active</span>
                     </div>
-            </mat-card>
-        </div>
-    <!-- column -->
-    <!-- column -->
-        <!-- <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="100" fxFlex="100">
-            <mat-card>
-                <div class="social-widget">
-                    <div class="soc-header box-linkedin">
-                        <h3 >Reports</h3>
-                    </div>
-                    <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
-                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20 b-r">
-                            <h3 class="font-medium m-0">10</h3>
-                            <span class="text-muted">total</span>
-                        </div>
-                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20 b-r">
-                            <h3 class="font-medium  m-0">2</h3>
-                            <span class="text-muted">Cash</span>
-                        </div>
-                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20">
-                            <h3 class="font-medium  m-0">2</h3>
-                            <span class="text-muted">Credit</span>
-                        </div>
+                    <div fxFlex.gt-sm="33.33" fxFlex.gt-xs="50" class="p-20">
+                        <h3 class="font-medium  m-0">{{totalCount.inactiveDish}}</h3>
+                        <span class="text-muted">Inactive</span>
                     </div>
                 </div>
-            </mat-card>
-        </div> -->
-    <!-- column -->
-    <!-- column -->
-        <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
-            <mat-card>
-                <!-- Row -->
-                <mat-card-header class="card-widget-three">
-                    <label>Total Orders</label>
-                </mat-card-header>
-                    <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
-                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20 b-r">
-                            <h3 class="font-medium m-0">0</h3>
-                            <span class="text-muted">Total</span>
-                        </div>
-                        <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20">
-                            <h3 class="font-medium m-0">0</h3>
-                            <span class="text-muted">Today</span>
-                        </div>
+        </mat-card>
+    </div>
+    <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-header class="card-widget-two">
+                <label>Users</label>
+            </mat-card-header>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" class="p-20">
+                        <h3 class="font-medium m-0">{{totalCount.allUser}}</h3>
+                        <span class="text-muted">Total</span>
                     </div>
-            </mat-card>
-        </div>
-    <!-- column -->
-        <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
-            <mat-card>
-                <!-- Row -->
-                <mat-card-header class="card-widget-four">
-                    <label>Survey</label>
-                </mat-card-header>
-                    <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
-                        <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" class="p-20 ">
-                            <span><h4 class="font-medium m-0"><span>0   </span>out of<span>   0</span></h4></span>
-                            <span class="text-muted">Vote Result</span>
-                        </div>
+                </div>
+        </mat-card>
+    </div>
+    <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-header class="card-widget-three">
+                <label>Total Orders</label>
+            </mat-card-header>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20 b-r">
+                        <h3 class="font-medium m-0">0</h3>
+                        <span class="text-muted">Total</span>
                     </div>
-            </mat-card>
-        </div>
+                    <div fxFlex.gt-sm="50" fxFlex.gt-xs="50" class="p-20">
+                        <h3 class="font-medium m-0">0</h3>
+                        <span class="text-muted">Today</span>
+                    </div>
+                </div>
+        </mat-card>
+    </div>
+    <div  fxFlex.gt-sm="25" fxFlex.gt-xs="100" fxFlex="100">
+        <mat-card>
+            <mat-card-header class="card-widget-four">
+                <label>Vote Result</label>
+            </mat-card-header>
+                <div fxLayout="row" fxLayoutWrap="wrap" class="text-center">
+                    <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" class="p-20 ">
+                        <span><h4 class="font-medium m-0"><span>0   </span>out of<span>   {{totalCount.allUser}}</span></h4></span>
+                        <br/>
+                        <span class="text-muted">Total users who voted <br/> for tomorrow's menu</span>
+                    </div>
+                </div>
+        </mat-card>
+    </div>
 </div>
