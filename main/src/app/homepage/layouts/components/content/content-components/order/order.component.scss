@@ -40,13 +40,20 @@ mat-cell {
     transition: ease-out 0.4s;
 }
 
-.payment {
+.footer {
     display: flex;
-    justify-content: flex-end;
-    font-size: 0.8rem;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 400;
 }
 
-.mat-radio-button~.mat-radio-button {
+.orderBtn {
+    background-color: #497174;
+    color: #ffff;
+}
+
+.mat-radio-button {
     margin-left: 16px;
 }
 
@@ -65,9 +72,3 @@ mat-cell {
     width: 13px;
 }
 
-.orderBtn {
-    margin-top: 20px;
-    margin-right: 5px;
-    background-color: #497174;
-    color: #ffff;
-}

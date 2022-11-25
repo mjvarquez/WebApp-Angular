@@ -8,7 +8,7 @@ import { AuthService } from '../../../../../store/auth/auth.service'
 
 interface Role {
   value: string;
-  viewValue: string;
+  label: string;
 }
 
 @Component({
@@ -17,22 +17,21 @@ interface Role {
   styleUrls: ['./users-dialog.component.scss']
 })
 export class UsersDialogComponent implements OnInit {
-
   roles: Role[] = [
-    { value: 'Admin', viewValue: 'Admin' },
-    { value: 'Employee', viewValue: 'Employee' },
+    { value: 'Admin', label: 'Admin' },
+    { value: 'Employee', label: 'Employee' },
   ];
   userForm!: FormGroup;
-  actionBtn: string = 'Save';
-  header: string = 'Add User';
-  date = new Date().toLocaleString()
+  actionButton: string = 'Save';
+  headerTitle: string = 'Add User';
+  date = new Date().toLocaleString();
 
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<UsersDialogComponent>,
     private authService: AuthService) { }
 
-  addUserForm() {
+  formDetails() {
     this.userForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -47,21 +46,19 @@ export class UsersDialogComponent implements OnInit {
         email: ['', [Validators.required, Validators.email]],
         role: ['', Validators.required],
       })
-      this.header = 'Edit User'
-      this.actionBtn = 'Update';
+      this.headerTitle = 'Edit User';
+      this.actionButton = 'Update';
       this.userForm.controls['firstName'].setValue(this.editData.firstName)
       this.userForm.controls['lastName'].setValue(this.editData.lastName)
       this.userForm.controls['email'].setValue(this.editData.email)
       this.userForm.controls['role'].setValue(this.editData.role)
-    } else {
-      return false;
     }
   }
 
-  addUser() {
+  submitForm() {
     if (!this.editData && this.userForm.valid) {
       const data = this.userForm.value;
-      this.authService.signUp(data);
+      this.authService.createUser(data);
       this.dialogRef.close()
     } else {
       this.updateUser()
@@ -75,14 +72,14 @@ export class UsersDialogComponent implements OnInit {
       email: this.userForm.value.email,
       role: this.userForm.value.role,
       updated_at: this.date
-    }
-    const getUserId = this.editData.id
-    this.authService.updateData(getUserId, data)
-    this.dialogRef.close()
+    };
+    const getUserId = this.editData.id;
+    this.authService.updateData(getUserId, data);
+    this.dialogRef.close();
   }
 
   closeDialog() {
-    this.dialogRef.close()
+    this.dialogRef.close();
   }
 
   // openSnackBar(message: string, action: string) {
@@ -97,7 +94,7 @@ export class UsersDialogComponent implements OnInit {
   // })
 
   ngOnInit(): void {
-    this.addUserForm();
+    this.formDetails();
   }
 
 }

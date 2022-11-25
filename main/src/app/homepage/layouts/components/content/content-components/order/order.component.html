@@ -61,17 +61,17 @@
                 </div>
             </div>
             <br/>
-            <div class="payment">
-                <span>Payment Method:   
-                    <mat-radio-group aria-label="Select an option">
-                        <mat-radio-button value="cash">Cash</mat-radio-button>
-                        <mat-radio-button value="credit">Credit</mat-radio-button>
-                    </mat-radio-group>
-                </span>
-            </div>
         </div>
     </mat-card-content>
     <mat-card-content>
-        <button mat-raised-button class="orderBtn" >Order</button>
+        <div class="footer">
+            <span>Payment Method:   
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="cash">Cash</mat-radio-button>
+                    <mat-radio-button value="credit">Credit</mat-radio-button>
+                </mat-radio-group>
+            </span>
+            <button mat-raised-button class="orderBtn" >Order</button>
+        </div>
     </mat-card-content>
 </mat-card>

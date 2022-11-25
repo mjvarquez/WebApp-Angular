@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AngularFirestore } from '@angular/fire/firestore'
@@ -21,7 +19,7 @@ export class AuthService {
     private fireStore: AngularFirestore,
     private router: Router) { }
 
-  signUp(data: Authentication) {
+  createUser(data: Authentication) {
     this.fireAuth.createUserWithEmailAndPassword(data.email, data.password)
       .then((res) => {
         console.log(res)
@@ -83,7 +81,7 @@ export class AuthService {
 
   getRole() {
     this.currentRole = localStorage.getItem('role');
-    return this.currentRole;
+    return this.currentRole
   }
 
   signOut() {
@@ -93,17 +91,14 @@ export class AuthService {
   }
 
   getData() {
-    const getData = this.fireStore.collection('users').valueChanges({ idField: 'id' });
-    return getData;
+    return this.fireStore.collection('users').valueChanges({ idField: 'id' });
   }
 
   updateData(id: string, data: any) {
-    const updateData = this.fireStore.collection('users').doc(id).update(data);
-    return updateData;
+    return this.fireStore.collection('users').doc(id).update(data);
   }
 
   deleteData(id: string) {
-    const deleteData = this.fireStore.collection('users').doc(id).delete();
-    return deleteData;
+    return this.fireStore.collection('users').doc(id).delete();
   }
 }

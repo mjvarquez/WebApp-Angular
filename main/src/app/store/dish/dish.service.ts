@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { AngularFirestore } from '@angular/fire/firestore'
 
@@ -11,12 +10,10 @@ import { Dish } from '../dish.state';
 export class DishService {
   date = new Date().toLocaleString();
 
-  constructor(private fireStore: AngularFirestore,
-    private router: Router) { }
+  constructor(private fireStore: AngularFirestore) { }
 
   getData() {
-    const getData = this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
-    return getData;
+    return this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
   }
 
   addData(data: Dish) {
@@ -35,12 +32,10 @@ export class DishService {
   }
 
   updateData(id: string, data: any) {
-    const updateData = this.fireStore.collection('dishes').doc(id).update(data);
-    return updateData;
+    return this.fireStore.collection('dishes').doc(id).update(data);
   }
 
   deleteData(id: string) {
-    const deleteData = this.fireStore.collection('dishes').doc(id).delete();
-    return deleteData;
+    return this.fireStore.collection('dishes').doc(id).delete();
   }
 }

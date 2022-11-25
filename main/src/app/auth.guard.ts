@@ -18,22 +18,8 @@ export class AuthGuard implements CanActivate {
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot): boolean {
 
-    // if (localStorage.getItem('uid') != null) {
-    //   if (route.data.roles && route.data.roles.indexOf(this.authService.currentRole) === -1) {
-    //     this.router.navigate(['/login'])
-    //   }
-    // } else {
-
-    // }
-
-    // if (localStorage.getItem('uid') != null) {
-    //   return true;
-    // } else {
-    //   this.router.navigate(['/login'])
-    //   return false;
-    // }
     let url: string = state.url;
     return this.checkUserLogin(route, url)
   }
@@ -47,6 +33,7 @@ export class AuthGuard implements CanActivate {
       }
       return true;
     }
+
     this.router.navigate(['/login']);
     return false;
   }

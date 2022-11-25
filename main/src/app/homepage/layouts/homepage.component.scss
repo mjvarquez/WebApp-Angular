@@ -13,6 +13,7 @@
 .page-content {
     margin-top: 60px;
     background-color: #EFF5F5;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: auto;
 }

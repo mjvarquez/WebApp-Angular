@@ -1,5 +1,5 @@
-<form [formGroup]="userForm" (ngSubmit)="addUser()" >
-  <h1 mat-dialog-title>{{ header }}</h1>
+<form [formGroup]="userForm" (ngSubmit)="submitForm()" >
+  <h1 mat-dialog-title>{{ headerTitle }}</h1>
   <div mat-dialog-content>
     <mat-form-field appearance="outline">
       <mat-label>First Name:</mat-label>
@@ -13,7 +13,7 @@
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" placeholder="Ex. Email@test.com"/>
     </mat-form-field>
-    <mat-form-field appearance="outline" *ngIf="header !== 'Edit User'; else elsePass">
+    <mat-form-field appearance="outline" *ngIf="headerTitle !== 'Edit User'; else elsePass">
       <mat-label>Password</mat-label>
       <input matInput formControlName="password" type="password" placeholder="Ex. 123"/>
     </mat-form-field>
@@ -23,7 +23,7 @@
           <mat-label>Select...</mat-label>
           <mat-select formControlName="role">
               <mat-option *ngFor="let role of roles" [value]="role.value">
-              {{role.viewValue}}
+              {{role.label}}
               </mat-option>
           </mat-select>
       </mat-form-field>
@@ -31,7 +31,7 @@
   <div mat-dialog-actions [align]="'end'">
     <button mat-button type="button" (click)="closeDialog()">Close</button>
     <button type="submit" mat-raised-button color="primary" [disabled]="!userForm.valid">
-      {{ actionBtn }}
+      {{ actionButton }}
     </button>
   </div>
 </form>
