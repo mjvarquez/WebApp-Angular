@@ -1,5 +1,5 @@
 // user authentication and details
-export interface User {
+export interface UserDetails {
     id?: any,
     firstName: string,
     lastName: string,

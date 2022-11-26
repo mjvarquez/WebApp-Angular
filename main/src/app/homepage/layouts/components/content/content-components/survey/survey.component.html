@@ -8,7 +8,7 @@
             <form (ngSubmit)="onVote()">
                 <mat-card-content>
                     <div class="surveyList">
-                            <mat-checkbox (change)="selectedItem($event, todayMenu)" *ngFor=" let todayMenu of todayMenus" [value]="todayMenu">{{todayMenu.dishName}}</mat-checkbox>
+                            <mat-checkbox (change)="selectedItem($event, activeDish)" *ngFor=" let activeDish of activeDishes" [value]="activeDish">{{activeDish.dishName}}</mat-checkbox>
                     </div>
                 </mat-card-content>
                 <button mat-raised-button class="surveyBtn" type="submit">Vote</button>

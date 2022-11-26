@@ -49,13 +49,13 @@ export class AuthService {
             this.isSignedIn = true;
             this.currentRole = userRef.data().role;
             localStorage.setItem("state", "true")
+            localStorage.setItem("id", userRef.id)
             localStorage.setItem("role", userRef.data().role)
-            localStorage.setItem("uid", res.user!.uid);
             localStorage.setItem("firstName", userRef.data().firstName)
             localStorage.setItem("lastName", userRef.data().lastName)
             console.log(this.currentRole)
             console.log('userRef', userRef.data())
-            if (userRef.data().role === "Admin" && localStorage.getItem('uid') != null && userRef.data().uid === res.user?.uid) {
+            if (userRef.data().role === "Admin" && localStorage.getItem('id') != null && userRef.data().uid === res.user?.uid) {
               this.router.navigate(['/dashboard'])
               alert('Login Successfully');
             } else {

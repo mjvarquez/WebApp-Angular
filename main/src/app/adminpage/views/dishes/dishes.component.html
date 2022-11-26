@@ -57,7 +57,10 @@
                   Status
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.status }}
+                   <span class="label label-success" *ngIf="element.status == 'Active'; else inactive">{{ element.status }}</span>
+                   <ng-template #inactive>
+                    <span class="label label-danger" >{{ element.status }}</span>
+                   </ng-template>
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="action">

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { number } from 'ngx-custom-validators/src/app/number/validator';
 
 import { DashboardService } from 'src/app/store/dashboard/dashboard.service';
 
