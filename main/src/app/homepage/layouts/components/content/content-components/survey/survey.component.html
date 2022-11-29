@@ -11,7 +11,7 @@
                             <mat-checkbox (change)="selectedItem($event, activeDish)" *ngFor=" let activeDish of activeDishes" [value]="activeDish">{{activeDish.dishName}}</mat-checkbox>
                     </div>
                 </mat-card-content>
-                <button mat-raised-button class="surveyBtn" type="submit">Vote</button>
+                <button mat-raised-button class="surveyBtn" type="submit" [disabled]="!surveyForm.valid">Vote</button>
             </form>
         </mat-expansion-panel>
     </mat-accordion>

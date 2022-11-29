@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Dish } from '../dish.state';
+import { Dish, VotedDishes } from '../dish.state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderMenuService {
-  // voted = false;
-  // getUserId = localStorage.getItem('id'); 
 
   constructor(private fireStore: AngularFirestore) { }
 
@@ -16,43 +14,15 @@ export class OrderMenuService {
     return this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
   }
 
-  // getUserDataId(){
-  //   return this.fireStore.collection('users').ref.onSnapshot(snap => {
-  //     snap.forEach((userId: any) => {
-  //       console.log(userId.id)
-  //     })
-  //   })
-  // }
+  getSurveyData(){
+    return this.fireStore.collection('voted_dishes').valueChanges();
+  }
 
-  // getDishData() {
-  //   const dishData = this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
-  //   dishData.subscribe((ref) => {
-  //     const data = ref;
-  //     data.forEach((dish: any) => {
-  //       this.dishData = dish.id;
-  //       console.log(this.dishData)
-  //     })
-  //   })
-  //   return dishData;
-  // }
-
-  // getUserData(){
-  //   const userData = this.fireStore.collection('users').valueChanges({ idField: 'id'});
-  //   userData.subscribe((ref) => {
-  //     const data = ref;
-  //     data.forEach((user: any) => {
-  //       this.userData = user.id;
-  //       console.log(this.userData);
-  //     })
-  //   })
-  //   return userData;
-  // }
-
-  addData(userId:any, dateServed: any, data: any){
+  addData(data: VotedDishes){
     const votedDishes = {
-      dateServed,
-      userId,
-      dishes: {data}
+      "date_served": data.date_served,
+      "user_id": data.user_id,
+      "dishes": data.dishes 
     }
     this.fireStore.collection('voted_dishes').add(votedDishes)
     .then(res => {

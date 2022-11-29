@@ -8,3 +8,10 @@ export interface Dish {
     created_at?: string,
     updated_at?: string
 }
+
+export interface VotedDishes {
+    id?: any,
+    user_id: string,
+    dishes: Dish[],
+    date_served: string
+}

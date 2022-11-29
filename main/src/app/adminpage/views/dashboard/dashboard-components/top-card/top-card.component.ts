@@ -30,7 +30,7 @@ export class TopCardComponent implements OnInit {
         this.totalDish.count = dishes.length;
         this.activeDish.count = totalActiveDish.length;
         this.inactiveDish.count = totalInactiveDish.length;
-        console.log("all dish data", dishes)
+        // console.log("all dish data", dishes)
       }
     })
   }
