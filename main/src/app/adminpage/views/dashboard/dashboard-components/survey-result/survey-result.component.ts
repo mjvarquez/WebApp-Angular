@@ -35,22 +35,28 @@ export class SurveyResultComponent implements OnInit {
             }
             // console.log(dishDetails)
             dishCounts.push(dishDetails)
-            // for(const dishCount of dishCounts){
-            //   const data = `${dishCount.date_served}_${dishCount.dishName}_${dishCount.dishType}_${dishCount.price}`;
-            //   (count[data] || (count[data] = {...dishCount, count: 0})).count += 1;
-            // }
+            // console.log(dishCounts)
+            for(const dishCount of dishCounts){
+              const data = `${dishCount.dishName}_${dishCount.dishType}_${dishCount.price}`;
+              (count[data] || (count[data] = {...dishCount, count: 0})).count += 1;
+            }
             // const result = Object.values(count);
+          //   result.sort(function(a, b) {
+          //     return a.count.localeCompare(b.count)
+          // });
+            // console.log(result)
+
             // result.length = 5;
-            // const dishSorted = Object.values(result).sort(function(a,b){return count[b] - count[a]});
- 
-            dishCounts.forEach((c: any) => {
-              count[c.dishName] = (count[c.dishName] || 0 ) + 1 
-            });
-            console.log(count)
-            let dishSorted = Object.keys(count).sort(function(a,b){return count[b] - count[a]});
-            dishSorted.length = 5;
+            const dishSorted = Object.values(count).sort(function(a,b){return count[b] - count[a]});
+            console.log(dishSorted)
+            // dishCounts.forEach((c: any) => {
+            //   count[c.dishName] = (count[c.dishName] || 0 ) + 1 
+            // });
+            // console.log(count)
+            // let dishSorted = Object.keys(count).sort(function(a,b){return count[b] - count[a]});
+            // dishSorted.length = 5;
             // console.log(dishSorted)
-            this.dataSource = new MatTableDataSource(dishSorted);
+            // this.dataSource = new MatTableDataSource(dishSorted);
             // for menu of the day
             
             // this.orderMenuService.addMenuForToday(selectedMenu)

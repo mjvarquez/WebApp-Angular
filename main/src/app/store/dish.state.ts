@@ -16,6 +16,13 @@ export interface VotedDishes {
     date_served: string
 }
 
+// export interface Menu {
+//     id?: string,
+//     dishName: string,
+//     dishType: string,
+//     price: string
+// }
+
 export interface MenuForToday {
     id?: any,
     menu: any[],
