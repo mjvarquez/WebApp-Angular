@@ -61,11 +61,4 @@ export class SurveyResultComponent implements OnInit {
   }
 }
 
-// export interface VotedDishDetails{
-//   dishName: string,
-//   dishCount: number,
-//   price: string,
-//   dishType: string
-// }
-
 
