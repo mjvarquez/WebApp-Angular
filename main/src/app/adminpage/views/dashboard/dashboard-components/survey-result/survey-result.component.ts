@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { VotedDishes } from 'src/app/store/dish.state';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
 
@@ -11,32 +10,62 @@ import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
 })
 export class SurveyResultComponent implements OnInit {
   dataSource!: any;
-  displayedColumns = ['surveyResult']
-  // dish_id!: any;
+  displayedColumns: string[] = ['surveyResult'];
+  dateServed = new Date().toISOString().slice(0, 10);
 
-  constructor(private orderMenuService: OrderMenuService,
-    private fireStore: AngularFirestore) { }
+  constructor(private orderMenuService: OrderMenuService) { }
 
   getSurveyResult(){
-    let dishVotes: Map<string, string> =  new Map<string, string>()
-    let arr: string[] = [];
-    let counts = {};
+    // let dishVotes: Map<string, any> = new Map<string, any>();
+    // let votedDishDetails: Map<string, VotedDishDetails> = new Map<string, VotedDishDetails>();
+    let dishCount: any[] = [];
     this.orderMenuService.getSurveyData().subscribe({
       next: (res) => {
-        //dish iteration
         res.forEach((dish: any) => {
-          let counts = {};
+          // for dish survey result
+          let count: { [key: string ]: any } = {};
+          // let count: any[]
           dish.dishes.forEach((dishes: any) => {
-            const dishCount = dishVotes.get(dishes.dishName) == null ?0:dishVotes.get(dishes.dishName)
-            dishVotes.set(dishes.dishName, (Number(dishCount)+1).toString())
+            const dishDetails = {
+              dishName: dishes.dishName,
+              dishType: dishes.dishType,
+              price: dishes.price
+            }
+            dishCount.push(dishDetails.dishName)
+            // console.log(dishCount)
+            dishCount.forEach((c: any) => {
+              count[c] = (count[c] || 0 ) + 1 
+            });
+            // console.log(count)
+            let dishSorted = Object.keys(count).sort(function(a,b){return count[b] - count[a]});
+            dishSorted.length = 5;
+            this.dataSource = new MatTableDataSource(dishSorted);
+            // for menu of the day
+            
+            // this.orderMenuService.addMenuForToday(selectedMenu)
+            // console.log(this.menuForToday)
+            
           })
         })
-        console.table(dishVotes)
       }
     })
-  }
+  } 
+  
+  // addMenu(){
+  //   this.orderMenuService.addMenuForToday(this.menuForToday);
+  // }
 
   ngOnInit(): void {
     this.getSurveyResult();
+    // this.addMenu();
   }
 }
+
+// export interface VotedDishDetails{
+//   dishName: string,
+//   dishCount: number,
+//   price: string,
+//   dishType: string
+// }
+
+

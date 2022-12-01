@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Dish, VotedDishes } from '../dish.state';
+import { VotedDishes, MenuForToday } from '../dish.state';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +34,12 @@ export class OrderMenuService {
     })
     console.log(votedDishes)
   } 
+
+  addMenuForToday(data: MenuForToday){
+    const menuForToday = {
+      "menu": data.menu,
+      "date_served": data.date_served
+    }
+    this.fireStore.collection('menu_for_today').add(menuForToday)
+  }
 }

@@ -21,6 +21,7 @@ export class DishService {
       "dishName": data.dishName,
       "dishType": data.dishType,
       "price": data.price,
+      // "id": data.id,
       "status": data.status,
       "created_at": this.date,
       "updated_at": '',

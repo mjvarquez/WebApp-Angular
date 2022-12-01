@@ -1,5 +1,5 @@
 export interface Dish {
-    id?: any,
+    id?: string,
     dishName: string,
     dishType: string,
     price: number,
@@ -14,4 +14,10 @@ export interface VotedDishes {
     user_id: string,
     dishes: Dish[],
     date_served: string
+}
+
+export interface MenuForToday {
+    id?: any,
+    menu: any[],
+    date_served: string,
 }
