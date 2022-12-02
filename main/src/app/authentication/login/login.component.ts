@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/store/auth/auth.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/store/auth-user/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,23 +9,36 @@ import { AuthService } from 'src/app/store/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  getUid = localStorage.getItem('uid');
+  loginUserForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,
+  constructor(private router: Router,
+    private formBuilder: FormBuilder,
     private authService: AuthService) { }
 
   getLoginForm() {
-    this.loginForm = this.fb.group({
+    this.loginUserForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.required])]
     });
   }
 
-  login() {
-    if (this.loginForm.value.email !== "" && this.loginForm.value.password !== "") {
-      this.authService.signIn(this.loginForm.value.email, this.loginForm.value.password)
-    } 
+  loginUser() {
+    this.authService.login(this.loginUserForm.value).subscribe({
+      next: data => {
+        console.log(data)
+        if (data) {
+          this.authService.saveToken(data.access_token)
+          // this.authService.saveUser(data)
+          this.loginUserForm.reset()
+          this.router.navigate(['/dashboard'])
+        } else {
+          return false;
+        }
+      },
+      error: err => {
+        console.log(err)
+      }
+    })
   }
 
   ngOnInit(): void {

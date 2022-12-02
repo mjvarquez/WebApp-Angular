@@ -32,47 +32,47 @@ export class DishesDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<DishesDialogComponent>,
     private dishService: DishService) { }
 
-  getDishForm() {
-    this.dishForm = this.formBuilder.group({
-      dishName: ['', Validators.required],
-      dishType: ['', Validators.required],
-      price: ['', Validators.required],
-      status: ['', Validators.required],
-    })
-    if (this.editData) {
-      this.header = 'Edit Dish'
-      this.actionBtn = 'Update';
-      this.dishForm.controls['dishName'].setValue(this.editData.dishName)
-      this.dishForm.controls['dishType'].setValue(this.editData.dishType)
-      this.dishForm.controls['price'].setValue(this.editData.price)
-      this.dishForm.controls['status'].setValue(this.editData.status)
-    } else {
-      return false;
-    }
-  }
+  // getDishForm() {
+  //   this.dishForm = this.formBuilder.group({
+  //     dishName: ['', Validators.required],
+  //     dishType: ['', Validators.required],
+  //     price: ['', Validators.required],
+  //     status: ['', Validators.required],
+  //   })
+  //   if (this.editData) {
+  //     this.header = 'Edit Dish'
+  //     this.actionBtn = 'Update';
+  //     this.dishForm.controls['dishName'].setValue(this.editData.dishName)
+  //     this.dishForm.controls['dishType'].setValue(this.editData.dishType)
+  //     this.dishForm.controls['price'].setValue(this.editData.price)
+  //     this.dishForm.controls['status'].setValue(this.editData.status)
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  addDish() {
-    if (!this.editData && this.dishForm.valid) {
-      const data = this.dishForm.value;
-      this.dishService.addData(data)
-      this.dialogRef.close()
-    } else {
-      this.updateDish()
-    }
-  }
+  // addDish() {
+  //   if (!this.editData && this.dishForm.valid) {
+  //     const data = this.dishForm.value;
+  //     this.dishService.addData(data)
+  //     this.dialogRef.close()
+  //   } else {
+  //     this.updateDish()
+  //   }
+  // }
 
-  updateDish() {
-    const data = {
-      dishName: this.dishForm.value.dishName,
-      dishType: this.dishForm.value.dishType,
-      price: this.dishForm.value.price,
-      status: this.dishForm.value.status,
-      updated_at: this.date
-    }
-    const getDishId = this.editData.id
-    this.dishService.updateData(getDishId, data)
-    this.dialogRef.close()
-  }
+  // updateDish() {
+  //   const data = {
+  //     dishName: this.dishForm.value.dishName,
+  //     dishType: this.dishForm.value.dishType,
+  //     price: this.dishForm.value.price,
+  //     status: this.dishForm.value.status,
+  //     updated_at: this.date
+  //   }
+  //   const getDishId = this.editData.id
+  //   this.dishService.updateData(getDishId, data)
+  //   this.dialogRef.close()
+  // }
 
   closeDialog() {
     this.dialogRef.close();
@@ -90,7 +90,7 @@ export class DishesDialogComponent implements OnInit {
   // })
 
   ngOnInit(): void {
-    this.getDishForm();
+    // this.getDishForm();
   }
 
 }

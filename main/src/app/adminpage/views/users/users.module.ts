@@ -34,7 +34,7 @@ import { UsersDialogComponent } from './users-components/users-dialog/users-dial
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
   ]
 })
 export class UsersModule { }

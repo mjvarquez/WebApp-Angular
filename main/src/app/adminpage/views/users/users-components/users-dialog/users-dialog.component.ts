@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-// import { Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { AuthService } from '../../../../../store/auth/auth.service'
+import { User } from '../../../../../store/user.state';
+import * as userAction from '../../../../../store/auth-user/auth.actions';
 
 interface Role {
   value: string;
@@ -17,9 +18,10 @@ interface Role {
   styleUrls: ['./users-dialog.component.scss']
 })
 export class UsersDialogComponent implements OnInit {
+  users!: User[];
   roles: Role[] = [
-    { value: 'Admin', label: 'Admin' },
-    { value: 'Employee', label: 'Employee' },
+    { value: '1', label: 'Admin(1)' },
+    { value: '2', label: 'Employee(2)' },
   ];
   userForm!: FormGroup;
   actionButton: string = 'Save';
@@ -29,22 +31,20 @@ export class UsersDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<UsersDialogComponent>,
-    private authService: AuthService) { }
+    private store: Store< {} >) { }
 
   formDetails() {
     this.userForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      role: ['', Validators.required],
+      role_id: ['', Validators.required],
     })
     if (this.editData) {
       this.userForm = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
+        name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        role: ['', Validators.required],
+        role_id: ['', Validators.required],
       })
       this.headerTitle = 'Edit User';
       this.actionButton = 'Update';
@@ -58,25 +58,25 @@ export class UsersDialogComponent implements OnInit {
   submitForm() {
     if (!this.editData && this.userForm.valid) {
       const data = this.userForm.value;
-      this.authService.createUser(data);
+      this.store.dispatch(userAction.addUsersRequested({ payload: data }))
       this.dialogRef.close()
     } else {
-      this.updateUser()
+      // this.updateUser()
     }
   }
 
-  updateUser() {
-    const data = {
-      firstName: this.userForm.value.firstName,
-      lastName: this.userForm.value.lastName,
-      email: this.userForm.value.email,
-      role: this.userForm.value.role,
-      updated_at: this.date
-    };
-    const getUserId = this.editData.id;
-    this.authService.updateData(getUserId, data);
-    this.dialogRef.close();
-  }
+  // updateUser() {
+  //   const data = {
+  //     firstName: this.userForm.value.firstName,
+  //     lastName: this.userForm.value.lastName,
+  //     email: this.userForm.value.email,
+  //     role: this.userForm.value.role,
+  //     updated_at: this.date
+  //   };
+  //   const getUserId = this.editData.id;
+  //   this.authService.updateData(getUserId, data);
+  //   this.dialogRef.close();
+  // }
 
   closeDialog() {
     this.dialogRef.close();

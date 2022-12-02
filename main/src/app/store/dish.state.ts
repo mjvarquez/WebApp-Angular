@@ -8,6 +8,9 @@ export interface Dish {
     created_at?: string,
     updated_at?: string
 }
+export interface DishState {
+    dish: Dish[]
+}
 
 export interface VotedDishes {
     id?: any,
@@ -28,3 +31,4 @@ export interface MenuForToday {
     menu: any[],
     date_served: string,
 }
+

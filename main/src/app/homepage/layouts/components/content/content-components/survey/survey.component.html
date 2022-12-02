@@ -5,13 +5,13 @@
                 <mat-panel-title>Survey<span class="label label-warning">Optional</span></mat-panel-title>
                 <mat-panel-description>For tomorrow's menu</mat-panel-description>
             </mat-expansion-panel-header>
-            <form (ngSubmit)="onVote()">
+            <form>
                 <mat-card-content>
                     <div class="surveyList">
-                            <mat-checkbox (change)="selectedItem($event, activeDish)" *ngFor=" let activeDish of activeDishes" [value]="activeDish">{{activeDish.dishName}}</mat-checkbox>
+                            <!-- <mat-checkbox (change)="selectedItem($event, activeDish)" *ngFor=" let activeDish of activeDishes" [value]="activeDish">{{activeDish.dishName}}</mat-checkbox> -->
                     </div>
                 </mat-card-content>
-                <button mat-raised-button class="surveyBtn" type="submit" [disabled]="!surveyForm.valid">Vote</button>
+                <!-- <button mat-raised-button class="surveyBtn" type="submit" [disabled]="!surveyForm.valid">Vote</button> -->
             </form>
         </mat-expansion-panel>
     </mat-accordion>

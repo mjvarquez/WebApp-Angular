@@ -14,32 +14,32 @@ export class SurveyResultComponent implements OnInit {
 
   constructor(private orderMenuService: OrderMenuService) { }
 
-  getSurveyResult(){
+  // getSurveyResult(){
     // let dishVotes: Map<string, any> = new Map<string, any>();
     // let votedDishDetails: Map<string, VotedDishDetails> = new Map<string, VotedDishDetails>();
-    let dishCounts: any[] = [];
-    this.orderMenuService.getSurveyData().subscribe({
-      next: (res) => {
-        res.forEach((dish: any) => {
-          const date = {
-            date_served: dish.date_served,
-          }
+    // let dishCounts: any[] = [];
+    // this.orderMenuService.getSurveyData().subscribe({
+    //   next: (res) => {
+    //     res.forEach((dish: any) => {
+    //       const date = {
+    //         date_served: dish.date_served,
+    //       }
           // for dish survey result
-          let count: { [key: string ]: any } = {};
-          dish.dishes.forEach((dishes: any) => {
-            const dishDetails = {
-              date,
-              dishName: dishes.dishName,
-              dishType: dishes.dishType,
-              price: dishes.price
-            }
+          // let count: { [key: string ]: any } = {};
+          // dish.dishes.forEach((dishes: any) => {
+          //   const dishDetails = {
+          //     date,
+          //     dishName: dishes.dishName,
+          //     dishType: dishes.dishType,
+          //     price: dishes.price
+          //   }
             // console.log(dishDetails)
-            dishCounts.push(dishDetails)
+            // dishCounts.push(dishDetails)
             // console.log(dishCounts)
-            for(const dishCount of dishCounts){
-              const data = `${dishCount.dishName}_${dishCount.dishType}_${dishCount.price}`;
-              (count[data] || (count[data] = {...dishCount, count: 0})).count += 1;
-            }
+            // for(const dishCount of dishCounts){
+            //   const data = `${dishCount.dishName}_${dishCount.dishType}_${dishCount.price}`;
+            //   (count[data] || (count[data] = {...dishCount, count: 0})).count += 1;
+            // }
             // const result = Object.values(count);
           //   result.sort(function(a, b) {
           //     return a.count.localeCompare(b.count)
@@ -47,8 +47,8 @@ export class SurveyResultComponent implements OnInit {
             // console.log(result)
 
             // result.length = 5;
-            const dishSorted = Object.values(count).sort(function(a,b){return count[b] - count[a]});
-            console.log(dishSorted)
+            // const dishSorted = Object.values(count).sort(function(a,b){return count[b] - count[a]});
+            // console.log(dishSorted)
             // dishCounts.forEach((c: any) => {
             //   count[c.dishName] = (count[c.dishName] || 0 ) + 1 
             // });
@@ -61,18 +61,18 @@ export class SurveyResultComponent implements OnInit {
             
             // this.orderMenuService.addMenuForToday(selectedMenu)
             // console.log(this.menuForToday)
-          })
-        })
-      }
-    })
-  } 
+        //   })
+        // })
+    //   }
+    // })
+  // } 
   
   // addMenu(){
   //   this.orderMenuService.addMenuForToday(this.menuForToday);
   // }
 
   ngOnInit(): void {
-    this.getSurveyResult();
+    // this.getSurveyResult();
     // this.addMenu();
   }
 }

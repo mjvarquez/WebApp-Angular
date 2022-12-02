@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
-import { AuthService } from 'src/app/store/auth/auth.service';
+import { AuthService } from 'src/app/store/auth-user/auth.service';
 
 @Component({
   selector: 'app-horizontal-header',

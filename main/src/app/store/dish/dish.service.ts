@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore } from '@angular/fire/firestore'
 
 import { Dish } from '../dish.state';
 
@@ -10,33 +9,33 @@ import { Dish } from '../dish.state';
 export class DishService {
   date = new Date().toLocaleString();
 
-  constructor(private fireStore: AngularFirestore) { }
+  constructor() { }
 
-  getData() {
-    return this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
-  }
+  // getData() {
+  //   return this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
+  // }
 
-  addData(data: Dish) {
-    const dishDetails = {
-      "dishName": data.dishName,
-      "dishType": data.dishType,
-      "price": data.price,
-      // "id": data.id,
-      "status": data.status,
-      "created_at": this.date,
-      "updated_at": '',
-    }
-    this.fireStore.collection('dishes').add(dishDetails)
-    if (dishDetails) {
-      alert('Registered Dish Successfully')
-    }
-  }
+  // addData(data: Dish) {
+  //   const dishDetails = {
+  //     "dishName": data.dishName,
+  //     "dishType": data.dishType,
+  //     "price": data.price,
+  //     // "id": data.id,
+  //     "status": data.status,
+  //     "created_at": this.date,
+  //     "updated_at": '',
+  //   }
+  //   this.fireStore.collection('dishes').add(dishDetails)
+  //   if (dishDetails) {
+  //     alert('Registered Dish Successfully')
+  //   }
+  // }
 
-  updateData(id: string, data: any) {
-    return this.fireStore.collection('dishes').doc(id).update(data);
-  }
+  // updateData(id: string, data: any) {
+  //   return this.fireStore.collection('dishes').doc(id).update(data);
+  // }
 
-  deleteData(id: string) {
-    return this.fireStore.collection('dishes').doc(id).delete();
-  }
+  // deleteData(id: string) {
+  //   return this.fireStore.collection('dishes').doc(id).delete();
+  // }
 }

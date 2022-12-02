@@ -2,12 +2,8 @@
   <h1 mat-dialog-title>{{ headerTitle }}</h1>
   <div mat-dialog-content>
     <mat-form-field appearance="outline">
-      <mat-label>First Name:</mat-label>
-      <input matInput formControlName="firstName" placeholder="Ex. Soma" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>Last Name:</mat-label>
-      <input matInput formControlName="lastName" placeholder="Ex. Hernandez" />
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Ex. Soma" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
@@ -21,7 +17,7 @@
     </ng-template>
       <mat-form-field appearance="outline">
           <mat-label>Select...</mat-label>
-          <mat-select formControlName="role">
+          <mat-select formControlName="role_id">
               <mat-option *ngFor="let role of roles" [value]="role.value">
               {{role.label}}
               </mat-option>

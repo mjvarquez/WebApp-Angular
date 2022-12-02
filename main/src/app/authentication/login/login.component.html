@@ -1,8 +1,8 @@
 <div class="login-register">
     <div class="login-register-box">
-        <mat-card *ngIf="getUid == null || ''; else session">
+        <mat-card>
             <mat-card-content>
-                <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <form [formGroup]="loginUserForm" (ngSubmit)="loginUser()">
                     <div class="text-center">
                         <img alt="homepage" src="assets/images/logo.png" width="40px" height="40px">
                         <h4 class="m-t-0">Login to App</h4>
@@ -10,15 +10,15 @@
                     <div fxLayout="row wrap">
                         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
                             <mat-form-field>
-                                <input matInput placeholder="Email" [formControl]="loginForm.controls['email']">
+                                <input matInput placeholder="Email" [formControl]="loginUserForm.controls['email']">
                             </mat-form-field>
-                            <small *ngIf="loginForm.controls['email'].hasError('required') && loginForm.controls['email'].touched" class="text-danger support-text">Email is required.</small>
+                            <small *ngIf="loginUserForm.controls['email'].hasError('required') && loginUserForm.controls['email'].touched" class="text-danger support-text">Email is required.</small>
                         </div>
                         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
                             <mat-form-field>
-                                <input matInput type="password" placeholder="Password" [formControl]="loginForm.controls['password']">
+                                <input matInput type="password" placeholder="Password" [formControl]="loginUserForm.controls['password']">
                             </mat-form-field>
-                            <small *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched" class="text-danger support-text">Password is required.</small>
+                            <small *ngIf="loginUserForm.controls['password'].hasError('required') && loginUserForm.controls['password'].touched" class="text-danger support-text">Password is required.</small>
                         </div>
                         <!-- <div fxFlex.gt-sm="50" fxFlex.gt-xs="50">
                             <mat-checkbox color="warn">Remember me</mat-checkbox>
@@ -27,7 +27,7 @@
                             <a [routerLink]="['/forgot']" class="link">Forgot password?</a>
                         </div>
                         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100">
-                            <button mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20" type="submit" [disabled]="!loginForm.valid">Login</button>
+                            <button mat-raised-button color="primary" class="btn-block btn-lg m-t-20 m-b-20" type="submit" [disabled]="!loginUserForm.valid">Login</button>
                         </div>
                         <div fxFlex.gt-sm="100" fxFlex.gt-xs="100" fxFlex="100" class="text-center">
                         </div>
@@ -36,11 +36,11 @@
             </mat-card-content>
         </mat-card>
     </div>
-    <ng-template #session>
+    <!-- <ng-template #session>
         <mat-card>
             <mat-card-content>
                 <a [routerLink]="['/homepage']">Go back to Homepage</a>
             </mat-card-content>
     </mat-card>
-    </ng-template>>
+    </ng-template>> -->
 </div>

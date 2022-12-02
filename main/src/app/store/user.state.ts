@@ -1,21 +1,24 @@
 // user authentication and details
-export interface UserDetails {
+export interface User {
     id?: any,
-    firstName: string,
-    lastName: string,
+    name: string,
     email: string,
     password?: string,
-    role: string,
+    role_id: string,
     uid?: string,
 }
 
-export interface Authentication {
-    id?: any,
-    firstName: string,
-    lastName: string,
-    email: string,
-    password: string,
-    role: string,
-    created_at?: string,
-    updated_at?: string
+export interface UserState {
+    user: User[],
 }
+
+// export interface Authentication {
+//     id?: any,
+//     firstName: string,
+//     lastName: string,
+//     email: string,
+//     password: string,
+//     role: string,
+//     created_at?: string,
+//     updated_at?: string
+// }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFirestore } from '@angular/fire/firestore';
 import { VotedDishes, MenuForToday } from '../dish.state';
 
 @Injectable({
@@ -8,38 +7,38 @@ import { VotedDishes, MenuForToday } from '../dish.state';
 })
 export class OrderMenuService {
 
-  constructor(private fireStore: AngularFirestore) { }
+  constructor() { }
 
-  getDishData() {
-    return this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
-  }
+  // getDishData() {
+  //   return this.fireStore.collection('dishes').valueChanges({ idField: 'id' });
+  // }
 
-  getSurveyData(){
-    return this.fireStore.collection('voted_dishes').valueChanges();
-  }
+  // getSurveyData(){
+  //   return this.fireStore.collection('voted_dishes').valueChanges();
+  // }
 
-  addData(data: VotedDishes){
-    const votedDishes = {
-      "date_served": data.date_served,
-      "user_id": data.user_id,
-      "dishes": data.dishes 
-    }
-    this.fireStore.collection('voted_dishes').add(votedDishes)
-    .then(res => {
-      if(res){
-        alert("Voted Successfully")
-      }
-    }).catch(err => {
+  // addData(data: VotedDishes){
+  //   const votedDishes = {
+  //     "date_served": data.date_served,
+  //     "user_id": data.user_id,
+  //     "dishes": data.dishes 
+  //   }
+  //   this.fireStore.collection('voted_dishes').add(votedDishes)
+  //   .then(res => {
+  //     if(res){
+  //       alert("Voted Successfully")
+  //     }
+  //   }).catch(err => {
 
-    })
-    console.log(votedDishes)
-  } 
+  //   })
+  //   console.log(votedDishes)
+  // } 
 
-  addMenuForToday(data: MenuForToday){
-    const menuForToday = {
-      "menu": data.menu,
-      "date_served": data.date_served
-    }
-    this.fireStore.collection('menu_for_today').add(menuForToday)
-  }
+  // addMenuForToday(data: MenuForToday){
+  //   const menuForToday = {
+  //     "menu": data.menu,
+  //     "date_served": data.date_served
+  //   }
+  //   this.fireStore.collection('menu_for_today').add(menuForToday)
+  // }
 }
