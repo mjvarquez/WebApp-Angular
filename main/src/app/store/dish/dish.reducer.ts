@@ -14,7 +14,7 @@ export const DishReducer = createReducer(
   on(dishAction.loadDishesSucceeded, (state: DishState, { payload }) => {
       return {
         ...state,
-        ...payload
+        dish: payload
       }
   }),
 

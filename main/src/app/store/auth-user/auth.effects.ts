@@ -37,9 +37,9 @@ export class AuthEffects {
         ofType(userAction.addUsersRequested),
         switchMap((res) => {
           return this.http.post<User>(environment.apiUrl + 'api/resources/users', res.payload).pipe(
-            switchMap((data: User) => {
+            switchMap((user: User) => {
               return [
-                userAction.addUsersSucceeded({ payload: data })
+                userAction.addUsersSucceeded({ payload: user })
               ]
             }),
             catchError((error: Error) => {
@@ -71,10 +71,10 @@ export class AuthEffects {
         ofType(userAction.updateUsersRequested),
         switchMap((res) => {
           return this.http.put<User>(environment.apiUrl + `api/resources/users/${res.payload.userId}`, res.payload.updateUser).pipe(
-            switchMap((data: User) => {
-              console.log(data)
+            switchMap((user: User) => {
+              console.log(user)
               return [
-                userAction.updateUsersSucceeded({ payload: data })
+                userAction.updateUsersSucceeded({ payload: user })
               ]
             }),
             catchError((error: Error) => {

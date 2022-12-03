@@ -34,16 +34,16 @@ export class DishesDialogComponent implements OnInit {
 
   getDishForm() {
     this.dishForm = this.formBuilder.group({
-      dishName: ['', Validators.required],
-      dishType: ['', Validators.required],
+      dish_name: ['', Validators.required],
+      dish_type: ['', Validators.required],
       price: ['', Validators.required],
       status: ['', Validators.required],
     })
     if (this.editData) {
       this.header = 'Edit Dish'
       this.actionBtn = 'Update';
-      this.dishForm.controls['dishName'].setValue(this.editData.dishName)
-      this.dishForm.controls['dishType'].setValue(this.editData.dishType)
+      this.dishForm.controls['dish_name'].setValue(this.editData.dish_name)
+      this.dishForm.controls['dish_type'].setValue(this.editData.dish_type)
       this.dishForm.controls['price'].setValue(this.editData.price)
       this.dishForm.controls['status'].setValue(this.editData.status)
     } else {

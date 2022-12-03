@@ -39,7 +39,6 @@ export const updateDishesSucceeded = createAction(
   props<{ payload: Dish[]}>()
 );
 
-
 export const DishesFailure = createAction(
   '[Dish] Dishes Failure',
   props<{ error: any }>()

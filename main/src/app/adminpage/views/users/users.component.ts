@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { UsersDialogComponent } from './users-components/users-dialog/users-dialog.component';
-import { AuthService } from 'src/app/store/auth-user/auth.service';
 import { User } from 'src/app/store/user.state';
 import * as userAction from '../../../store/auth-user/auth.actions';
 
@@ -24,7 +23,6 @@ export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email', 'role', 'action'];
 
   constructor(private dialog: MatDialog,
-    private authService: AuthService,
     private store: Store< {users: [any] } >) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

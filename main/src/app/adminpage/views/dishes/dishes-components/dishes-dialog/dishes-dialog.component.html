@@ -3,11 +3,11 @@
     <div mat-dialog-content>
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
-        <input matInput formControlName="dishName" placeholder="Ex. My Article" />
+        <input matInput formControlName="dish_name" placeholder="Ex. My Article" />
       </mat-form-field>
         <mat-form-field appearance="outline">
         <mat-label>Dish Type</mat-label>
-        <mat-select formControlName="dishType">
+        <mat-select formControlName="dish_type">
             <mat-option *ngFor="let dishType of dishTypes" [value]="dishType.value">
             {{dishType.viewValue}}
             </mat-option>

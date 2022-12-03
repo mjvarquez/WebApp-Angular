@@ -20,7 +20,7 @@ export class DishesComponent implements OnInit {
   dishes!: Dish[];
   dishes$!: Observable<any>;
   dataSource!: any;
-  displayedColumns: string[] = ['dishName', 'dishType', 'price', 'status', 'action'];
+  displayedColumns: string[] = ['dish_name', 'dish_type', 'price', 'status', 'action'];
 
   constructor(private dialog: MatDialog,
     private store: Store<{ dishes: [any] }>) { }
@@ -28,19 +28,19 @@ export class DishesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  // getAllDishes() {
-  //     this.store.dispatch(dishAction.loadDishesRequested());
-  //     this.dishes$ = this.store.select('dishes');
-  //     this.dishes$.subscribe({
-  //       next: (res) => {
-  //         console.log(res)
-  //         this.dataSource = new MatTableDataSource(res);
-  //       },
-  //       error: (err) => {
+  getAllDishes() {
+      this.store.dispatch(dishAction.loadDishesRequested());
+      this.dishes$ = this.store.select('dishes');
+      this.dishes$.subscribe({
+        next: (res) => {
+          console.log(res.dish)
+          this.dataSource = new MatTableDataSource(res.dish);
+        },
+        error: (err) => {
 
-  //       }
-  //     })
-  // }
+        }
+      })
+  }
 
   applyEvent(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -70,6 +70,6 @@ export class DishesComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    // this.getAllDishes()
+    this.getAllDishes()
   }
 }

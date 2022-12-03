@@ -28,20 +28,20 @@
               </div>
             </div>
             <mat-table #table [dataSource]="dataSource" matSort display="flex">
-              <ng-container matColumnDef="dishName">
+              <ng-container matColumnDef="dish_name">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   Dish Name
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.dishName }}
+                  {{ element.dish_name }}
                 </mat-cell>
               </ng-container>
-              <ng-container matColumnDef="dishType">
+              <ng-container matColumnDef="dish_type">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>
                   Dish Type
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                  {{ element.dishType }}
+                  {{ element.dish_type }}
                 </mat-cell>
               </ng-container>
               <ng-container matColumnDef="price">
@@ -57,9 +57,9 @@
                   Status
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                   <span class="label label-success" *ngIf="element.status == 'Active'; else inactive">{{ element.status }}</span>
+                   <span class="label label-success" *ngIf="element.status == '1'; else inactive">Active</span>
                    <ng-template #inactive>
-                    <span class="label label-danger" >{{ element.status }}</span>
+                    <span class="label label-danger" >Inactive</span>
                    </ng-template>
                 </mat-cell>
               </ng-container>

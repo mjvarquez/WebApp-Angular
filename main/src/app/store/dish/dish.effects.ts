@@ -15,22 +15,22 @@ export class DishEffects {
   constructor(private actions$: Actions,
               private http: HttpClient) {}
 
-  // loadDishesEffects$: Observable<Action> = createEffect(() => 
-  //   this.actions$.pipe(
-  //     ofType(dishAction.loadDishesRequested), 
-  //     switchMap((res) => {
-  //       return this.fireStore.collection<>('dishes').valueChanges().pipe(
-  //         switchMap((dishes: any) => {
-  //           return [
-  //             dishAction.loadDishesSucceeded({ payload: dishes })
-  //           ]
-  //         }),
-  //         catchError((error: Error) => {
-  //           return of(dishAction.DishesFailure( {error: error }))
-  //         })
-  //       )
-  //     })
-  // ));
+  loadDishesEffects$: Observable<Action> = createEffect(() => 
+    this.actions$.pipe(
+      ofType(dishAction.loadDishesRequested), 
+      switchMap((res) => {
+        return this.http.get<Dish[]>(environment.apiUrl + `api/resources/dishes`).pipe(
+          switchMap((dishes: Dish[]) => {
+            return [
+              dishAction.loadDishesSucceeded({ payload: dishes})
+            ]
+          }),
+          catchError((error: Error) => {
+            return of(dishAction.DishesFailure({ error: error }));
+          })
+        )
+      })
+  ));
 
   // addDishEffect$: Observable<Action> = createEffect(() =>
   //   this.actions$.pipe(
