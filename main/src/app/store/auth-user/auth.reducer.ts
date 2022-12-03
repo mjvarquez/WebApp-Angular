@@ -25,7 +25,7 @@ export const UserReducer = createReducer(
       password: payload.password,
       role_id: payload.role_id
     }
-    return{ ...state, payload: data }
+    return{ ...state, user: [...state.user, data] }
   }),
   on(userAction.deleteUsersRequested, (state: UserState, { id }) => {
     let getData = state.user
