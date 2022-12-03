@@ -34,6 +34,8 @@ export class UsersDialogComponent implements OnInit {
 
   formDetails() {
     this.userForm = this.formBuilder.group({
+      id: [''],
+      role: [''],
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -41,6 +43,8 @@ export class UsersDialogComponent implements OnInit {
     })
     if (this.editData) {
       this.userForm = this.formBuilder.group({
+        id: [''],
+        role: [''],
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         role_id: ['', Validators.required],
@@ -50,8 +54,10 @@ export class UsersDialogComponent implements OnInit {
       this.actionButton = 'Update';
       this.userForm.controls['name'].setValue(this.editData.name)
       this.userForm.controls['email'].setValue(this.editData.email)
-      this.userForm.controls['role_id'].setValue(this.editData.role)
-      this.userForm.controls['status'].setValue(this.editData.status)
+      this.userForm.controls['role_id'].setValue(this.editData.role_id)
+      this.userForm.controls['status'].setValue(this.editData.status)    
+      this.userForm.controls['id'].setValue(this.editData.id)
+      this.userForm.controls['role'].setValue(this.editData.role)
     }
   }
 
@@ -67,11 +73,14 @@ export class UsersDialogComponent implements OnInit {
 
   updateUser() {
     const data = {
+      id: this.userForm.value.id,
       name: this.userForm.value.name,
       email: this.userForm.value.email,
-      role_id: this.userForm.value.role,
-      status: this.userForm.value.status
+      role: this.userForm.value.role,
+      role_id: this.userForm.value.role_id,
+      status: this.userForm.value.status,
     };
+    console.log('update', data)
     const getUserId = this.editData.id;
     this.store.dispatch(userAction.updateUsersRequested({payload: {userId: getUserId, updateUser: data}}));
     this.dialogRef.close();

@@ -32,24 +32,24 @@ export class DishesDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<DishesDialogComponent>,
     private dishService: DishService) { }
 
-  // getDishForm() {
-  //   this.dishForm = this.formBuilder.group({
-  //     dishName: ['', Validators.required],
-  //     dishType: ['', Validators.required],
-  //     price: ['', Validators.required],
-  //     status: ['', Validators.required],
-  //   })
-  //   if (this.editData) {
-  //     this.header = 'Edit Dish'
-  //     this.actionBtn = 'Update';
-  //     this.dishForm.controls['dishName'].setValue(this.editData.dishName)
-  //     this.dishForm.controls['dishType'].setValue(this.editData.dishType)
-  //     this.dishForm.controls['price'].setValue(this.editData.price)
-  //     this.dishForm.controls['status'].setValue(this.editData.status)
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  getDishForm() {
+    this.dishForm = this.formBuilder.group({
+      dishName: ['', Validators.required],
+      dishType: ['', Validators.required],
+      price: ['', Validators.required],
+      status: ['', Validators.required],
+    })
+    if (this.editData) {
+      this.header = 'Edit Dish'
+      this.actionBtn = 'Update';
+      this.dishForm.controls['dishName'].setValue(this.editData.dishName)
+      this.dishForm.controls['dishType'].setValue(this.editData.dishType)
+      this.dishForm.controls['price'].setValue(this.editData.price)
+      this.dishForm.controls['status'].setValue(this.editData.status)
+    } else {
+      return false;
+    }
+  }
 
   // addDish() {
   //   if (!this.editData && this.dishForm.valid) {
@@ -90,7 +90,7 @@ export class DishesDialogComponent implements OnInit {
   // })
 
   ngOnInit(): void {
-    // this.getDishForm();
+    this.getDishForm();
   }
 
 }

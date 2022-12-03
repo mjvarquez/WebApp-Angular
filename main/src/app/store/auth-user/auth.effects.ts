@@ -72,7 +72,7 @@ export class AuthEffects {
         switchMap((res) => {
           return this.http.put<User>(environment.apiUrl + `api/resources/users/${res.payload.userId}`, res.payload.updateUser).pipe(
             switchMap((data: User) => {
-              console.log(data);
+              console.log(data)
               return [
                 userAction.updateUsersSucceeded({ payload: data })
               ]
@@ -82,5 +82,5 @@ export class AuthEffects {
             })
           )
         })
-      ))
+      ));
 }

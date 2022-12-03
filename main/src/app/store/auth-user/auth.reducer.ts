@@ -37,8 +37,7 @@ export const UserReducer = createReducer(
     let updateUser = state.user.map((user) => {
       return payload.id === user.id ? payload : user;
     })
-
-    return { ...state, payload: updateUser }
+    return { ...state, user: updateUser }
   })
 
 );

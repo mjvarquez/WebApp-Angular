@@ -7,6 +7,7 @@ export interface User {
     role_id: string,
     uid?: string,
     status?: string,
+    role?: string[],
 }
 
 export interface UserState {
