@@ -56,20 +56,20 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  // openEditDialog(row: any) {
-  //   this.dialog.open(UsersDialogComponent, {
-  //     height: 'auto',
-  //     width: '500px',
-  //     data: row
-  //   })
-  // }
+  openEditDialog(row: any) {
+    this.dialog.open(UsersDialogComponent, {
+      height: 'auto',
+      width: '500px',
+      data: row
+    })
+  }
 
-  // deleteUser(id: any) {
-  //   if (confirm('Delete?')) {
-  //     this.authService.deleteData(id)
-  //   }
-  //   console.log(id)
-  // }
+  deleteUser(id: number) {
+    if (confirm('Delete?')) {
+      this.store.dispatch(userAction.deleteUsersRequested({ id: id }));
+    }
+    console.log(id)
+  }
 
   ngOnInit(): void {
     this.getAllUsers()

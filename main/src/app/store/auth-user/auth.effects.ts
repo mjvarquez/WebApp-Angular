@@ -25,9 +25,9 @@ export class AuthEffects {
                 userAction.loadUsersSucceeded({ payload: users })
               ]
             }),
-            // catchError((error: Error) => {
-            //   return of(userAction.AuthsFailure{ error: error }))
-            // })
+            catchError((error: Error) => {
+              return of(userAction.AuthsFailure({ error: error }));
+            })
           )
         })
       ));
@@ -42,13 +42,45 @@ export class AuthEffects {
                 userAction.addUsersSucceeded({ payload: data })
               ]
             }),
-            // catchError((error: Error) => {
-            //   return of(userAction.AuthsFailure({ error: error }));
-            // })
+            catchError((error: Error) => {
+              return of(userAction.AuthsFailure({ error: error }));
+            })
           )
         })
       ));
 
-    
+    deleteUsersEffect$: Observable<Action> = createEffect(() =>
+      this.actions$.pipe(
+        ofType(userAction.deleteUsersRequested),
+        switchMap((res) => {
+          return this.http.delete<number>(environment.apiUrl + `api/resources/users/${res.id}`).pipe(
+            switchMap((res) => {
+              return [
+                userAction.deleteUsersSucceeded({ id: res })
+              ]
+            }),
+            catchError((error: Error) => {
+              return of(userAction.AuthsFailure({ error: error }))
+            })
+          )
+        })
+      ));
 
+    updateUsersEffect$: Observable<Action> = createEffect(() =>
+      this.actions$.pipe(
+        ofType(userAction.updateUsersRequested),
+        switchMap((res) => {
+          return this.http.put<User>(environment.apiUrl + `api/resources/users/${res.payload.userId}`, res.payload.updateUser).pipe(
+            switchMap((data: User) => {
+              console.log(data);
+              return [
+                userAction.updateUsersSucceeded({ payload: data })
+              ]
+            }),
+            catchError((error: Error) => {
+              return of(userAction.AuthsFailure({ error: error }))
+            })
+          )
+        })
+      ))
 }

@@ -26,7 +26,6 @@ export class UsersDialogComponent implements OnInit {
   userForm!: FormGroup;
   actionButton: string = 'Save';
   headerTitle: string = 'Add User';
-  date = new Date().toLocaleString();
 
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
@@ -45,13 +44,14 @@ export class UsersDialogComponent implements OnInit {
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         role_id: ['', Validators.required],
+        status: ['', Validators.required]
       })
       this.headerTitle = 'Edit User';
       this.actionButton = 'Update';
-      this.userForm.controls['firstName'].setValue(this.editData.firstName)
-      this.userForm.controls['lastName'].setValue(this.editData.lastName)
+      this.userForm.controls['name'].setValue(this.editData.name)
       this.userForm.controls['email'].setValue(this.editData.email)
-      this.userForm.controls['role'].setValue(this.editData.role)
+      this.userForm.controls['role_id'].setValue(this.editData.role)
+      this.userForm.controls['status'].setValue(this.editData.status)
     }
   }
 
@@ -61,22 +61,21 @@ export class UsersDialogComponent implements OnInit {
       this.store.dispatch(userAction.addUsersRequested({ payload: data }))
       this.dialogRef.close()
     } else {
-      // this.updateUser()
+      this.updateUser()
     }
   }
 
-  // updateUser() {
-  //   const data = {
-  //     firstName: this.userForm.value.firstName,
-  //     lastName: this.userForm.value.lastName,
-  //     email: this.userForm.value.email,
-  //     role: this.userForm.value.role,
-  //     updated_at: this.date
-  //   };
-  //   const getUserId = this.editData.id;
-  //   this.authService.updateData(getUserId, data);
-  //   this.dialogRef.close();
-  // }
+  updateUser() {
+    const data = {
+      name: this.userForm.value.name,
+      email: this.userForm.value.email,
+      role_id: this.userForm.value.role,
+      status: this.userForm.value.status
+    };
+    const getUserId = this.editData.id;
+    this.store.dispatch(userAction.updateUsersRequested({payload: {userId: getUserId, updateUser: data}}));
+    this.dialogRef.close();
+  }
 
   closeDialog() {
     this.dialogRef.close();

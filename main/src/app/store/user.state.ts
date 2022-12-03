@@ -6,6 +6,7 @@ export interface User {
     password?: string,
     role_id: string,
     uid?: string,
+    status?: string,
 }
 
 export interface UserState {

@@ -22,21 +22,24 @@ export const addUsersSucceeded = createAction(
 );
 
 export const deleteUsersRequested = createAction(
-  '[Auth] Delete Users Requested'
+  '[Auth] Delete Users Requested',
+  props<{ id: number }>()
+
 );
 
 export const deleteUsersSucceeded = createAction(
-  '[Auth] Delete Users Requested',
-  props<{ payload: User[] }>()
+  '[Auth] Delete Users Succeeded',
+  props<{ id: number }>()
 );
 
 export const updateUsersRequested = createAction(
-  '[Auth] Update Users Requested'
+  '[Auth] Update Users Requested',
+  props<{ payload: { userId: number, updateUser: User }}>()
 );
 
 export const updateUsersSucceeded = createAction(
   '[Auth] Update Users Succeeded',
-  props<{ payload: User[] }>()
+  props<{ payload: User }>()
 );
 
 export const AuthsFailure = createAction(
