@@ -59,12 +59,12 @@ export class SurveyComponent implements OnInit {
   }
   
   onVote(){
-    // const data = { 
-    //   date_served, 
-    //   dishes: dishes, 
-    //   user_id: this.userId};
+    const data = { 
+      date_served: tomorrowDate, 
+      dishes: this.checkedItems, 
+    }
+  // this.store.dispatch(surveyAction.addSurveysRequested({ payload: data }))
   }
-
   // setStep(index: number) {
   //   this.step = index;
   // }

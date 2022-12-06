@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 
 import { UsersDialogComponent } from './users-components/users-dialog/users-dialog.component';
 import { User } from 'src/app/store/user.state';
-import * as userAction from '../../../store/auth-user/auth.actions';
+import * as userAction from '../../../store/auth-user/user/user.actions';
 
 @Component({
   selector: 'app-users',

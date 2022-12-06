@@ -5,7 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from '../../../../../store/user.state';
-import * as userAction from '../../../../../store/auth-user/auth.actions';
+import * as userAction from '../../../../../store/auth-user/user/user.actions';
 
 interface Role {
   value: string;

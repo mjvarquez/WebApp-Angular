@@ -5,12 +5,12 @@ import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { switchMap, catchError } from 'rxjs/operators';
 
-import * as userAction from './auth.actions';
-import { User } from '../user.state';
+import * as userAction from './user.actions';
+import { User } from '../../user.state';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class AuthEffects {
+export class UserEffects {
 
   constructor(private actions$: Actions,
               private http: HttpClient) {}
@@ -26,7 +26,7 @@ export class AuthEffects {
               ]
             }),
             catchError((error: Error) => {
-              return of(userAction.AuthsFailure({ error: error }));
+              return of(userAction.UsersFailure({ error: error }));
             })
           )
         })
@@ -43,7 +43,7 @@ export class AuthEffects {
               ]
             }),
             catchError((error: Error) => {
-              return of(userAction.AuthsFailure({ error: error }));
+              return of(userAction.UsersFailure({ error: error }));
             })
           )
         })
@@ -60,7 +60,7 @@ export class AuthEffects {
               ]
             }),
             catchError((error: Error) => {
-              return of(userAction.AuthsFailure({ error: error }))
+              return of(userAction.UsersFailure({ error: error }))
             })
           )
         })
@@ -78,7 +78,7 @@ export class AuthEffects {
               ]
             }),
             catchError((error: Error) => {
-              return of(userAction.AuthsFailure({ error: error }))
+              return of(userAction.UsersFailure({ error: error }))
             })
           )
         })

@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { User } from '../user.state';
+import { User } from '../../user.state';
 // Fetching data
 export const loadUsersRequested = createAction(
   '[Auth] Load Users Requested'
@@ -37,7 +37,7 @@ export const updateUsersSucceeded = createAction(
   props<{ payload: User }>()
 );
 // Error Handling
-export const AuthsFailure = createAction(
-  '[Auth]  Auths Failure',
+export const UsersFailure = createAction(
+  '[Auth]  Users Failure',
   props<{ error: any }>()
 );

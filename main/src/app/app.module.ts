@@ -84,8 +84,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { DishEffects } from './store/dish/dish.effects';
 import { DishReducer } from './store/dish/dish.reducer';
 import { tokenInterceptorService } from './store/auth-user/token-interceptor.service';
-import { AuthEffects } from './store/auth-user/auth.effects';
-import { UserReducer } from './store/auth-user/auth.reducer';
+import { UserEffects } from './store/auth-user/user/user.effects';
+import { UserReducer } from './store/auth-user/user/user.reducer';
 import { surveyReducer } from './store/homepage/survey/survey.reducer';
 import { SurveyEffects } from './store/homepage/survey/survey.effects';
 
@@ -169,7 +169,7 @@ const icons = {
         PortalModule,
         NgMultiSelectDropDownModule.forRoot(),
         StoreModule.forRoot({ dishes: DishReducer, users: UserReducer, surveyedDishes: surveyReducer}),
-        EffectsModule.forRoot([DishEffects, AuthEffects, SurveyEffects]),
+        EffectsModule.forRoot([DishEffects, UserEffects, SurveyEffects]),
         RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }),
         HttpClientModule,
         FeatherModule.pick(icons),
