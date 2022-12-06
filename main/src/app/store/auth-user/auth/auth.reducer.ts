@@ -12,7 +12,7 @@ export const initialState: State = {
 };
 
 
-export const reducer = createReducer(
+export const authReducer = createReducer(
   initialState,
 
 );
