@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Dish, DishState } from '../dish.state';
+import { DishState } from '../dish.state';
 
 export const selectDishFeatureState = createFeatureSelector<DishState>('dishes');
 

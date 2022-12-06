@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { VotedDishes, MenuForToday } from '../dish.state';
+// import { VotedDishes, MenuForToday } from '../dish.state';
 
 @Injectable({
   providedIn: 'root'

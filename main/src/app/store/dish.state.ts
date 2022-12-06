@@ -1,10 +1,10 @@
 export interface Dish {
-    id?: string,
-    dishName: string,
-    dishType: string,
+    id?: number,
+    dish_name: string,
+    dish_type: string,
     price: number,
-    status: string,
-    image?: string,
+    status: boolean,
+    dish_image?: string,
     created_at?: string,
     updated_at?: string
 }
@@ -13,8 +13,8 @@ export interface DishState {
 }
 
 export interface VotedDishes {
-    id?: any,
-    user_id: string,
+    id?: number,
+    user_id: number,
     dishes: Dish[],
     date_served: string
 }
@@ -26,9 +26,9 @@ export interface VotedDishes {
 //     price: string
 // }
 
-export interface MenuForToday {
-    id?: any,
-    menu: any[],
-    date_served: string,
-}
+// export interface MenuForToday {
+//     id?: string,
+//     menu: any[],
+//     date_served: string,
+// }
 

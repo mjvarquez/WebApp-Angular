@@ -86,6 +86,8 @@ import { DishReducer } from './store/dish/dish.reducer';
 import { tokenInterceptorService } from './store/auth-user/token-interceptor.service';
 import { AuthEffects } from './store/auth-user/auth.effects';
 import { UserReducer } from './store/auth-user/auth.reducer';
+import { surveyReducer } from './store/homepage/survey/survey.reducer';
+import { SurveyEffects } from './store/homepage/survey/survey.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -166,8 +168,8 @@ const icons = {
         PlatformModule,
         PortalModule,
         NgMultiSelectDropDownModule.forRoot(),
-        StoreModule.forRoot({ dishes: DishReducer, users: UserReducer}),
-        EffectsModule.forRoot([DishEffects, AuthEffects]),
+        StoreModule.forRoot({ dishes: DishReducer, users: UserReducer, surveyedDishes: surveyReducer}),
+        EffectsModule.forRoot([DishEffects, AuthEffects, SurveyEffects]),
         RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }),
         HttpClientModule,
         FeatherModule.pick(icons),

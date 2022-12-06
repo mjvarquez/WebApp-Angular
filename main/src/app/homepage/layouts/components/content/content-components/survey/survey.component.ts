@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
+import { Dish } from 'src/app/store/dish.state';
+import * as surveyAction from '../../../../../../store/homepage/survey/survey.actions';
 
-// const currentDate = new Date();
-// currentDate.setDate(currentDate.getDate() + 1);
-// const tomorrowDate = currentDate.toISOString().slice(0, 10);
+const currentDate = new Date();
+currentDate.setDate(currentDate.getDate() + 1);
+const tomorrowDate = currentDate.toISOString().slice(0, 10);
 
 @Component({
   selector: 'app-survey',
@@ -14,51 +18,52 @@ import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
 })
 
 export class SurveyComponent implements OnInit {
-  // checkForm!: FormGroup;
-  // surveyForm!: FormGroup;
-  // panelOpenState = false;
-  // step = 0;
-  // activeDishes!: any[];
-  // checkedItems = new Array<string>();
-  // userId!: any;
-  // tomorrowDate = tomorrowDate;
+  surveyedDishes!: Dish[];
+  surveyedDishes$!: Observable<any>;
+  activeDishes!: Dish[];
+  checkedItems = new Array<string>();
+  surveyForm!: FormGroup;
+  panelOpenState = false;
+  step = 0;
+  tomorrowDate = tomorrowDate;
 
   constructor(private orderMenuService: OrderMenuService,
-              private formBuilder: FormBuilder) { } 
+              private formBuilder: FormBuilder,
+              private store: Store<{ surveyedDishes: [any] }>) { } 
 
-  // selectedItem(event: any, selectedDish: string){
-  //   if(event.checked){
-  //     this.checkedItems.push(selectedDish);
-  //   }else{
-  //     this.checkedItems = this.checkedItems.filter( c => c !== selectedDish);
-  //   }
-  // }
+  selectedItem(event: any, selectedDish: string){
+    if(event.checked){
+      this.checkedItems.push(selectedDish);
+    }else{
+      this.checkedItems = this.checkedItems.filter( c => c !== selectedDish);
+    }
+  }
 
-  // getSurveyForm(){
-  //   this.surveyForm = this.formBuilder.group({
-  //     date_served: [this.tomorrowDate, Validators.required],
-  //     selectedItem: [false, Validators.requiredTrue]
-  //   })
-  // }
+  getSurveyForm(){
+    this.surveyForm = this.formBuilder.group({
+      selectedItem: [false, Validators.requiredTrue]
+    })
+  }
 
-  // getTodayMenu() {
-  //   this.orderMenuService.getDishData().subscribe({
-  //     next: (res) => {
-  //       const dishes = res;
-  //       const activeMenu = dishes.filter((c: any) => c.status == "Active");
-  //       this.activeDishes = activeMenu;
-  //     }
-  //   });
-  // }
+  getSurveyedDish() {
+    this.store.dispatch(surveyAction.loadSurveysRequested());
+    this.surveyedDishes$ = this.store.select('surveyedDishes');
+    this.surveyedDishes$.subscribe({
+      next: (res) => {
+        const surveyedDishes = res.dish;
+        const activeDish = surveyedDishes.filter((c: any) => c.status == "1");
+        this.activeDishes = activeDish;
+        console.log(this.activeDishes)
+      }
+    })
+  }
   
-  // onVote(){
-  //   const dateServed = this.surveyForm.value;
-  //   const dishes = this.checkedItems;
-  //   const data = {...dateServed, dishes: dishes, user_id: this.userId};
-  //   if(data){
-  //     this.orderMenuService.addData(data);
-  //   }
-  // }
+  onVote(){
+    // const data = { 
+    //   date_served, 
+    //   dishes: dishes, 
+    //   user_id: this.userId};
+  }
 
   // setStep(index: number) {
   //   this.step = index;
@@ -75,8 +80,8 @@ export class SurveyComponent implements OnInit {
   ngOnInit(): void {
     // const userId = localStorage.getItem('id');
     // this.userId = userId;
-    // this.getTodayMenu();
-    // this.getSurveyForm();
+    this.getSurveyedDish();
+    this.getSurveyForm();
     // this.checkForm = this.formBuilder.group({
     //   checkItems: this.formBuilder.array([], [Validators.required]);
     // })

@@ -1,6 +1,6 @@
 // user authentication and details
 export interface User {
-    id?: any,
+    id?: number,
     name: string,
     email: string,
     password?: string,

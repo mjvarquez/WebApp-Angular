@@ -32,21 +32,55 @@ export class DishEffects {
       })
   ));
 
-  // addDishEffect$: Observable<Action> = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(dishAction.addDishesRequested),
-  //     switchMap((res) => {
-  //       return this.http.post<Dish>(environment.apiUrl + 'api/resources/dishes', res.payload).pipe(
-  //         switchMap((data: Dish) => {
-  //           return [
-  //             dishAction.addDishesSucceeded({ payload: data })
-  //           ]
-  //         }),
-  //         catchError((error: Error) => {
-  //           return of(dishAction.DishesFailure({ error: error }));
-  //         })
-  //       )
-  //     })
-  //   ));
+  addDishesEffect$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(dishAction.addDishesRequested),
+      switchMap((res) => {
+        return this.http.post<Dish>(environment.apiUrl + 'api/resources/dishes', res.payload).pipe(
+          switchMap((dish: Dish) => {
+            return [
+              dishAction.addDishesSucceeded({ payload: dish })
+            ]
+          }),
+          catchError((error: Error) => {
+            return of(dishAction.DishesFailure({ error: error }));
+          })
+        )
+      })
+    ));
+
+    deleteDishesEffect$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(dishAction.deleteDishesRequested),
+      switchMap((res) => {
+        return this.http.delete<number>(environment.apiUrl + `api/resources/dishes/${res.id}`).pipe(
+          switchMap((res) => {
+            return [
+              dishAction.deleteDishesSucceeded({ id: res })
+            ]
+          }),
+          catchError((error: Error) => {
+            return of(dishAction.DishesFailure({ error: error }));
+          })
+        )
+      })
+    ));
+
+    updateDishesEffect$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(dishAction.updateDishesRequested),
+      switchMap((res) => {
+        return this.http.put<Dish>(environment.apiUrl + `api/resources/dishes/${res.payload.dishId}`, res.payload.updateDish).pipe(
+          switchMap((dish: Dish) => {
+            return [
+              dishAction.updateDishesSucceeded({ payload: dish })
+            ]
+          }),
+          catchError((error: Error) => {
+            return of(dishAction.DishesFailure({ error: error }));
+          })
+        )
+      })
+    ));
   
 }

@@ -24,10 +24,10 @@ export class LoginComponent implements OnInit {
 
   loginUser() {
     this.authService.login(this.loginUserForm.value).subscribe({
-      next: data => {
-        console.log(data)
-        if (data) {
-          this.authService.saveToken(data.access_token)
+      next: (res) => {
+        console.log(res)
+        if (res) {
+          this.authService.saveToken(res.access_token)
           // this.authService.saveUser(data)
           this.loginUserForm.reset()
           this.router.navigate(['/dashboard'])
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
           return false;
         }
       },
-      error: err => {
+      error: (err) => {
         console.log(err)
       }
     })

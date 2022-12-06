@@ -7,7 +7,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { Dish, DishState } from 'src/app/store/dish.state';
+import { Dish } from 'src/app/store/dish.state';
 import * as dishAction from '../../../store/dish/dish.actions';
 import { DishesDialogComponent } from './dishes-components/dishes-dialog/dishes-dialog.component';
 
@@ -62,12 +62,12 @@ export class DishesComponent implements OnInit {
     })
   }
 
-  // deleteDish(id: any) {
-  //   if (confirm('Delete?')) {
-  //     this.dishService.deleteData(id)
-  //   }
-  //   console.log(id)
-  // }
+  deleteDish(id: number) {
+    if (confirm('Delete?')) {
+      this.store.dispatch(dishAction.deleteDishesRequested({ id: id }));
+    }
+    console.log(id)
+  }
 
   ngOnInit(): void {
     this.getAllDishes()

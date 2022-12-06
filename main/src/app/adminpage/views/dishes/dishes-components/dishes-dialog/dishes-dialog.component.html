@@ -1,36 +1,36 @@
-<form [formGroup]="dishForm">
-    <h1 mat-dialog-title>{{ header }}</h1>
-    <div mat-dialog-content>
+<form [formGroup]="dishForm" (ngSubmit)="submitForm()">
+  <h1 mat-dialog-title>{{ header }}</h1>
+  <div mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="dish_name" placeholder="Ex. My Article" />
+    </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="dish_name" placeholder="Ex. My Article" />
+      <mat-label>Dish Type</mat-label>
+      <mat-select formControlName="dish_type">
+          <mat-option *ngFor="let dishType of dishTypes" [value]="dishType.value">
+          {{dishType.viewValue}}
+          </mat-option>
+      </mat-select>
       </mat-form-field>
-        <mat-form-field appearance="outline">
-        <mat-label>Dish Type</mat-label>
-        <mat-select formControlName="dish_type">
-            <mat-option *ngFor="let dishType of dishTypes" [value]="dishType.value">
-            {{dishType.viewValue}}
-            </mat-option>
-        </mat-select>
-        </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Price</mat-label>
-        <input
-          matInput
-          type="number"
-          formControlName="price"
-          placeholder="Ex. This article talks about..."
-        />
-      </mat-form-field>
-        <mat-radio-group formControlName="status" aria-label="Select an option">
-            <mat-radio-button value="Active">Active</mat-radio-button>
-            <mat-radio-button value="Inactive">Inactive</mat-radio-button>
-        </mat-radio-group>
-    </div>
-    <div mat-dialog-actions [align]="'end'">
-      <button mat-button type="button" (click)="closeDialog()">Close</button>
-      <button mat-raised-button type="submit" color="primary" [disabled]="!dishForm.valid">
-        {{ actionBtn }}
-      </button>
-    </div>
-  </form>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="price"
+        placeholder="Ex. This article talks about..."
+      />
+    </mat-form-field>
+      <mat-radio-group formControlName="status" aria-label="Select an option">
+          <mat-radio-button value="1">Active</mat-radio-button>
+          <mat-radio-button value="0">Inactive</mat-radio-button>
+      </mat-radio-group>
+  </div>
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-button type="button" (click)="closeDialog()">Close</button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="!dishForm.valid">
+      {{ actionBtn }}
+    </button>
+  </div>
+</form>

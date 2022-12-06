@@ -3,8 +3,6 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { User, UserState } from '../user.state';
 import * as userAction from '../auth-user/auth.actions';
 
-export const usersFeatureKey = 'users';
-
 export const initialState: UserState = {
   user: [],
 };
@@ -19,7 +17,7 @@ export const UserReducer = createReducer(
     }
   }),
   on(userAction.addUsersSucceeded, (state: UserState, { payload }) => {
-    let data: User = {
+    const data: User = {
       name: payload.name,
       email: payload.email,
       password: payload.password,
@@ -28,8 +26,8 @@ export const UserReducer = createReducer(
     return{ ...state, user: [...state.user, data]} 
   }),
   on(userAction.deleteUsersRequested, (state: UserState, { id }) => {
-    let getData = state.user
-    let newData = getData.filter(item => item.id !== id)
+    let getData = state.user;
+    let newData = getData.filter(item => item.id !== id);
 
     return { ...state, user: newData }
   }),

@@ -48,16 +48,4 @@ export class AuthService {
     }
     return {};
   }
-
-  // getData() {
-  //   return this.fireStore.collection('users').valueChanges({ idField: 'id' });
-  // }
-
-  // updateData(id: string, data: any) {
-  //   return this.fireStore.collection('users').doc(id).update(data);
-  // }
-
-  // deleteData(id: string) {
-  //   return this.fireStore.collection('users').doc(id).delete();
-  // }
 }
