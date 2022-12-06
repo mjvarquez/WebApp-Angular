@@ -10,7 +10,7 @@ export const AppRoutes: Routes = [
     {
         path: '',
         component: FullComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         // data: { roles: ['Admin'] },
         children: [
             {
@@ -54,7 +54,7 @@ export const AppRoutes: Routes = [
     {
         path: '',
         component: HomepageComponent,
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
         // data: { roles: ['Admin', 'Employee'] },
         children: [
             {
