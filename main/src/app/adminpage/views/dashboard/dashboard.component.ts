@@ -25,9 +25,8 @@ export class DashboardComponent implements OnInit {
         //         console.log(res)
         //     }
         // })
-        this.store.dispatch(authAction.authLogoutRequested());
         this.currentUser$ = this.store.select(selectCurrentUser).subscribe((res: any) => {
-            console.log(res.auth.user.id)
+            console.log("grgrg",res.auth)
         })
 
         // this.subscription = this.store.select(selectCurrentUser).subscribe({
