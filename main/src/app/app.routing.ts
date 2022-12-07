@@ -5,12 +5,16 @@ import { FullComponent } from './adminpage/layout/full/full.component';
 import { HomepageComponent } from './homepage/layouts/homepage.component';
 
 import { AuthGuard } from './auth.guard';
+// import { AuthTokenResolver } from './authentication/auth.resolver';
 
 export const AppRoutes: Routes = [
     {
         path: '',
         component: FullComponent,
         canActivate: [AuthGuard],
+        // resolve: {
+        //     tokenResolver: AuthTokenResolver
+        // },
         // data: { roles: ['Admin'] },
         children: [
             {

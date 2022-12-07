@@ -1,4 +1,4 @@
-// user authentication and details
+// UserDetails & Registration
 export interface User {
     id?: number,
     name: string,
@@ -9,18 +9,20 @@ export interface User {
     status?: string,
     role?: string[],
 }
-
 export interface UserState {
     user: User[],
 }
-
-// export interface Authentication {
-//     id?: any,
-//     firstName: string,
-//     lastName: string,
-//     email: string,
-//     password: string,
-//     role: string,
-//     created_at?: string,
-//     updated_at?: string
-// }
+// Authentication
+export interface AuthUser {
+    email: string,
+    password: string
+}
+export interface CurrentUserState {
+    user: User | undefined,
+    token: string
+}
+export interface AuthResponseData {
+    access_token: string,
+    expires_in: number,
+    token_type: string
+}

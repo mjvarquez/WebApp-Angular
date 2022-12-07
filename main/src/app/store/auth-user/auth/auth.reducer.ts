@@ -1,19 +1,19 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
+import { CurrentUserState, } from '../../user.state';
+import * as authAction from '../../auth-user/auth/auth.actions';
 
-export const authFeatureKey = 'auth';
-
-export interface State {
-
-}
-
-export const initialState: State = {
-
+export const initialState: CurrentUserState = {
+  user: undefined,
+  token: ''
 };
-
 
 export const authReducer = createReducer(
   initialState,
+  on(authAction.loginAuthsSucceeded, (state: CurrentUserState, { payload }) =>{
+    const token:any = localStorage.getItem('token');
 
+    return { ...state, user: payload, token: token};
+  }),
 );
 
