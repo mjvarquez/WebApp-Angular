@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
-import { DashboardService } from 'src/app/store/dashboard/dashboard.service';
+import * as dashboardAction from '../../../../../store/dashboard/top-card/dashboard.actions';
 
 @Component({
   selector: 'app-top-card',
@@ -8,6 +10,11 @@ import { DashboardService } from 'src/app/store/dashboard/dashboard.service';
   styleUrls: ['./top-card.component.scss']
 })
 export class TopCardComponent implements OnInit {
+  dishes$!: Observable<any>;
+  users$!: Observable<any>;
+  dishesSubscription!: Subscription;
+  usersSubscription!: Subscription;
+
   totalCount = {
     allDish: 0,
     activeDish: 0,
@@ -19,61 +26,65 @@ export class TopCardComponent implements OnInit {
   inactiveDish = { count: 0 };
   totalUser = { count: 0 };
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private store: Store<any>) { }
 
-  // getTotalDishes() {
-  //   this.dashboardService.getDishData().subscribe({
-  //     next: (res) => {
-  //       const dishes = res;
-  //       const totalActiveDish = dishes.filter((c: any) => c.status == "Active");
-  //       const totalInactiveDish = dishes.filter((c: any) => c.status == "Inactive");
-  //       this.totalDish.count = dishes.length;
-  //       this.activeDish.count = totalActiveDish.length;
-  //       this.inactiveDish.count = totalInactiveDish.length;
-  //       // console.log("all dish data", dishes)
-  //     }
-  //   })
-  // }
+  getTotalDishes() {
+    this.store.dispatch(dashboardAction.fetchDishesRequestedAction());
+    this.dishes$ = this.store.select('dashboard');
+    this.dishesSubscription = this.dishes$.subscribe((res) => {
+      const dishes = res.dish;
+      const totalActiveDish = dishes.filter((c: any) => c.status == "1");
+      const totalInactiveDish = dishes.filter((c: any) => c.status == "0");
+      this.totalDish.count = dishes.length;
+      this.activeDish.count = totalActiveDish.length;
+      this.inactiveDish.count = totalInactiveDish.length;
+    })
+  }
 
-  // getTotalusers() {
-  //   this.dashboardService.getUserData().subscribe({
-  //     next: (res) => {
-  //       const users = res;
-  //       this.totalUser.count = users.length
-  //     }
-  //   })
-  // }
+  getTotalusers() {
+    this.store.dispatch(dashboardAction.fetchUsersRequestedAction());
+    this.users$ = this.store.select('dashboard');
+    this.usersSubscription = this.users$.subscribe((res) => {
+      const users = res.user;
+      this.totalUser.count = users.length;
+    })
+  }
 
-  // setCount() {
-  //   let totalDishCountStop = setInterval(() => {
-  //     this.totalCount.allDish++;
-  //     if (this.totalCount.allDish == this.totalDish.count) {
-  //       clearInterval(totalDishCountStop);
-  //     }
-  //   }, 150)
-  //   let activeDishCountStop = setInterval(() => {
-  //     this.totalCount.activeDish++;
-  //     if (this.totalCount.activeDish == this.activeDish.count) {
-  //       clearInterval(activeDishCountStop);
-  //     }
-  //   }, 300)
-  //   let inactiveDishCountStop = setInterval(() => {
-  //     this.totalCount.inactiveDish++;
-  //     if (this.totalCount.inactiveDish == this.inactiveDish.count) {
-  //       clearInterval(inactiveDishCountStop);
-  //     }
-  //   }, 300)
-  //   let totalUserCountStop = setInterval(() => {
-  //     this.totalCount.allUser++;
-  //     if (this.totalCount.allUser == this.totalUser.count) {
-  //       clearInterval(totalUserCountStop);
-  //     }
-  //   }, 150)
-  // }
+  setCount() {
+    let totalDishCountStop = setInterval(() => {
+      this.totalCount.allDish++;
+      if (this.totalCount.allDish == this.totalDish.count) {
+        clearInterval(totalDishCountStop);
+      }
+    }, 150)
+    let activeDishCountStop = setInterval(() => {
+      this.totalCount.activeDish++;
+      if (this.totalCount.activeDish == this.activeDish.count) {
+        clearInterval(activeDishCountStop);
+      }
+    }, 300)
+    let inactiveDishCountStop = setInterval(() => {
+      this.totalCount.inactiveDish++;
+      if (this.totalCount.inactiveDish == this.inactiveDish.count) {
+        clearInterval(inactiveDishCountStop);
+      }
+    }, 300)
+    let totalUserCountStop = setInterval(() => {
+      this.totalCount.allUser++;
+      if (this.totalCount.allUser == this.totalUser.count) {
+        clearInterval(totalUserCountStop);
+      }
+    }, 150)
+  }
 
   ngOnInit(): void {
-    // this.getTotalDishes();
-    // this.getTotalusers();
-    // this.setCount();
+    this.getTotalDishes();
+    this.getTotalusers();
+    this.setCount();
+  }
+
+  ngOnDestroy(): void {
+    this.dishesSubscription.unsubscribe();
+    this.usersSubscription.unsubscribe();
   }
 }

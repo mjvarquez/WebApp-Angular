@@ -11,10 +11,10 @@ export const initialState: DishState = {
 export const DishReducer = createReducer(
   initialState,
   on(dishAction.loadDishesSucceeded, (state: DishState, { payload }) => {
-      return {
-        ...state,
-        dish: payload
-      }
+    return {
+      ...state,
+      dish: payload
+    }
   }),
   on(dishAction.addDishesSucceeded, (state: DishState, { payload }) => {
     const data = {
@@ -23,12 +23,12 @@ export const DishReducer = createReducer(
       price: payload.price,
       status: payload.status
     }
-    return { ...state, dish: [...state.dish, data]}
+    return { ...state, dish: [...state.dish, data] }
   }),
   on(dishAction.deleteDishesSucceeded, (state: DishState, { id }) => {
     let getData = state.dish;
     let newData = getData.filter(item => item.id !== id);
-    return { ...state, dish: newData}
+    return { ...state, dish: newData }
   }),
   on(dishAction.updateDishesSucceeded, (state: DishState, { payload }) => {
     let updateDish = state.dish.map((dish) => {
@@ -36,6 +36,6 @@ export const DishReducer = createReducer(
     })
     return { ...state, dish: updateDish }
   })
-  
+
 );
 

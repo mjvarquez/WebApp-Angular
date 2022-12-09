@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { selectCurrentUser } from 'src/app/store/auth-user/auth/auth.selectors';
 
-import { CurrentUserState, User } from 'src/app/store/user.state';
-import * as authAction from '../../../store/auth-user/auth/auth.actions'
+import { User } from 'src/app/store/user.state';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,34 +16,18 @@ export class DashboardComponent implements OnInit {
 
     constructor(private store: Store<any>) { }
 
-    getCurrentUser(){
-        // this.currentUser$ = this.store.select('currentUser');
-        // this.currentUser$.subscribe({
-        //     next: (res: any) => {
-        //         console.log(res)
-        //     }
-        // })
-        this.currentUser$ = this.store.select(selectCurrentUser).subscribe((res: any) => {
-            console.log("grgrg",res.auth)
-        })
+    // getCurrentUser() {
+    //     this.currentUser$ = this.store.select('auth');
+    //     this.currentUser$.subscribe({
+    //         next: (res: any) => {
+    //             console.log(res)
+    //         }
+    //     })
+    // }
 
-        // this.subscription = this.store.select(selectCurrentUser).subscribe({
-        //   next: (res) => {
-        //     console.log(res)
-        //   }
-        // })
-
-        // this.currentUser$ = this.store.pipe(
-        //     // select(selectCurrentUser)
-        //     select('currentUser')
-        // ).subscribe(res => {
-        //     console.log(res)
-        // })
-      }
-    
     ngOnInit(): void {
-        this.getCurrentUser();
-    } 
+        // this.getCurrentUser();
+    }
 
     // ngOnDestroy(): void {
     // this.subscription.unsubscribe();

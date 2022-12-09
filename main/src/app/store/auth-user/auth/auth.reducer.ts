@@ -10,10 +10,10 @@ export const initialState: CurrentUserState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(authAction.loginAuthsSucceeded, (state: CurrentUserState, { payload }) =>{
-    const token:any = localStorage.getItem('token');
+  on(authAction.loginAuthsSucceeded, (state: CurrentUserState, { payload }) => {
+    const token: any = localStorage.getItem('token');
 
-    return { ...state, user: payload, token: token};
+    return { ...state, user: payload, token: token };
   }),
 );
 
