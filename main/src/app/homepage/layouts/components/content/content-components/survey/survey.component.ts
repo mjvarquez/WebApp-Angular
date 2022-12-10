@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
 import { Dish } from 'src/app/store/dish.state';
 import * as surveyAction from '../../../../../../store/homepage/survey/survey.actions';
 
@@ -27,19 +26,20 @@ export class SurveyComponent implements OnInit {
   step = 0;
   tomorrowDate = tomorrowDate;
 
-  constructor(private orderMenuService: OrderMenuService,
-              private formBuilder: FormBuilder,
-              private store: Store<{ surveyedDishes: [any] }>) { } 
+  constructor(
+    private formBuilder: FormBuilder,
+    private store: Store<{ surveyedDishes: [any] }>
+  ) { }
 
-  selectedItem(event: any, selectedDish: string){
-    if(event.checked){
+  selectedItem(event: any, selectedDish: string) {
+    if (event.checked) {
       this.checkedItems.push(selectedDish);
-    }else{
-      this.checkedItems = this.checkedItems.filter( c => c !== selectedDish);
+    } else {
+      this.checkedItems = this.checkedItems.filter(c => c !== selectedDish);
     }
   }
 
-  getSurveyForm(){
+  getSurveyForm() {
     this.surveyForm = this.formBuilder.group({
       selectedItem: [false, Validators.requiredTrue]
     })
@@ -57,13 +57,14 @@ export class SurveyComponent implements OnInit {
       }
     })
   }
-  
-  onVote(){
-    const data = { 
-      date_served: tomorrowDate, 
-      dishes: this.checkedItems, 
+
+  onVote() {
+    const data = {
+      survey_date: tomorrowDate,
+      voted_dishes: this.checkedItems,
     }
-  // this.store.dispatch(surveyAction.addSurveysRequested({ payload: data }))
+    this.store.dispatch(surveyAction.addSurveysRequested({ payload: data }))
+    console.log('voted')
   }
   // setStep(index: number) {
   //   this.step = index;

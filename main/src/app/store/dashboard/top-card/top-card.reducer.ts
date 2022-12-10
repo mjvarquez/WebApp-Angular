@@ -2,9 +2,9 @@ import { Action, createReducer, on } from '@ngrx/store';
 
 import { User } from '../../user.state';
 import { Dish } from '../../dish.state';
-import * as dashboardAction from '../../dashboard/top-card/dashboard.actions';
+import * as topCard from '../../dashboard/top-card/top-card.actions';
 
-export const dashboardFeatureKey = 'dashboard';
+export const topCardFeatureKey = 'topCard';
 
 export interface DishUserState {
   dish: Dish[],
@@ -16,15 +16,15 @@ export const initialState: DishUserState = {
   user: []
 };
 
-export const DashboardReducer = createReducer(
+export const topCardReducer = createReducer(
   initialState,
-  on(dashboardAction.fetchDishesSucceededAction, (state: DishUserState, { payload }) => {
+  on(topCard.fetchDishesSucceededAction, (state: DishUserState, { payload }) => {
     return {
       ...state,
       dish: payload
     }
   }),
-  on(dashboardAction.fetchUsersSucceededAction, (state: DishUserState, { payload }) => {
+  on(topCard.fetchUsersSucceededAction, (state: DishUserState, { payload }) => {
     return {
       ...state,
       user: payload

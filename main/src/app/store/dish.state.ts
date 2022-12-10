@@ -14,7 +14,8 @@ export interface DishState {
 }
 
 export interface VotedDishes {
-    dishes: Dish[],
+    survey_date?: string,
+    voted_dishes: any[],
 }
 
 // export interface MenuForToday {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 
-import * as dashboardAction from '../../../../../store/dashboard/top-card/dashboard.actions';
+import * as topCardAction from '../../../../../store/dashboard/top-card/top-card.actions';
 
 @Component({
   selector: 'app-top-card',
@@ -29,8 +29,8 @@ export class TopCardComponent implements OnInit {
   constructor(private store: Store<any>) { }
 
   getTotalDishes() {
-    this.store.dispatch(dashboardAction.fetchDishesRequestedAction());
-    this.dishes$ = this.store.select('dashboard');
+    this.store.dispatch(topCardAction.fetchDishesRequestedAction());
+    this.dishes$ = this.store.select('topCard');
     this.dishesSubscription = this.dishes$.subscribe((res) => {
       const dishes = res.dish;
       const totalActiveDish = dishes.filter((c: any) => c.status == "1");
@@ -42,8 +42,8 @@ export class TopCardComponent implements OnInit {
   }
 
   getTotalusers() {
-    this.store.dispatch(dashboardAction.fetchUsersRequestedAction());
-    this.users$ = this.store.select('dashboard');
+    this.store.dispatch(topCardAction.fetchUsersRequestedAction());
+    this.users$ = this.store.select('topCard');
     this.usersSubscription = this.users$.subscribe((res) => {
       const users = res.user;
       this.totalUser.count = users.length;

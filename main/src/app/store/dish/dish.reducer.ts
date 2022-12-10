@@ -1,4 +1,3 @@
-import { ComponentFactoryResolver } from '@angular/core';
 import { createReducer, on } from '@ngrx/store';
 
 import { DishState } from '../dish.state';

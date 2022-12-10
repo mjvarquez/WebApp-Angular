@@ -13,16 +13,16 @@ import { Dish, VotedDishes } from '../../dish.state';
 export class SurveyEffects {
 
   constructor(private actions$: Actions,
-              private http: HttpClient) {}
+    private http: HttpClient) { }
 
-  loadSurveysEffects$: Observable<Action> = createEffect(() => 
+  loadSurveysEffects$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType(surveyAction.loadSurveysRequested), 
+      ofType(surveyAction.loadSurveysRequested),
       switchMap((res) => {
         return this.http.get<Dish[]>(environment.apiUrl + `api/resources/dishes`).pipe(
           switchMap((dishes: Dish[]) => {
             return [
-              surveyAction.loadSurveysSucceeded({ payload: dishes})
+              surveyAction.loadSurveysSucceeded({ payload: dishes })
             ]
           }),
           catchError((error: Error) => {
@@ -30,16 +30,16 @@ export class SurveyEffects {
           })
         )
       })
-  ));
+    ));
 
-  addSurveysEffects$: Observable<Action> = createEffect(() => 
+  addSurveysEffects$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType(surveyAction.addSurveysRequested), 
+      ofType(surveyAction.addSurveysRequested),
       switchMap((res) => {
-        return this.http.post<VotedDishes>(environment.apiUrl + `api/resources/voted_dishes`, res.payload).pipe(
+        return this.http.post<VotedDishes>(environment.apiUrl + `api/resources/surveys`, res.payload).pipe(
           switchMap((votedDishes: VotedDishes) => {
             return [
-              surveyAction.addSurveysSucceeded({ payload: votedDishes})
+              surveyAction.addSurveysSucceeded({ payload: votedDishes })
             ]
           }),
           catchError((error: Error) => {
@@ -47,6 +47,6 @@ export class SurveyEffects {
           })
         )
       })
-  ));
+    ));
 
 }

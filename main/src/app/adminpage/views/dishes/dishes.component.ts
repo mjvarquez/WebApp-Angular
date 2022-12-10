@@ -16,7 +16,7 @@ import { DishesDialogComponent } from './dishes-components/dishes-dialog/dishes-
   templateUrl: './dishes.component.html',
   styleUrls: ['./dishes.component.scss']
 })
-export class DishesComponent implements OnInit { 
+export class DishesComponent implements OnInit {
   dishes!: Dish[];
   dishes$!: Observable<any>;
   dataSource!: any;
@@ -29,17 +29,16 @@ export class DishesComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   getAllDishes() {
-      this.store.dispatch(dishAction.loadDishesRequested());
-      this.dishes$ = this.store.select('dishes');
-      this.dishes$.subscribe({
-        next: (res) => {
-          console.log(res.dish)
-          this.dataSource = new MatTableDataSource(res.dish);
-        },
-        error: (err) => {
+    this.store.dispatch(dishAction.loadDishesRequested());
+    this.dishes$ = this.store.select('dishes');
+    this.dishes$.subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res.dish);
+      },
+      error: (err) => {
 
-        }
-      })
+      }
+    })
   }
 
   applyEvent(event: Event) {

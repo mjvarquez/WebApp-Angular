@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Action } from '@ngrx/store';
 
-import * as dashboardAction from '../../dashboard/top-card/dashboard.actions';
+import * as topCardAction from '../../dashboard/top-card/top-card.actions';
 import { User } from '../../user.state';
 import { Dish } from '../../dish.state';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
-export class DashboardEffects {
+export class TopCardEffects {
 
   constructor(
     private actions$: Actions,
@@ -19,12 +19,12 @@ export class DashboardEffects {
   ) { }
 
   fetchUsersEffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(dashboardAction.fetchUsersRequestedAction),
+    ofType(topCardAction.fetchUsersRequestedAction),
     switchMap((res) => {
       return this.http.get<User[]>(environment.apiUrl + `api/resources/users`).pipe(
         switchMap((users: User[]) => {
           return [
-            dashboardAction.fetchUsersSucceededAction({ payload: users }),
+            topCardAction.fetchUsersSucceededAction({ payload: users }),
           ]
         }),
         // catchError((error: Error) => {
@@ -36,12 +36,12 @@ export class DashboardEffects {
   ));
 
   fetchDishesEffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
-    ofType(dashboardAction.fetchDishesRequestedAction),
+    ofType(topCardAction.fetchDishesRequestedAction),
     switchMap((res) => {
       return this.http.get<Dish[]>(environment.apiUrl + `api/resources/dishes`).pipe(
         switchMap((dishes: Dish[]) => {
           return [
-            dashboardAction.fetchDishesSucceededAction({ payload: dishes }),
+            topCardAction.fetchDishesSucceededAction({ payload: dishes }),
           ]
         }),
         // catchError((error: Error) => {

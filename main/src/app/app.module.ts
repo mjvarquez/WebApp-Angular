@@ -88,8 +88,10 @@ import { surveyReducer } from './store/homepage/survey/survey.reducer';
 import { SurveyEffects } from './store/homepage/survey/survey.effects';
 import { authReducer } from './store/auth-user/auth/auth.reducer';
 import { AuthEffects } from './store/auth-user/auth/auth.effects';
-import { DashboardEffects } from './store/dashboard/top-card/dashboard.effects';
-import { DashboardReducer } from './store/dashboard//top-card/dashboard.reducer';
+import { topCardReducer } from './store/dashboard/top-card/top-card.reducer';
+import { TopCardEffects } from './store/dashboard/top-card/top-card.effects';
+import { surveyResultReducer } from './store/dashboard/survey-result/survey-result.reducer';
+import { SurveyResultEffects } from './store/dashboard/survey-result/survey-result.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -170,8 +172,8 @@ const icons = {
         PlatformModule,
         PortalModule,
         NgMultiSelectDropDownModule.forRoot(),
-        StoreModule.forRoot({ dishes: DishReducer, users: UserReducer, surveyedDishes: surveyReducer, auth: authReducer, dashboard: DashboardReducer }),
-        EffectsModule.forRoot([DishEffects, UserEffects, SurveyEffects, AuthEffects, DashboardEffects]),
+        StoreModule.forRoot({ dishes: DishReducer, users: UserReducer, surveyedDishes: surveyReducer, auth: authReducer, topCard: topCardReducer, surveyResult: surveyResultReducer }),
+        EffectsModule.forRoot([DishEffects, UserEffects, SurveyEffects, AuthEffects, TopCardEffects, SurveyResultEffects]),
         RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }),
         HttpClientModule,
         FeatherModule.pick(icons),

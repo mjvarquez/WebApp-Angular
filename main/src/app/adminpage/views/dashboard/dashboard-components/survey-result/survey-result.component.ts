@@ -1,20 +1,32 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 
 import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
+import * as surveyResultAction from '../../../../../store/dashboard/survey-result/survey-result.actions';
 
 @Component({
   selector: 'app-survey-result',
   templateUrl: './survey-result.component.html',
   styleUrls: ['./survey-result.component.scss']
 })
-export class SurveyResultComponent implements OnInit {
+export class SurveyResultComponent implements OnInit, OnDestroy {
   dataSource!: any;
   displayedColumns: string[] = ['surveyResult'];
+  surveyResult$!: Observable<any>
+  surveyResultSubscription!: Subscription;
 
-  constructor(private orderMenuService: OrderMenuService) { }
+  constructor(
+    private orderMenuService: OrderMenuService,
+    private store: Store<any>) { }
 
-  // getSurveyResult(){
+  getSurveyResult() {
+    this.store.dispatch(surveyResultAction.loadSurveyResultsRequestedAction());
+    this.surveyResult$ = this.store.select('surveyResult');
+    this.surveyResultSubscription = this.surveyResult$.subscribe((res) => {
+      console.log(res)
+    })
     // let dishVotes: Map<string, any> = new Map<string, any>();
     // let votedDishDetails: Map<string, VotedDishDetails> = new Map<string, VotedDishDetails>();
     // let dishCounts: any[] = [];
@@ -24,55 +36,60 @@ export class SurveyResultComponent implements OnInit {
     //       const date = {
     //         date_served: dish.date_served,
     //       }
-          // for dish survey result
-          // let count: { [key: string ]: any } = {};
-          // dish.dishes.forEach((dishes: any) => {
-          //   const dishDetails = {
-          //     date,
-          //     dishName: dishes.dishName,
-          //     dishType: dishes.dishType,
-          //     price: dishes.price
-          //   }
-            // console.log(dishDetails)
-            // dishCounts.push(dishDetails)
-            // console.log(dishCounts)
-            // for(const dishCount of dishCounts){
-            //   const data = `${dishCount.dishName}_${dishCount.dishType}_${dishCount.price}`;
-            //   (count[data] || (count[data] = {...dishCount, count: 0})).count += 1;
-            // }
-            // const result = Object.values(count);
-          //   result.sort(function(a, b) {
-          //     return a.count.localeCompare(b.count)
-          // });
-            // console.log(result)
+    // for dish survey result
+    // let count: { [key: string ]: any } = {};
+    // dish.dishes.forEach((dishes: any) => {
+    //   const dishDetails = {
+    //     date,
+    //     dishName: dishes.dishName,
+    //     dishType: dishes.dishType,
+    //     price: dishes.price
+    //   }
+    // console.log(dishDetails)
+    // dishCounts.push(dishDetails)
+    // console.log(dishCounts)
+    // for(const dishCount of dishCounts){
+    //   const data = `${dishCount.dishName}_${dishCount.dishType}_${dishCount.price}`;
+    //   (count[data] || (count[data] = {...dishCount, count: 0})).count += 1;
+    // }
+    // const result = Object.values(count);
+    //   result.sort(function(a, b) {
+    //     return a.count.localeCompare(b.count)
+    // });
+    // console.log(result)
 
-            // result.length = 5;
-            // const dishSorted = Object.values(count).sort(function(a,b){return count[b] - count[a]});
-            // console.log(dishSorted)
-            // dishCounts.forEach((c: any) => {
-            //   count[c.dishName] = (count[c.dishName] || 0 ) + 1 
-            // });
-            // console.log(count)
-            // let dishSorted = Object.keys(count).sort(function(a,b){return count[b] - count[a]});
-            // dishSorted.length = 5;
-            // console.log(dishSorted)
-            // this.dataSource = new MatTableDataSource(dishSorted);
-            // for menu of the day
-            
-            // this.orderMenuService.addMenuForToday(selectedMenu)
-            // console.log(this.menuForToday)
-        //   })
-        // })
+    // result.length = 5;
+    // const dishSorted = Object.values(count).sort(function(a,b){return count[b] - count[a]});
+    // console.log(dishSorted)
+    // dishCounts.forEach((c: any) => {
+    //   count[c.dishName] = (count[c.dishName] || 0 ) + 1 
+    // });
+    // console.log(count)
+    // let dishSorted = Object.keys(count).sort(function(a,b){return count[b] - count[a]});
+    // dishSorted.length = 5;
+    // console.log(dishSorted)
+    // this.dataSource = new MatTableDataSource(dishSorted);
+    // for menu of the day
+
+    // this.orderMenuService.addMenuForToday(selectedMenu)
+    // console.log(this.menuForToday)
+    //   })
+    // })
     //   }
     // })
-  // } 
-  
+  }
+
   // addMenu(){
   //   this.orderMenuService.addMenuForToday(this.menuForToday);
   // }
 
   ngOnInit(): void {
-    // this.getSurveyResult();
+    this.getSurveyResult();
+    // this.addMenu();
+  }
+
+  ngOnDestroy(): void {
+    this.surveyResultSubscription.unsubscribe();
     // this.addMenu();
   }
 }
