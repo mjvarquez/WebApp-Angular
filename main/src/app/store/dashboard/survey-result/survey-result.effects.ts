@@ -20,7 +20,7 @@ export class SurveyResultEffects {
   fetchSurveyResultsffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(surveyResultAction.loadSurveyResultsRequestedAction),
     switchMap((res) => {
-      return this.http.get<any>(environment.apiUrl + `api/resources/surveys`).pipe(
+      return this.http.get<Observable<any>>(environment.apiUrl + `api/resources/surveys`).pipe(
         switchMap((surveyResults: any) => {
           return [
             surveyResultAction.loadSurveyResultsSucceededAction({ payload: surveyResults }),
