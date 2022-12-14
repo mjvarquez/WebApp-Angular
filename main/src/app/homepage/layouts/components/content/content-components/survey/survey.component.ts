@@ -64,7 +64,7 @@ export class SurveyComponent implements OnInit {
       voted_dishes: this.checkedItems,
     }
     this.store.dispatch(surveyAction.addSurveysRequested({ payload: data }))
-    console.log('voted')
+    console.log(data)
   }
   // setStep(index: number) {
   //   this.step = index;

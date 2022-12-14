@@ -23,11 +23,14 @@ export class SurveyResultComponent implements OnInit, OnDestroy {
     private store: Store<any>) { }
 
   getSurveyResult() {
+    // count all voted dishes
     let count: { [key: string]: any } = {};
     this.store.dispatch(surveyResultAction.loadSurveyResultsRequestedAction());
     this.surveyResult$ = this.store.select('surveyResult');
     this.surveyResultSubscription = this.surveyResult$.subscribe((res) => {
+      console.log(res)
       res.voted_dishes.forEach((votedDish: any) => {
+        console.log(votedDish)
         for (const dishCount of votedDish.surveys) {
           const data = `${dishCount.dish.id}_${dishCount.dish.dish_name}`;
           (count[data] || (count[data] = { ...dishCount, count: 0 })).count += 1;
@@ -35,24 +38,21 @@ export class SurveyResultComponent implements OnInit, OnDestroy {
         }
         const dishSorted = Object.values(count).sort(function (a, b) { return count[b] - count[a] });
         // dishSorted.length = 5;
-        this.voteResults = dishSorted;
+        const voteDetails: any = {
+          survey_date: votedDish.survey_date,
+          dishSorted
+        }
+        this.voteResults = voteDetails;
       })
-      console.log(this.voteResults)
+      // console.log(this.voteResults)
       this.dataSource = new MatTableDataSource(this.voteResults);
     })
     // for menu of the day
 
     // this.orderMenuService.addMenuForToday(selectedMenu)
     // console.log(this.menuForToday)
-    //   })
-    // })
-    //   }
-    // })
-  }
 
-  // addMenu(){
-  //   this.orderMenuService.addMenuForToday(this.menuForToday);
-  // }
+  }
 
   ngOnInit(): void {
     this.getSurveyResult();

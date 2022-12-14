@@ -22,6 +22,7 @@ export class SurveyResultEffects {
     switchMap((res) => {
       return this.http.get<Observable<any>>(environment.apiUrl + `api/resources/surveys`).pipe(
         switchMap((surveyResults: any) => {
+          console.log('detals', surveyResults)
           return [
             surveyResultAction.loadSurveyResultsSucceededAction({ payload: surveyResults }),
           ]
