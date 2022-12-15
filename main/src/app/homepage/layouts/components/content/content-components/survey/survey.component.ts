@@ -80,6 +80,7 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit(): void {
     // const userId = localStorage.getItem('id');
+    console.log(tomorrowDate)
     // this.userId = userId;
     this.getSurveyedDish();
     this.getSurveyForm();

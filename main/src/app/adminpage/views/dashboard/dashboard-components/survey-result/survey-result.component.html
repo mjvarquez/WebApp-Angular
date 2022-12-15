@@ -1,7 +1,8 @@
 <mat-card>
     <mat-card-content>
         <mat-card-title>Survey Results</mat-card-title>
-        <mat-card-subtitle>For tomorrow's menu</mat-card-subtitle>
+        <mat-card-subtitle>For tomorrow's menu <b>({{currentDate}})</b>
+        </mat-card-subtitle>
         <div class="table">
             <mat-table #table [dataSource]="dataSource" display="flex">
             <ng-container matColumnDef="surveyResult">
@@ -12,7 +13,14 @@
                 {{ element.dish.dish_name }}
               </mat-cell>
             </ng-container>
-
+            <ng-container matColumnDef="totalCountedVotes">
+              <mat-header-cell *matHeaderCellDef>
+                Total Counted Votes
+              </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element.count }}
+              </mat-cell>
+            </ng-container>
             <mat-header-row
               *matHeaderRowDef="displayedColumns"
             ></mat-header-row>

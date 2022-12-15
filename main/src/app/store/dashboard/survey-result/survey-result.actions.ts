@@ -11,6 +11,16 @@ export const loadSurveyResultsSucceededAction = createAction(
   props<{ payload: VotedDishes[] }>()
 );
 
+// export const addSurveyResultsRequestedAction = createAction(
+//   '[SurveyResult] Load SurveyResults Requested',
+//   props<{ payload: any }>()
+// );
+
+// export const addSurveyResultsSucceededAction = createAction(
+//   '[SurveyResult] Load SurveyResults Succeeded',
+//   props<{ payload: any }>()
+// );
+
 export const loadSurveyResultsFailure = createAction(
   '[SurveyResult] Load SurveyResults Failure',
   props<{ error: any }>()

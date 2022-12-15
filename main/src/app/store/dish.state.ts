@@ -13,14 +13,20 @@ export interface DishState {
     dish: Dish[]
 }
 
+export interface MenuForToday {
+    menu: Dish[],
+    survey_date?: string
+}
+
 export interface VotedDishes {
     survey_date?: string,
     voted_dishes: any[],
+    // menu: MenuForToday[]
 }
 
-// export interface MenuForToday {
-//     id?: string,
-//     menu: any[],
-//     date_served: string,
-// }
+
+
+
+
+
 
