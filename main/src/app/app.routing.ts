@@ -11,7 +11,7 @@ export const AppRoutes: Routes = [
     {
         path: '',
         component: FullComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         // resolve: {
         //     tokenResolver: AuthTokenResolver
         // },
@@ -58,7 +58,7 @@ export const AppRoutes: Routes = [
     {
         path: '',
         component: HomepageComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         // data: { roles: ['Admin', 'Employee'] },
         children: [
             {

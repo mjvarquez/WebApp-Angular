@@ -1,20 +1,20 @@
 <mat-card>
     <mat-card-content >
         <mat-card-title>Menu For Today</mat-card-title>
-        <div class="container">
-          <div class="dish-list" *ngFor="let dish of voteResults.dishSorted">
-            <label class="card">
-              <input type="checkbox"/>
-              <div class="cardContent">
-                <img class="img_index" src="" alt=""/>
-                <div class="content">
-                    <span class="dish-info">
-                    {{dish.dish.dish_name}}
-                    </span>
+          <div class="container">
+            <ul class="dish-list">
+              <label class="card" *ngFor="let dish of voteResults.dishSorted">
+                <input type="checkbox"/>
+                <div class="cardContent">
+                  <img class="img_index" src="" alt=""/>
+                  <div class="content">
+                      <span class="dish-info">
+                      {{dish.dish.dish_name}}
+                      </span>
+                  </div>
                 </div>
-              </div>
-            </label>
-            </div>
+              </label>
+            </ul>
           </div>
     </mat-card-content>
 </mat-card>

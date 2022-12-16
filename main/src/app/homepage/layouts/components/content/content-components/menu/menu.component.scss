@@ -1,5 +1,5 @@
 
- .container {
+.container {
     display: block;
     position: relative;
     overflow: hidden;
@@ -7,13 +7,14 @@
     padding-left: 65px;
 }
  
- .container .dish_list {
+.container .dish-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     overflow-x: auto;
     padding: 8px;
 }
+
 
 .card {
     position: relative;
@@ -51,7 +52,7 @@
 }
 
 .card img{
-    background-image: url("../../../../../../../assets//images//menu//Capture.PNG");
+    // background-image: url("../../../../../../../assets//images//menu//Capture.PNG");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
