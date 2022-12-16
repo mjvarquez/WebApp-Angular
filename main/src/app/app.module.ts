@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AppRoutes } from './app.routing';
 import { AppComponent } from './app.component';
 
@@ -92,6 +92,8 @@ import { topCardReducer } from './store/dashboard/top-card/top-card.reducer';
 import { TopCardEffects } from './store/dashboard/top-card/top-card.effects';
 import { surveyResultReducer } from './store/dashboard/survey-result/survey-result.reducer';
 import { SurveyResultEffects } from './store/dashboard/survey-result/survey-result.effects';
+import { menuReducer } from './store/homepage/menu/menu.reducer';
+import { MenuEffects } from './store/homepage/menu/menu.effects';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -124,6 +126,7 @@ const icons = {
         BrowserModule,
         BrowserAnimationsModule,
         FormsModule,
+        CommonModule,
         ReactiveFormsModule,
         FlexLayoutModule,
         HttpClientModule,
@@ -172,8 +175,8 @@ const icons = {
         PlatformModule,
         PortalModule,
         NgMultiSelectDropDownModule.forRoot(),
-        StoreModule.forRoot({ dishes: DishReducer, users: UserReducer, surveyedDishes: surveyReducer, auth: authReducer, topCard: topCardReducer, surveyResult: surveyResultReducer }),
-        EffectsModule.forRoot([DishEffects, UserEffects, SurveyEffects, AuthEffects, TopCardEffects, SurveyResultEffects]),
+        StoreModule.forRoot({ dishes: DishReducer, users: UserReducer, surveyedDishes: surveyReducer, auth: authReducer, topCard: topCardReducer, surveyResult: surveyResultReducer, menu: menuReducer }),
+        EffectsModule.forRoot([DishEffects, UserEffects, SurveyEffects, AuthEffects, TopCardEffects, SurveyResultEffects, MenuEffects]),
         RouterModule.forRoot(AppRoutes, { relativeLinkResolution: 'legacy' }),
         HttpClientModule,
         FeatherModule.pick(icons),

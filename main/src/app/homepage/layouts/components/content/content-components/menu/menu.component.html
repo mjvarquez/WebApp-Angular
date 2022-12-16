@@ -1,216 +1,48 @@
 <mat-card>
     <mat-card-content >
         <mat-card-title>Menu For Today</mat-card-title>
-        <div class="Content">
-            <div class="wrapperContent">
-              <ul class="dish_list">
-                  <li>
-                    <button
-                      type="submit"
-                      class="btn"
-                    >
-                      <div class="dish_container">
-                        <picture>
-                          <div class="dish_picture">
-                            <img
-                              class="img_index"
-                              src=""
-                            />
-                          </div>
-                        </picture>
-                        <div class="dish_btn">
-                          <div class="dish_text">+</div>
-                        </div>
-                        <figcaption class="dish_info">
-                          <span class="dish_name">
-                           Beef Steak <!-- {itemMain.dish_price_id.dish_id.dish_name} -->
-                          </span>
-                        </figcaption>
-                      </div>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="submit"
-                      class="btn"
-                    >
-                      <div class="dish_container">
-                        <picture>
-                          <div class="dish_picture">
-                            <img
-                              class="img_index"
-                              src=""
-                            />
-                          </div>
-                        </picture>
-                        <div class="dish_btn">
-                          <div class="dish_text">+</div>
-                        </div>
-                        <figcaption class="dish_info">
-                          <span class="dish_name">
-                           Beef Steak <!-- {itemMain.dish_price_id.dish_id.dish_name} -->
-                          </span>
-                        </figcaption>
-                      </div>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="submit"
-                      class="btn"
-                    >
-                      <div class="dish_container">
-                        <picture>
-                          <div class="dish_picture">
-                            <img
-                              class="img_index"
-                              src=""
-                            />
-                          </div>
-                        </picture>
-                        <div class="dish_btn">
-                          <div class="dish_text">+</div>
-                        </div>
-                        <figcaption class="dish_info">
-                          <span class="dish_name">
-                           Beef Steak <!-- {itemMain.dish_price_id.dish_id.dish_name} -->
-                          </span>
-                        </figcaption>
-                      </div>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="submit"
-                      class="btn"
-                    >
-                      <div class="dish_container">
-                        <picture>
-                          <div class="dish_picture">
-                            <img
-                              class="img_index"
-                              src=""
-                            />
-                          </div>
-                        </picture>
-                        <div class="dish_btn">
-                          <div class="dish_text">+</div>
-                        </div>
-                        <figcaption class="dish_info">
-                          <span class="dish_name">
-                           Beef Steak <!-- {itemMain.dish_price_id.dish_id.dish_name} -->
-                          </span>
-                        </figcaption>
-                      </div>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="submit"
-                      class="btn"
-                    >
-                      <div class="dish_container">
-                        <picture>
-                          <div class="dish_picture">
-                            <img
-                              class="img_index"
-                              src=""
-                            />
-                          </div>
-                        </picture>
-                        <div class="dish_btn">
-                          <div class="dish_text">+</div>
-                        </div>
-                        <figcaption class="dish_info">
-                          <span class="dish_name">
-                           Beef Steak <!-- {itemMain.dish_price_id.dish_id.dish_name} -->
-                          </span>
-                        </figcaption>
-                      </div>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="submit"
-                      class="btn"
-                    >
-                      <div class="dish_container">
-                        <picture>
-                          <div class="dish_picture">
-                            <img
-                              class="img_index"
-                              src=""
-                            />
-                          </div>
-                        </picture>
-                        <div class="dish_btn">
-                          <div class="dish_text">+</div>
-                        </div>
-                        <figcaption class="dish_info">
-                          <span class="dish_name">
-                           Beef Steak <!-- {itemMain.dish_price_id.dish_id.dish_name} -->
-                          </span>
-                        </figcaption>
-                      </div>
-                    </button>
-                  </li>
-              </ul>
+        <div class="container">
+          <div class="dish-list" *ngFor="let dish of voteResults.dishSorted">
+            <label class="card">
+              <input type="checkbox"/>
+              <div class="cardContent">
+                <img class="img_index" src="" alt=""/>
+                <div class="content">
+                    <span class="dish-info">
+                    {{dish.dish.dish_name}}
+                    </span>
+                </div>
+              </div>
+            </label>
             </div>
           </div>
-        <!-- <ul class="list-unstyled m-t-40">
-            <li class="media">
-                <img class="m-r-15 shrink-none img-circle" src="assets/images/users/2.jpg" width="60" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="m-t-0 m-b-10 font-medium">User Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                    nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <hr>
-            <li class="media my-4">
-                <img class="m-r-15 shrink-none img-circle" src="assets/images/users/1.jpg" width="60" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="m-t-0 m-b-10 font-medium">Agent Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                    nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <hr>
-            <li class="media">
-                <img class="m-r-15 shrink-none img-circle" src="assets/images/users/2.jpg" width="60" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="m-t-0 m-b-10 font-medium">User Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                    nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <hr>
-            <li class="media">
-                <img class="m-r-15 shrink-none img-circle" src="assets/images/users/2.jpg" width="60" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="m-t-0 m-b-10 font-medium">User Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                    nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <hr>
-            <li class="media my-4">
-                <img class="m-r-15 shrink-none img-circle" src="assets/images/users/1.jpg" width="60" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="m-t-0 m-b-10 font-medium">Agent Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                    nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-            <hr>
-            <li class="media">
-                <img class="m-r-15 shrink-none img-circle" src="assets/images/users/2.jpg" width="60" alt="Generic placeholder image">
-                <div class="media-body">
-                    <h5 class="m-t-0 m-b-10 font-medium">User Name</h5> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                    sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum
-                    nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </li>
-        </ul> -->
     </mat-card-content>
 </mat-card>
+
+<!-- <ul class="dish_list">
+  <li *ngFor="let dish of voteResults.dishSorted">
+    <mat-checkbox
+      type="checkbox"
+      class="btn"
+    >
+      <div class="dish_container">
+        <picture>
+          <div class="dish_picture">
+            <img
+              class="img_index"
+              src=""
+            />
+          </div>
+        </picture>
+        <div class="dish_btn">
+          <div class="dish_text">+</div>
+        </div>
+        <figcaption class="dish_info">
+          <span class="dish_name">
+          {{dish.dish.dish_name}}
+          </span>
+        </figcaption>
+      </div>
+    </mat-checkbox>
+  </li>
+</ul> -->

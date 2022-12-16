@@ -17,7 +17,7 @@ export class SurveyResultEffects {
     private http: HttpClient
   ) { }
 
-  fetchSurveyResultsffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
+  fetchSurveyResultseffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(surveyResultAction.loadSurveyResultsRequestedAction),
     switchMap((res) => {
       return this.http.get<Observable<any>>(environment.apiUrl + `api/resources/surveys`).pipe(

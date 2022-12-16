@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { VotedDishes } from '../../dish.state';
-import * as surveyResultAction from '../survey-result/survey-result.actions';
+import * as surveyResultAction from './survey-result.actions';
 
 export const surveyResultFeatureKey = 'surveyResult';
 

@@ -53,7 +53,6 @@ export class SurveyComponent implements OnInit {
         const surveyedDishes = res.dish;
         const activeDish = surveyedDishes.filter((c: any) => c.status == "1");
         this.activeDishes = activeDish;
-        console.log(this.activeDishes)
       }
     })
   }
