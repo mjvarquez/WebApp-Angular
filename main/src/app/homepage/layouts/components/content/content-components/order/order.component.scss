@@ -49,7 +49,7 @@ mat-cell {
 }
 
 .orderBtn {
-    background-color: #497174;
+    background-color: #2b3564;
     color: #ffff;
 }
 
@@ -70,5 +70,23 @@ mat-cell {
 :host ::ng-deep .mat-radio-inner-circle {
     height: 13px;
     width: 13px;
+}
+
+.count {
+    font-size: 15px;
+    padding: 6px;
+}
+
+.decrementBtn {
+    background-color: #2b3564;
+    color: #ffff;
+    font-size: 12px;
+    padding: 3px;
+}
+.incrementBtn {
+    background-color: #2b3564;
+    color: #ffff;
+    font-size: 12px;
+    padding: 3px;
 }
 

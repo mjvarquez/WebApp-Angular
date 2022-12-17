@@ -7,8 +7,12 @@ import { Dish } from 'src/app/store/dish.state';
 import * as surveyAction from '../../../../../../store/homepage/survey/survey.actions';
 
 const currentDate = new Date();
-currentDate.setDate(currentDate.getDate() + 1);
-const tomorrowDate = currentDate.toISOString().slice(0, 10);
+const tomorrowDate =
+  currentDate.getFullYear() +
+  "-" +
+  (currentDate.getMonth() + 1) +
+  "-" +
+  (currentDate.getDate() + 1);
 
 @Component({
   selector: 'app-survey',
@@ -79,7 +83,6 @@ export class SurveyComponent implements OnInit {
 
   ngOnInit(): void {
     // const userId = localStorage.getItem('id');
-    console.log(tomorrowDate)
     // this.userId = userId;
     this.getSurveyedDish();
     this.getSurveyForm();

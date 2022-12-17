@@ -8,9 +8,13 @@ import { first, takeUntil } from 'rxjs/operators';
 import { OrderMenuService } from 'src/app/store/homepage/order-menu.service';
 import * as surveyResultAction from '../../../../../store/dashboard/survey-result/survey-result.actions';
 
-const newDate = new Date();
-newDate.setDate(newDate.getDate() + 1);
-const currentDate = newDate.toISOString().slice(0, 10);
+const currentDate = new Date();
+const tomorrowDate =
+  currentDate.getFullYear() +
+  "-" +
+  (currentDate.getMonth() + 1) +
+  "-" +
+  (currentDate.getDate() + 1);
 
 @Component({
   selector: 'app-survey-result',
@@ -22,8 +26,8 @@ export class SurveyResultComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['surveyResult', 'totalCountedVotes'];
   surveyResult$!: Observable<any>
   // private surveyResultSubscription: ReplaySubject<boolean> = new ReplaySubject(1);
-  voteResults: { [key: string]: any } = {};
-  currentDate = currentDate;
+  voteResults: any = [];
+  tomorrowDate = tomorrowDate;
 
   constructor(
     private store: Store<any>
@@ -49,16 +53,25 @@ export class SurveyResultComponent implements OnInit, OnDestroy {
           const data = `${dishCount.dish.id}_${dishCount.dish.dish_name}`;
           (count[data] || (count[data] = { ...dishCount, count: 0 })).count += 1;
         }
-
-        // console.log(survey)
-
         const dishSorted = Object.values(count).sort(function (a, b) { return count[b] - count[a] });
         const voteDetails = {
           dishSorted,
           survey_date: votedDish.survey_date
         };
-        this.voteResults = voteDetails;
-        this.voteResults.dishSorted.length = 5;
+        // survey result
+        if (voteDetails.survey_date === this.tomorrowDate && voteDetails.dishSorted.length >= 5) {
+          const surveyedItems = [];
+          for (const value of voteDetails.dishSorted) {
+            surveyedItems.push(value)
+            if (surveyedItems.length === 5) {
+              break;
+            }
+          }
+          this.voteResults = surveyedItems;
+          console.log(this.voteResults)
+          this.dataSource = new MatTableDataSource(this.voteResults);
+          // this.setMenuForToday();
+        }
       })
       // this.dishes.forEach((dish: any) => {
       //   count.forEach((test: any, index: any) => {
@@ -71,12 +84,6 @@ export class SurveyResultComponent implements OnInit, OnDestroy {
       //   return b.count - a.count
       // })
       // console.log(this.sorted2);
-
-      // for menu of the day
-      if (this.voteResults.survey_date === this.currentDate) {
-        this.dataSource = new MatTableDataSource(this.voteResults.dishSorted);
-        // this.setMenuForToday();
-      }
     })
   }
 

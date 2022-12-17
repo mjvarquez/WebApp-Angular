@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./content.component.scss']
 })
 export class ContentComponent implements OnInit {
+  orderedItem: any
 
   constructor() { }
 
   ngOnInit(): void {
+    // console.log(this.orderedItem)
   }
 
 }

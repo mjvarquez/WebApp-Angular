@@ -10,7 +10,7 @@
                             Dish Name
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{ element.id }}
+                            {{ element.dish.dish_name }}
                         </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="qty">
@@ -18,7 +18,9 @@
                             Qty
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{ element.name }}
+                            <button mat-raised-button class="decrementBtn" type="submit" [disabled]="">-</button>
+                            <span class="count">1</span>
+                            <button mat-raised-button class="incrementBtn" type="submit" [disabled]="">+</button>
                         </mat-cell>
                         </ng-container>
                         <ng-container matColumnDef="price">
@@ -26,21 +28,13 @@
                             Price
                         </mat-header-cell>
                         <mat-cell *matCellDef="let element">
-                            {{ element.image_link }}
+                            {{ "₱" + element.dish.price }}
                         </mat-cell>
                         </ng-container>
-                        <ng-container matColumnDef="action">
+                        <!-- <ng-container matColumnDef="action">
                         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
                         <mat-cell *matCellDef="let element">
                             <div class="actionContainer">
-                            <span
-                                class="editButton"
-                                mat-raised-button
-                                color="primary"
-                                (click)="editArticle(element)"
-                            >
-                                <mat-icon>edit</mat-icon>
-                            </span>
                             <span
                                 class="deleteButton"
                                 mat-raised-button
@@ -51,7 +45,7 @@
                             </span>
                             </div>
                         </mat-cell>
-                        </ng-container>
+                        </ng-container> -->
             
                         <mat-header-row
                         *matHeaderRowDef="displayedColumns"

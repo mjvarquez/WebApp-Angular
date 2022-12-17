@@ -1,26 +1,26 @@
-
 .container {
-    display: block;
-    position: relative;
-    overflow: hidden;
+    box-sizing: border-box;
     width: 100%;
-    padding-left: 65px;
+    height: auto;
+    padding: 0px 0px;
+    display: block;
 }
- 
+
 .container .dish-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     overflow-x: auto;
     padding: 8px;
+    justify-content: center;
 }
 
-
 .card {
+    display: list-item;
+    margin: 17px;
     position: relative;
-    height: 300px;
-    width: 240px;
-    margin: 10px;
+    height: 270px;
+    width: 220px;
 }
 
 .card:active{
@@ -52,7 +52,7 @@
 }
 
 .card img{
-    // background-image: url("../../../../../../../assets//images//menu//Capture.PNG");
+    background-image: url("../../../../../../../assets/images/menu/Capture.PNG");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

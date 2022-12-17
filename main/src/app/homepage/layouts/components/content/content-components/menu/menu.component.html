@@ -1,22 +1,23 @@
 <mat-card>
-    <mat-card-content >
-        <mat-card-title>Menu For Today</mat-card-title>
-          <div class="container">
-            <ul class="dish-list">
-              <label class="card" *ngFor="let dish of voteResults.dishSorted">
-                <input type="checkbox"/>
-                <div class="cardContent">
-                  <img class="img_index" src="" alt=""/>
-                  <div class="content">
-                      <span class="dish-info">
-                      {{dish.dish.dish_name}}
-                      </span>
-                  </div>
-                </div>
-              </label>
-            </ul>
+  <mat-card-content >
+    <mat-card-title>Menu For Today</mat-card-title>
+    <b>{{currentDate}}</b>
+    <div class="container">
+      <ul class="dish-list">
+        <label class="card" *ngFor="let dish of voteResults">
+          <input type="checkbox" (change)="selectedItem($event, dish)" [value]="dish"/>
+          <div class="cardContent">
+            <img class="img_index" src="" alt=""/>
+            <div class="content">
+                <span class="dish-info">
+                {{dish.dish.dish_name}}
+                </span>
+            </div>
           </div>
-    </mat-card-content>
+        </label>
+      </ul>
+    </div>
+  </mat-card-content>
 </mat-card>
 
 <!-- <ul class="dish_list">

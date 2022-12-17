@@ -3,11 +3,10 @@
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title>Survey<span class="label label-warning">Optional</span></mat-panel-title>
-                <mat-panel-description>For tomorrow's menu</mat-panel-description>
+                <mat-panel-description>For tomorrow's menu <b>({{tomorrowDate}})</b></mat-panel-description>
             </mat-expansion-panel-header>
             <form [formGroup]="surveyForm" (ngSubmit)="onVote()">
                 <mat-card-content>
-                    <span >{{tomorrowDate}}</span>
                     <div class="surveyList">
                         <mat-checkbox formControlName="selectedItem" (change)="selectedItem($event, activeDish)" *ngFor=" let activeDish of activeDishes" [value]="activeDish">{{activeDish.dish_name}}</mat-checkbox>
                     </div>

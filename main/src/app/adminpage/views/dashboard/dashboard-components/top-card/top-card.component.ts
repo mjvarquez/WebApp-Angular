@@ -50,37 +50,37 @@ export class TopCardComponent implements OnInit {
     })
   }
 
-  setCount() {
-    let totalDishCountStop = setInterval(() => {
-      this.totalCount.allDish++;
-      if (this.totalCount.allDish == this.totalDish.count) {
-        clearInterval(totalDishCountStop);
-      }
-    }, 150)
-    let activeDishCountStop = setInterval(() => {
-      this.totalCount.activeDish++;
-      if (this.totalCount.activeDish == this.activeDish.count) {
-        clearInterval(activeDishCountStop);
-      }
-    }, 300)
-    let inactiveDishCountStop = setInterval(() => {
-      this.totalCount.inactiveDish++;
-      if (this.totalCount.inactiveDish == this.inactiveDish.count) {
-        clearInterval(inactiveDishCountStop);
-      }
-    }, 300)
-    let totalUserCountStop = setInterval(() => {
-      this.totalCount.allUser++;
-      if (this.totalCount.allUser == this.totalUser.count) {
-        clearInterval(totalUserCountStop);
-      }
-    }, 150)
-  }
+  // setCount() {
+  //   let totalDishCountStop = setInterval(() => {
+  //     this.totalCount.allDish++;
+  //     if (this.totalCount.allDish == this.totalDish.count) {
+  //       clearInterval(totalDishCountStop);
+  //     }
+  //   }, 300)
+  //   let activeDishCountStop = setInterval(() => {
+  //     this.totalCount.activeDish++;
+  //     if (this.totalCount.activeDish == this.activeDish.count) {
+  //       clearInterval(activeDishCountStop);
+  //     }
+  //   }, 300)
+  //   let inactiveDishCountStop = setInterval(() => {
+  //     this.totalCount.inactiveDish++;
+  //     if (this.totalCount.inactiveDish == this.inactiveDish.count) {
+  //       clearInterval(inactiveDishCountStop);
+  //     }
+  //   }, 300)
+  //   let totalUserCountStop = setInterval(() => {
+  //     this.totalCount.allUser++;
+  //     if (this.totalCount.allUser == this.totalUser.count) {
+  //       clearInterval(totalUserCountStop);
+  //     }
+  //   }, 300)
+  // }
 
   ngOnInit(): void {
     this.getTotalDishes();
     this.getTotalusers();
-    this.setCount();
+    // this.setCount();
   }
 
   ngOnDestroy(): void {
