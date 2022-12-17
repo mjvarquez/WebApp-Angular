@@ -23,8 +23,5 @@
 //     }else{
 //         this.store.dispatch(userAction.loginAuthsRequested())
 //     }
-
-
-    
 //   }
 // }

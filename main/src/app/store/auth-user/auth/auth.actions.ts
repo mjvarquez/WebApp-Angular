@@ -13,8 +13,7 @@ export const loginAuthsSucceeded = createAction(
 );
 
 export const getUserDataRequested = createAction(
-  '[Auth] Get User Data Requested',
-  props<{ payload: any }>()
+  '[Auth] Get User Data Requested'
 );
 
 export const getUserDataSucceeded = createAction(

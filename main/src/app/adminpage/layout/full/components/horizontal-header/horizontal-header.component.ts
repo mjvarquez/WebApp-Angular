@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
 import { AuthService } from 'src/app/store/auth-user/auth.service';
+import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-horizontal-header',
@@ -11,19 +13,20 @@ import { AuthService } from 'src/app/store/auth-user/auth.service';
 
 export class HorizontalAppHeaderComponent implements OnInit {
   public config: PerfectScrollbarConfigInterface = {};
-  firstName!: any;
+  firstName$!: Subscription;
   lastName!: any;
   role!: any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private store: Store<any>) { }
 
   logOut() {
     this.authService.signOut();
   }
 
   ngOnInit(): void {
-    this.firstName = localStorage.getItem('firstName');
-    this.lastName = localStorage.getItem('lastName');
-    this.role = localStorage.getItem('role')
+    this.firstName$ = this.store.select('auth').subscribe(res => {
+      console.log(res)
+    })
+
   }
 }

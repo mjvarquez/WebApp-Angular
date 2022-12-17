@@ -13,16 +13,16 @@ import { Dish } from '../dish.state';
 export class DishEffects {
 
   constructor(private actions$: Actions,
-              private http: HttpClient) {}
+    private http: HttpClient) { }
 
-  loadDishesEffects$: Observable<Action> = createEffect(() => 
+  loadDishesEffects$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType(dishAction.loadDishesRequested), 
-      switchMap((res) => {
+      ofType(dishAction.loadDishesRequested),
+      switchMap(() => {
         return this.http.get<Dish[]>(environment.apiUrl + `api/resources/dishes`).pipe(
           switchMap((dishes: Dish[]) => {
             return [
-              dishAction.loadDishesSucceeded({ payload: dishes})
+              dishAction.loadDishesSucceeded({ payload: dishes })
             ]
           }),
           catchError((error: Error) => {
@@ -30,7 +30,7 @@ export class DishEffects {
           })
         )
       })
-  ));
+    ));
 
   addDishesEffect$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
@@ -49,7 +49,7 @@ export class DishEffects {
       })
     ));
 
-    deleteDishesEffect$: Observable<Action> = createEffect(() =>
+  deleteDishesEffect$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(dishAction.deleteDishesRequested),
       switchMap((res) => {
@@ -66,7 +66,7 @@ export class DishEffects {
       })
     ));
 
-    updateDishesEffect$: Observable<Action> = createEffect(() =>
+  updateDishesEffect$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(dishAction.updateDishesRequested),
       switchMap((res) => {
@@ -82,5 +82,5 @@ export class DishEffects {
         )
       })
     ));
-  
+
 }

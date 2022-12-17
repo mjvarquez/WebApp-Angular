@@ -21,6 +21,7 @@ export class MenuEffects {
     switchMap((res) => {
       return this.http.get<Observable<any>>(environment.apiUrl + `api/resources/surveys`).pipe(
         switchMap((menu: any) => {
+          console.log(menu)
           return [
             menuResultAction.loadMenusSucceededAction({ payload: menu }),
           ]

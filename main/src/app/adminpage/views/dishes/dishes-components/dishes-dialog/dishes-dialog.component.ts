@@ -31,7 +31,7 @@ export class DishesDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public editData: any,
     private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DishesDialogComponent>,
-    private store: Store <{ dishes: [any] }>) { }
+    private store: Store<{ dishes: [any] }>) { }
 
   getDishForm() {
     this.dishForm = this.formBuilder.group({
@@ -75,9 +75,8 @@ export class DishesDialogComponent implements OnInit {
       price: this.dishForm.value.price,
       status: this.dishForm.value.status,
     }
-    console.log('update', data)
     const getDishId = this.editData.id
-    this.store.dispatch(dishAction.updateDishesRequested({ payload: { dishId: getDishId, updateDish: data }}));
+    this.store.dispatch(dishAction.updateDishesRequested({ payload: { dishId: getDishId, updateDish: data } }));
     this.dialogRef.close()
   }
 

@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 
-import { DishState } from '../dish.state';
+import { Dish, DishState } from '../dish.state';
 import * as dishAction from './dish.actions';
 
 export const initialState: DishState = {
@@ -16,12 +16,7 @@ export const DishReducer = createReducer(
     }
   }),
   on(dishAction.addDishesSucceeded, (state: DishState, { payload }) => {
-    const data = {
-      dish_name: payload.dish_name,
-      dish_type: payload.dish_type,
-      price: payload.price,
-      status: payload.status
-    }
+    const data: Dish = payload;
     return { ...state, dish: [...state.dish, data] }
   }),
   on(dishAction.deleteDishesSucceeded, (state: DishState, { id }) => {

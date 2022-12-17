@@ -13,12 +13,12 @@ import { exhaustMap, take } from 'rxjs/operators';
 export class TokenInterceptorService {
 
   constructor(private authService: AuthService,
-              private store: Store<any>) { }
+    private store: Store<any>) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    return this.store.select("current_user").pipe(
+    return this.store.select("auth").pipe(
       take(1),
-      exhaustMap(() => {
+      exhaustMap((res) => {
         const token = localStorage.getItem('token');
         if (!token) {
           return next.handle(req);
@@ -36,7 +36,7 @@ export class TokenInterceptorService {
     //     const token = this.authService.getToken();
     //     if (token != null) {
     //       authReq = req.clone({ headers: req.headers.set(token_header_key, 'Bearer ' + token) });
-         
+
     //     }
     //     return next.handle(authReq);
     //   }))

@@ -15,45 +15,46 @@ import { environment } from 'src/environments/environment';
 export class AuthEffects {
 
   constructor(private actions$: Actions,
-              private http: HttpClient,
-              private router: Router,
-              private authService: AuthService) {}
+    private http: HttpClient,
+    private router: Router,
+    private authService: AuthService) { }
 
   loginUserEffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(authAction.loginAuthsRequested),
-    switchMap((res) =>{
-      return this.http.post<AuthResponseData>(environment.apiUrl + 'api/auth/login', res ).pipe(
-          switchMap((authUser: AuthResponseData) => {
-            this.authService.loginUser(authUser);
-            return [
-              authAction.getUserDataRequested({ payload: authUser })
-            ]
-          }),
-          // catchError((error: Error) => {
-          //   this.authService.handleAuthError(error);
-          //   return of(NotificationAction.notificationResponse({payload: { type: 'authError', message: 'Username or Password is incorrect!' }}));
-          // })
-        )
-      }
+    switchMap((res) => {
+      return this.http.post<AuthResponseData>(environment.apiUrl + 'api/auth/login', res).pipe(
+        switchMap((authUser: AuthResponseData) => {
+          this.authService.loginUser(authUser);
+          return [
+            authAction.getUserDataRequested()
+          ]
+        }),
+        // catchError((error: Error) => {
+        //   this.authService.handleAuthError(error);
+        //   return of(NotificationAction.notificationResponse({payload: { type: 'authError', message: 'Username or Password is incorrect!' }}));
+        // })
+      )
+    }
     )
   ));
 
   fetchUserEffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
     ofType(authAction.getUserDataRequested),
-    switchMap((res) =>{
+    switchMap((res) => {
       return this.http.post<User>(environment.apiUrl + 'api/auth/me', {}).pipe(
-          switchMap((authUser: User) => {
-            this.router.navigate(['/dashboard'])
-            return [
-              authAction.loginAuthsSucceeded({ payload: authUser }),
-            ]
-          }),
-          // catchError((error: Error) => {
-          //   this.authService.handleAuthError(error);
-          //   return of(NotificationAction.notificationResponse({payload: { type: 'authError', message: 'Username or Password is incorrect!' }}));
-          // })
-        )
-      }
+        switchMap((authUser: User) => {
+          // console.log(authUser)
+          this.router.navigate(['/dashboard'])
+          return [
+            authAction.loginAuthsSucceeded({ payload: authUser }),
+          ]
+        }),
+        // catchError((error: Error) => {
+        //   this.authService.handleAuthError(error);
+        //   return of(NotificationAction.notificationResponse({payload: { type: 'authError', message: 'Username or Password is incorrect!' }}));
+        // })
+      )
+    }
     )
   ));
 

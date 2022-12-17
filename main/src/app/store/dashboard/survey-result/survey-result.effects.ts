@@ -33,23 +33,4 @@ export class SurveyResultEffects {
       )
     })
   ));
-
-  // addSurveyResultsffect$: Observable<Action> = createEffect(() => this.actions$.pipe(
-  //   ofType(surveyResultAction.addSurveyResultsRequestedAction),
-  //   switchMap((res) => {
-  //     return this.http.post<Observable<any>>(environment.apiUrl + `api/resources/menu`, res.payload).pipe(
-  //       switchMap((menu: any) => {
-  //         console.log(menu)
-  //         return [
-  //           surveyResultAction.addSurveyResultsSucceededAction({ payload: menu }),
-  //         ]
-  //       }),
-  //       // catchError((error: Error) => {
-  //       //   this.authService.handleAuthError(error);
-  //       //   return of(NotificationAction.notificationResponse({payload: { type: 'authError', message: 'Username or Password is incorrect!' }}));
-  //       // })
-  //     )
-  //   })
-  // ));
-
 }

@@ -4,11 +4,14 @@ import { Router } from '@angular/router';
 import {
   ChangeDetectorRef,
   Component,
-  OnDestroy
+  OnDestroy,
+  OnInit
 
 
 } from '@angular/core';
 import { MenuItems } from '../../../shared/menu-items/menu-items';
+import { Store } from '@ngrx/store';
+import * as authActions from '../../../store/auth-user/auth/auth.actions';
 
 
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -19,7 +22,7 @@ import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
   templateUrl: 'full.component.html',
   styleUrls: ['./full.component.scss']
 })
-export class FullComponent implements OnDestroy {
+export class FullComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   dir = 'ltr';
   green = false;
@@ -45,6 +48,7 @@ export class FullComponent implements OnDestroy {
 
 
   constructor(
+    private store: Store<any>,
     public router: Router,
     changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
@@ -55,6 +59,11 @@ export class FullComponent implements OnDestroy {
     // tslint:disable-next-line: deprecation
     this.mobileQuery.addListener(this._mobileQueryListener);
 
+  }
+  ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.store.dispatch(authActions.getUserDataRequested())
+    }
   }
 
   ngOnDestroy(): void {
